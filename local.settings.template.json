@@ -1,0 +1,30 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FUNCTIONS_NODE_BLOCK_ON_ENTRY_POINT_ERROR": "true",
+
+    "// Azure App Configuration": "",
+    "AZURE_APP_CONFIG_CONNECTION_STRING": "<your-app-config-connection-string>",
+
+    "// Azure Key Vault": "",
+    "AZURE_KEY_VAULT_URL": "https://urlip-dev-kv.vault.azure.net/",
+
+    "// Database Connections": "",
+    "STARLIMS_CONNECTION_STRING": "<starlims-connection-string>",
+
+    "// Feature Flags": "",
+    "FEATURE_ORDER_ENTRY_ENABLED": "true",
+    "FEATURE_BILLING_PORTAL_ENABLED": "false",
+
+    "// Environment": "",
+    "ENVIRONMENT": "development",
+    "LOG_LEVEL": "debug"
+  },
+  "Host": {
+    "CORS": "*",
+    "CORSCredentials": false
+  },
+  "ConnectionStrings": {}
+}
