@@ -1,0 +1,66 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Azure Functions
+bin/
+obj/
+local.settings.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.pfx
+secrets/
+credentials/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Azure
+.azure/
+
+# Documentation build artifacts
+docs/_build/
+docs/.doctrees/
+
+# Package manager locks (keep one, ignore others based on choice)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
