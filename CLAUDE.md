@@ -315,7 +315,14 @@ Toggle-Controlled Features:
 ## 8. Project Management
 
 ### Rule 8.1: Monday.com Integration
-Project Plan managed in **Monday.com** with hierarchy:
+Project Plan managed in **Monday.com**:
+- **Workspace:** MVD IT (ID: 12231690)
+- **Folder:** URLIP
+- **Boards:**
+  - URLIP Phase 1 - Foundation (18400841228)
+  - URLIP Customer Onboarding (18400841566)
+
+Hierarchy:
 ```
 Epics
 └── Features
@@ -938,6 +945,7 @@ docs(api): update swagger for billing endpoints
 ```
 
 ### Emergency Contacts
+- **Monday.com Workspace:** MVD IT (ID: 12231690) → URLIP folder
 - **Monday.com Phase 1 Board:** https://michaelloggins.monday.com/boards/18400841228
 - **Monday.com Customer Onboarding:** https://michaelloggins.monday.com/boards/18400841566
 - **GitHub Repo:** https://github.com/michaelloggins/URLIP
