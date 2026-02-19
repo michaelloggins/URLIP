@@ -792,13 +792,7 @@ During development or runtime, recommend MCP servers that would be helpful.
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       }
     },
-    "monday": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-monday"],
-      "env": {
-        "MONDAY_API_TOKEN": "${MONDAY_API_TOKEN}"
-      }
-    },
+    "monday-apps-mcp": { "command": "npx", "args": ["@mondaydotcomorg/monday-api-mcp", "-t", "$\{MONDAY_API_TOKEN\}", "--mode", "apps"] },
     "playwright": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-playwright"]
@@ -820,6 +814,32 @@ During development or runtime, recommend MCP servers that would be helpful.
 }
 ```
 
+### Rule 14.4: Monday.com MCP Options
+Two MCP options are available for Monday.com integration:
+
+| Option | Use Case | Configuration |
+|--------|----------|---------------|
+| **Monday Apps MCP** | Apps framework tools, board/item manipulation | `@mondaydotcomorg/monday-api-mcp` with `--mode apps` |
+| **Monday Platform MCP** | Workspace automation | Connect via URL: `https://mcp.monday.com/mcp` |
+
+**Monday Apps MCP Configuration:**
+```json
+{
+  "mcpServers": {
+    "monday-apps-mcp": {
+      "command": "npx",
+      "args": [
+        "@mondaydotcomorg/monday-api-mcp",
+        "-t", "your_monday_API_token",
+        "--mode", "apps"
+      ]
+    }
+  }
+}
+```
+
+**Monday Platform MCP:** Connect directly via URL `https://mcp.monday.com/mcp` for workspace automation features.
+
 ---
 
 ## 15. Learnings & Patterns
@@ -828,6 +848,38 @@ During development or runtime, recommend MCP servers that would be helpful.
 After every significant troubleshooting session or pattern discovery, update this section to prevent similar issues.
 
 ### Documented Learnings
+
+#### Learning: Azure CLI quoting issues in Git Bash on Windows
+**Date:** 2026-02-19
+**Context:** Running Azure CLI commands with JSON parameters in Git Bash
+**Issue:** JSON parameters with quotes were being mangled by bash shell interpretation
+**Root Cause:** Git Bash on Windows handles quote escaping differently than PowerShell
+**Solution:** Use PowerShell for Azure CLI commands with complex parameters, or write JSON to temp files
+**Prevention:** For Azure CLI commands with JSON, prefer PowerShell or use temp files for JSON content
+
+#### Learning: GitHub CLI wrong hostname
+**Date:** 2026-02-19
+**Context:** Setting GitHub secrets via `gh secret set`
+**Issue:** gh CLI was configured for enterprise GitHub (mvd.ghe.com) instead of github.com
+**Root Cause:** gh CLI uses `--hostname` for auth but not for secret commands
+**Solution:** Use `GH_HOST=github.com` environment variable before gh commands
+**Prevention:** Always verify `gh auth status` before running gh commands
+
+#### Learning: Azure diagnostic settings retention deprecated
+**Date:** 2026-02-19
+**Context:** Deploying Key Vault with diagnostic settings via Bicep
+**Issue:** "Diagnostic settings does not support retention for new diagnostic settings"
+**Root Cause:** Azure deprecated retentionPolicy in diagnostic settings
+**Solution:** Remove retentionPolicy blocks from diagnostic settings in Bicep
+**Prevention:** Don't include retentionPolicy in new diagnostic settings resources
+
+#### Learning: Soft-deleted Azure App Configuration blocks reuse
+**Date:** 2026-02-19
+**Context:** Redeploying App Configuration after failed deployment
+**Issue:** "The specified name is already in use by a soft-deleted configuration store"
+**Root Cause:** App Configuration has soft-delete enabled by default
+**Solution:** Purge deleted App Configuration: `az appconfig purge --name <name> --location <location> --yes`
+**Prevention:** Use unique names or purge soft-deleted resources before redeployment
 
 #### [Template for new learnings]
 ```markdown
@@ -886,10 +938,14 @@ docs(api): update swagger for billing endpoints
 ```
 
 ### Emergency Contacts
-- **Monday.com Board:** [Link to be added]
-- **GitHub Repo:** [Link to be added]
+- **Monday.com Phase 1 Board:** https://michaelloggins.monday.com/boards/18400841228
+- **Monday.com Customer Onboarding:** https://michaelloggins.monday.com/boards/18400841566
+- **GitHub Repo:** https://github.com/michaelloggins/URLIP
 - **Azure Portal:** https://portal.azure.com
+- **Azure Dev RG:** rg-urlip-dev-centralus-001
+- **Azure Prod RG:** rg-urlip-prod-centralus-001
 
 ---
 
 *This document is maintained as part of the project and should be updated as new patterns, learnings, and rules are established.*
+
