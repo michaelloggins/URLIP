@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVD Compendium Browser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<style>
+:root {
+    --mvd-navy: #0B1D3A;
+    --mvd-blue: #1B4F8A;
+    --mvd-teal: #2A9D8F;
+    --mvd-gold: #E9C46A;
+    --mvd-coral: #E76F51;
+    --mvd-light: #F8F9FC;
+    --mvd-white: #FFFFFF;
+    --mvd-border: #DEE2EA;
+    --mvd-text: #1A1A2E;
+    --mvd-muted: #6B7280;
+    --mvd-bg-hover: #F0F3F9;
+    --mvd-bg-stripe: #FAFBFE;
+    --badge-antigen: #2A9D8F;
+    --badge-antibody: #6366F1;
+    --badge-pcr: #E76F51;
+    --shadow-sm: 0 1px 3px rgba(11,29,58,0.08);
+    --shadow-md: 0 4px 12px rgba(11,29,58,0.1);
+    --shadow-lg: 0 8px 30px rgba(11,29,58,0.12);
+    --radius: 6px;
+    --radius-lg: 10px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--mvd-light);
+    color: var(--mvd-text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.header {
+    background: linear-gradient(135deg, var(--mvd-navy) 0%, #132B50 100%);
+    color: white;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(11,29,58,0.25);
+}
+.header-brand { display: flex; align-items: center; gap: 14px; }
+.header-logo {
+    width: 36px; height: 36px;
+    background: var(--mvd-teal);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 14px;
+    letter-spacing: -0.5px; color: white;
+}
+.header-title { font-size: 18px; font-weight: 600; letter-spacing: -0.3px; }
+.header-subtitle { font-size: 12px; opacity: 0.6; font-weight: 400; margin-top: -2px; }
+.header-meta { display: flex; align-items: center; gap: 20px; font-size: 13px; opacity: 0.7; }
+
+.toolbar {
+    background: var(--mvd-white);
+    border-bottom: 1px solid var(--mvd-border);
+    padding: 14px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    position: sticky; top: 64px; z-index: 90;
+    box-shadow: var(--shadow-sm);
+}
+.toolbar-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.toolbar-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.search-box { position: relative; }
+.search-box input {
+    width: 280px; height: 36px; padding: 0 12px 0 36px;
+    border: 1.5px solid var(--mvd-border); border-radius: var(--radius);
+    font-family: inherit; font-size: 13px; color: var(--mvd-text);
+    background: var(--mvd-light); transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-box input:focus { outline: none; border-color: var(--mvd-blue); box-shadow: 0 0 0 3px rgba(27,79,138,0.1); background: white; }
+.search-box input::placeholder { color: var(--mvd-muted); }
+.search-box svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--mvd-muted); pointer-events: none; }
+
+.chip-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+    height: 30px; padding: 0 10px;
+    border: 1.5px solid var(--mvd-border); border-radius: 15px;
+    font-family: inherit; font-size: 12px; font-weight: 500;
+    color: var(--mvd-muted); background: var(--mvd-white);
+    cursor: pointer; transition: all 0.15s;
+    display: flex; align-items: center; gap: 4px;
+}
+.chip:hover { border-color: var(--mvd-blue); color: var(--mvd-blue); }
+.chip.active { border-color: var(--mvd-blue); background: rgba(27,79,138,0.06); color: var(--mvd-blue); }
+.chip .count { background: var(--mvd-border); border-radius: 10px; padding: 0 6px; font-size: 11px; font-weight: 600; line-height: 18px; }
+.chip.active .count { background: var(--mvd-blue); color: white; }
+
+.btn {
+    height: 36px; padding: 0 16px; border: none; border-radius: var(--radius);
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.15s;
+}
+.btn-export { background: var(--mvd-teal); color: white; }
+.btn-export:hover { background: #248A7E; box-shadow: var(--shadow-md); }
+.btn-ghost { background: transparent; color: var(--mvd-muted); border: 1.5px solid var(--mvd-border); }
+.btn-ghost:hover { background: var(--mvd-bg-hover); color: var(--mvd-text); }
+
+.stats-bar {
+    padding: 8px 32px; background: var(--mvd-white); border-bottom: 1px solid var(--mvd-border);
+    display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--mvd-muted);
+}
+.stats-bar strong { color: var(--mvd-text); font-weight: 600; }
+
+.table-container { padding: 0 24px 40px; overflow-x: auto; }
+table {
+    width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 8px;
+    background: var(--mvd-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+    overflow: hidden; min-width: 1400px;
+}
+thead th {
+    z-index: 50;
+    background: #F3F4F8; border-bottom: 2px solid var(--mvd-border);
+    padding: 0; text-align: left;
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--mvd-muted); white-space: nowrap;
+}
+thead th .th-inner { padding: 10px 12px 6px; }
+thead th .th-filter { padding: 0 12px 8px; }
+thead th select, thead th input {
+    width: 100%; height: 26px; padding: 0 6px;
+    border: 1px solid var(--mvd-border); border-radius: 4px;
+    font-family: inherit; font-size: 11px; color: var(--mvd-text); background: white;
+}
+thead th select:focus, thead th input:focus { outline: none; border-color: var(--mvd-blue); }
+
+tbody tr { transition: background 0.1s; cursor: pointer; }
+tbody tr:nth-child(even) { background: var(--mvd-bg-stripe); }
+tbody tr:hover { background: var(--mvd-bg-hover); }
+tbody td {
+    padding: 10px 12px; border-bottom: 1px solid #EEF0F4;
+    font-size: 13px; vertical-align: top; max-width: 250px;
+}
+
+.cell-code { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; color: var(--mvd-blue); }
+.cell-mvd { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; background: rgba(27,79,138,0.06); padding: 2px 7px; border-radius: 4px; display: inline-block; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.2px; }
+.badge-antigen { background: rgba(42,157,143,0.1); color: var(--badge-antigen); }
+.badge-antibody { background: rgba(99,102,241,0.1); color: var(--badge-antibody); }
+.badge-pcr { background: rgba(231,111,81,0.1); color: var(--badge-pcr); }
+.badge-active { background: rgba(42,157,143,0.1); color: var(--badge-antigen); }
+.badge-new { background: rgba(233,196,106,0.15); color: #B8860B; }
+.badge-disabled { background: rgba(107,114,128,0.1); color: var(--mvd-muted); }
+.cell-truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.cell-results { font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+
+.state-msg { text-align: center; padding: 60px 20px; color: var(--mvd-muted); }
+.state-msg h3 { font-size: 16px; color: var(--mvd-text); margin-bottom: 6px; }
+.state-msg p { font-size: 13px; }
+.spinner { width: 32px; height: 32px; border: 3px solid var(--mvd-border); border-top-color: var(--mvd-teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.popover-overlay { display: none; position: fixed; inset: 0; background: rgba(11,29,58,0.3); z-index: 200; backdrop-filter: blur(2px); }
+.popover-overlay.visible { display: flex; align-items: center; justify-content: center; }
+.popover { background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-width: 640px; width: 90vw; max-height: 80vh; overflow-y: auto; padding: 28px; animation: popIn 0.2s ease-out; }
+@keyframes popIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.popover-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.popover-header h2 { font-size: 18px; font-weight: 600; }
+.popover-close { width: 32px; height: 32px; border: none; background: var(--mvd-light); border-radius: 6px; cursor: pointer; font-size: 18px; color: var(--mvd-muted); display: flex; align-items: center; justify-content: center; }
+.popover-close:hover { background: var(--mvd-bg-hover); color: var(--mvd-text); }
+.detail-grid { display: grid; grid-template-columns: 140px 1fr; gap: 8px 16px; font-size: 13px; }
+.detail-label { font-weight: 600; color: var(--mvd-muted); }
+.detail-value { color: var(--mvd-text); }
+.detail-section { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--mvd-border); }
+.detail-section h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--mvd-muted); margin-bottom: 10px; }
+
+@media (max-width: 900px) {
+    .header { padding: 0 16px; }
+    .toolbar { padding: 12px 16px; flex-wrap: wrap; }
+    .search-box input { width: 200px; }
+    .table-container { padding: 0 8px 24px; }
+    .header-meta { display: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-brand">
+        <div class="header-logo">MVD</div>
+        <div>
+            <div class="header-title">Test Compendium</div>
+            <div class="header-subtitle">MiraVista Diagnostics</div>
+        </div>
+    </div>
+    <div class="header-meta">
+        <span id="headerVersion">v2.0.0</span>
+        <span>CLIA: 15D0996282</span>
+        <span id="headerUpdated"></span>
+    </div>
+</header>
+
+<div class="toolbar">
+    <div class="toolbar-left">
+        <div class="search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="globalSearch" placeholder="Search tests, LOINCs, CPT codes...">
+        </div>
+        <div class="chip-filters" id="categoryChips"></div>
+    </div>
+    <div class="toolbar-right">
+        <button class="btn btn-ghost" id="btnClearFilters" title="Clear all filters">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Clear
+        </button>
+        <button class="btn btn-export" id="btnExport">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export XLSX
+        </button>
+    </div>
+</div>
+
+<div class="stats-bar">
+    <span>Showing <strong id="statVisible">0</strong> of <strong id="statTotal">0</strong> orderable LOINCs</span>
+    <span>across <strong id="statTests">0</strong> tests</span>
+    <span id="statDivider">&bull;</span>
+    <span id="statFilters">No filters active</span>
+</div>
+
+<div class="table-container">
+    <table id="compendiumTable" style="display:none">
+        <thead><tr id="thRow"></tr></thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <div class="state-msg" id="loadingMsg">
+        <div class="spinner"></div>
+        <h3>Loading Compendium</h3>
+        <p>Fetching test catalog from API...</p>
+    </div>
+    <div class="state-msg" id="emptyMsg" style="display:none">
+        <h3>No matching tests</h3>
+        <p>Try adjusting your filters or search query.</p>
+    </div>
+</div>
+
+<div class="popover-overlay" id="popoverOverlay">
+    <div class="popover" id="popoverContent"></div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+
+    const API_BASE = 'http://localhost:7071/api';
+
+    const COLUMNS = [
+        { key: 'mvdTestCode',    label: 'MVD Code',    type: 'text',   width: '80px',  render: 'mvdCode' },
+        { key: 'orderLoincCode', label: 'Order LOINC',  type: 'text',   width: '100px', render: 'loincCode' },
+        { key: 'shortName',      label: 'Short Name',   type: 'text',   width: '160px', render: 'truncate' },
+        { key: 'testName',       label: 'Test Name',    type: 'text',   width: '220px', render: 'truncate' },
+        { key: 'category',       label: 'Category',     type: 'select', width: '100px', render: 'badge' },
+        { key: 'methodology',    label: 'Methodology',  type: 'select', width: '120px', render: 'text' },
+        { key: 'organism',       label: 'Organism',     type: 'select', width: '160px', render: 'truncate' },
+        { key: 'sampleType',     label: 'Sample Type',  type: 'select', width: '130px', render: 'text' },
+        { key: 'tat',            label: 'TAT',          type: 'select', width: '120px', render: 'text' },
+        { key: '_cpt',           label: 'CPT',          type: 'text',   width: '80px',  render: 'code' },
+        { key: 'referenceRange', label: 'Ref Range',    type: 'select', width: '110px', render: 'text' },
+        { key: 'resultUnits',    label: 'Units',        type: 'select', width: '80px',  render: 'text' },
+        { key: '_resultLoincs',  label: 'Result LOINCs', type: 'text',  width: '120px', render: 'resultCodes' },
+        { key: 'effectiveStatus',label: 'Status',        type: 'select', width: '90px',  render: 'statusBadge' },
+    ];
+
+    let allData = [];
+    let filteredData = [];
+    let columnFilters = {};
+    let activeCategoryChip = null;
+
+    // ─── INIT ───
+    async function init() {
+        try {
+            const res = await fetch(API_BASE + '/compendium?view=flat&pageSize=200');
+            const json = await res.json();
+            allData = json.results.map(enrichRecord);
+
+            const vRes = await fetch(API_BASE + '/compendium/version');
+            const vJson = await vRes.json();
+            setText('headerVersion', 'v' + vJson.version);
+            setText('headerUpdated', 'Updated: ' + new Date(vJson.lastUpdated).toLocaleDateString());
+
+            buildTable();
+            buildCategoryChips();
+            setDefaultFilters();
+            applyFilters();
+            document.getElementById('compendiumTable').style.display = '';
+            document.getElementById('loadingMsg').style.display = 'none';
+        } catch (err) {
+            var msg = document.getElementById('loadingMsg');
+            msg.textContent = '';
+            var h = document.createElement('h3');
+            h.textContent = 'Connection Error';
+            var p = document.createElement('p');
+            p.textContent = 'Could not reach API at ' + API_BASE + '. Is the server running?';
+            var p2 = document.createElement('p');
+            p2.textContent = err.message;
+            p2.style.cssText = 'margin-top:8px;font-size:12px;opacity:0.6';
+            msg.appendChild(h);
+            msg.appendChild(p);
+            msg.appendChild(p2);
+        }
+    }
+
+    function enrichRecord(r) {
+        r._cpt = r.cptCodes.map(function(c) { return c.quantity > 1 ? c.code + 'x' + c.quantity : c.code; }).join(', ');
+        r._resultLoincs = r.resultComponents.map(function(c) { return c.resultLoincCode; }).join(', ');
+        r._sources = r.acceptableSources.join(', ');
+        return r;
+    }
+
+    // ─── BUILD TABLE ───
+    function buildTable() {
+        var thRow = document.getElementById('thRow');
+        COLUMNS.forEach(function(col) {
+            var th = document.createElement('th');
+            th.style.minWidth = col.width;
+
+            var inner = document.createElement('div');
+            inner.className = 'th-inner';
+            inner.textContent = col.label;
+            th.appendChild(inner);
+
+            var filterDiv = document.createElement('div');
+            filterDiv.className = 'th-filter';
+
+            if (col.type === 'select') {
+                var values = [];
+                var seen = {};
+                allData.forEach(function(r) {
+                    var v = r[col.key] || '';
+                    if (v && !seen[v]) { seen[v] = true; values.push(v); }
+                });
+                values.sort();
+
+                var sel = document.createElement('select');
+                sel.dataset.col = col.key;
+                var optAll = document.createElement('option');
+                optAll.value = '';
+                optAll.textContent = 'All';
+                sel.appendChild(optAll);
+                values.forEach(function(v) {
+                    var opt = document.createElement('option');
+                    opt.value = v;
+                    opt.textContent = v;
+                    sel.appendChild(opt);
+                });
+                sel.addEventListener('change', function() {
+                    columnFilters[col.key] = sel.value;
+                    syncCategoryChips();
+                    applyFilters();
+                });
+                filterDiv.appendChild(sel);
+            } else {
+                var inp = document.createElement('input');
+                inp.type = 'text';
+                inp.placeholder = 'Filter...';
+                inp.dataset.col = col.key;
+                inp.addEventListener('input', debounce(function() {
+                    columnFilters[col.key] = inp.value;
+                    applyFilters();
+                }, 200));
+                filterDiv.appendChild(inp);
+            }
+
+            th.appendChild(filterDiv);
+            thRow.appendChild(th);
+        });
+    }
+
+    // ─── CATEGORY CHIPS ───
+    function buildCategoryChips() {
+        var container = document.getElementById('categoryChips');
+        var counts = {};
+        allData.forEach(function(r) { counts[r.category] = (counts[r.category] || 0) + 1; });
+
+        Object.keys(counts).sort().forEach(function(cat) {
+            var chip = document.createElement('button');
+            chip.className = 'chip';
+            chip.dataset.category = cat;
+            chip.textContent = cat + ' ';
+            var span = document.createElement('span');
+            span.className = 'count';
+            span.textContent = counts[cat];
+            chip.appendChild(span);
+            chip.addEventListener('click', function() { toggleCategoryChip(cat); });
+            container.appendChild(chip);
+        });
+    }
+
+    function toggleCategoryChip(cat) {
+        if (activeCategoryChip === cat) {
+            activeCategoryChip = null;
+            columnFilters['category'] = '';
+        } else {
+            activeCategoryChip = cat;
+            columnFilters['category'] = cat;
+        }
+        var sel = document.querySelector('select[data-col="category"]');
+        if (sel) sel.value = columnFilters['category'] || '';
+        syncCategoryChips();
+        applyFilters();
+    }
+
+    function syncCategoryChips() {
+        activeCategoryChip = columnFilters['category'] || null;
+        document.querySelectorAll('.chip[data-category]').forEach(function(chip) {
+            chip.classList.toggle('active', chip.dataset.category === activeCategoryChip);
+        });
+    }
+
+    function setDefaultFilters() {
+        var statusSel = document.querySelector('select[data-col="effectiveStatus"]');
+        if (statusSel) {
+            statusSel.value = 'Active';
+            columnFilters['effectiveStatus'] = 'Active';
+        }
+    }
+
+    // ─── FILTER + RENDER ───
+    function applyFilters() {
+        var globalQuery = document.getElementById('globalSearch').value.toLowerCase();
+
+        filteredData = allData.filter(function(row) {
+            for (var key in columnFilters) {
+                var val = columnFilters[key];
+                if (!val) continue;
+                var cellVal = String(row[key] || '');
+                var colDef = COLUMNS.find(function(c) { return c.key === key; });
+                if (colDef && colDef.type === 'select') {
+                    if (cellVal !== val) return false;
+                } else {
+                    if (cellVal.toLowerCase().indexOf(val.toLowerCase()) === -1) return false;
+                }
+            }
+            if (globalQuery) {
+                var searchable = [
+                    row.mvdTestCode, row.orderLoincCode, row.testName, row.shortName,
+                    row.organism, row._cpt, row._resultLoincs, row.sampleType, row.category
+                ].join(' ').toLowerCase();
+                if (searchable.indexOf(globalQuery) === -1) return false;
+            }
+            return true;
+        });
+
+        renderRows();
+        updateStats();
+    }
+
+    function renderRows() {
+        var tbody = document.getElementById('tbody');
+        var emptyEl = document.getElementById('emptyMsg');
+
+        // Clear existing rows
+        while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+
+        if (filteredData.length === 0) {
+            emptyEl.style.display = 'block';
+            return;
+        }
+        emptyEl.style.display = 'none';
+
+        filteredData.forEach(function(row, idx) {
+            var tr = document.createElement('tr');
+            tr.dataset.idx = idx;
+            tr.addEventListener('click', function() { showDetail(idx); });
+
+            COLUMNS.forEach(function(col) {
+                var td = document.createElement('td');
+                td.style.maxWidth = col.width;
+                var val = row[col.key] || '';
+                appendCellContent(td, col.render, val, row);
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        });
+    }
+
+    function appendCellContent(td, renderType, val, row) {
+        var span;
+        switch (renderType) {
+            case 'mvdCode':
+                span = document.createElement('span');
+                span.className = 'cell-mvd';
+                span.textContent = val;
+                td.appendChild(span);
+                break;
+            case 'loincCode':
+            case 'code':
+                span = document.createElement('span');
+                span.className = 'cell-code';
+                span.textContent = val;
+                td.appendChild(span);
+                break;
+            case 'badge':
+                span = document.createElement('span');
+                span.className = 'badge badge-' + String(val).toLowerCase();
+                span.textContent = val;
+                td.appendChild(span);
+                break;
+            case 'statusBadge':
+                span = document.createElement('span');
+                span.className = 'badge badge-' + String(val).toLowerCase();
+                span.textContent = val;
+                td.appendChild(span);
+                break;
+            case 'truncate':
+                span = document.createElement('span');
+                span.className = 'cell-truncate';
+                span.textContent = val;
+                span.title = val;
+                td.appendChild(span);
+                break;
+            case 'resultCodes':
+                span = document.createElement('span');
+                span.className = 'cell-results';
+                span.textContent = val;
+                td.appendChild(span);
+                break;
+            default:
+                td.textContent = val;
+        }
+    }
+
+    function updateStats() {
+        setText('statVisible', filteredData.length);
+        setText('statTotal', allData.length);
+
+        var testCodes = {};
+        filteredData.forEach(function(r) { testCodes[r.mvdTestCode] = true; });
+        setText('statTests', Object.keys(testCodes).length);
+
+        var activeFilters = Object.keys(columnFilters).filter(function(k) { return columnFilters[k]; }).length;
+        var search = document.getElementById('globalSearch').value;
+        var total = activeFilters + (search ? 1 : 0);
+        setText('statFilters', total === 0 ? 'No filters active' : total + ' filter' + (total > 1 ? 's' : '') + ' active');
+    }
+
+    // ─── DETAIL POPOVER ───
+    function showDetail(idx) {
+        var row = filteredData[idx];
+        if (!row) return;
+
+        var overlay = document.getElementById('popoverOverlay');
+        var content = document.getElementById('popoverContent');
+
+        // Clear previous content
+        while (content.firstChild) content.removeChild(content.firstChild);
+
+        // Header
+        var header = document.createElement('div');
+        header.className = 'popover-header';
+        var headerLeft = document.createElement('div');
+        var h2 = document.createElement('h2');
+        h2.textContent = row.testName;
+        var sub = document.createElement('div');
+        sub.style.cssText = 'margin-top:4px;font-size:13px;color:var(--mvd-muted)';
+        sub.textContent = row.shortName;
+        headerLeft.appendChild(h2);
+        headerLeft.appendChild(sub);
+
+        var closeBtn = document.createElement('button');
+        closeBtn.className = 'popover-close';
+        closeBtn.textContent = '\u00D7';
+        closeBtn.addEventListener('click', closeDetail);
+
+        header.appendChild(headerLeft);
+        header.appendChild(closeBtn);
+        content.appendChild(header);
+
+        // Detail grid
+        var grid = document.createElement('div');
+        grid.className = 'detail-grid';
+        var fields = [
+            ['MVD Code', row.mvdTestCode, 'cell-mvd'],
+            ['Order LOINC', row.orderLoincCode, 'cell-code'],
+            ['Category', row.category, 'badge badge-' + row.category.toLowerCase()],
+            ['Methodology', row.methodology],
+            ['Organism', row.organism],
+            ['Sample Type', row.sampleType],
+            ['CPT Codes', row._cpt, 'cell-code'],
+            ['TAT', row.tat],
+            ['Reference Range', row.referenceRange],
+            ['Units', row.resultUnits || '\u2014'],
+            ['Status', row.effectiveStatus, 'badge badge-' + row.effectiveStatus.toLowerCase()],
+            ['Created', new Date(row.createdOn).toLocaleString() + ' by ' + row.createdBy],
+            ['Updated', new Date(row.updatedOn).toLocaleString() + ' by ' + row.updatedBy],
+        ];
+        fields.forEach(function(f) {
+            var lbl = document.createElement('span');
+            lbl.className = 'detail-label';
+            lbl.textContent = f[0];
+            grid.appendChild(lbl);
+
+            var valEl = document.createElement('span');
+            valEl.className = 'detail-value';
+            if (f[2]) {
+                var inner = document.createElement('span');
+                inner.className = f[2];
+                inner.textContent = f[1];
+                valEl.appendChild(inner);
+            } else {
+                valEl.textContent = f[1];
+            }
+            grid.appendChild(valEl);
+        });
+        content.appendChild(grid);
+
+        // Sample Handling section
+        addDetailSection(content, 'Sample Handling', function(body) {
+            var p = document.createElement('p');
+            p.style.cssText = 'font-size:13px;white-space:pre-line';
+            p.textContent = row.sampleHandling;
+            body.appendChild(p);
+        });
+
+        // Storage section
+        addDetailSection(content, 'Storage / Stability', function(body) {
+            var p = document.createElement('p');
+            p.style.fontSize = '13px';
+            p.textContent = row.sampleStorage;
+            body.appendChild(p);
+        });
+
+        // Acceptable Sources
+        addDetailSection(content, 'Acceptable Sources', function(body) {
+            if (!row.acceptableSources || row.acceptableSources.length === 0) {
+                var msg = document.createElement('span');
+                msg.style.cssText = 'color:var(--mvd-muted);font-size:13px';
+                msg.textContent = 'Not specified';
+                body.appendChild(msg);
+            } else {
+                var wrap = document.createElement('div');
+                wrap.style.marginTop = '6px';
+                row.acceptableSources.forEach(function(s) {
+                    var tag = document.createElement('span');
+                    tag.style.cssText = 'display:inline-block;background:var(--mvd-light);padding:2px 8px;border-radius:4px;font-size:12px;margin:2px 4px 2px 0';
+                    tag.textContent = s;
+                    wrap.appendChild(tag);
+                });
+                body.appendChild(wrap);
+            }
+        });
+
+        // Result Components
+        addDetailSection(content, 'Result Components', function(body) {
+            row.resultComponents.forEach(function(rc) {
+                var div = document.createElement('div');
+                div.style.marginBottom = '6px';
+                var codeSpan = document.createElement('span');
+                codeSpan.className = 'cell-code';
+                codeSpan.textContent = rc.resultLoincCode;
+                div.appendChild(codeSpan);
+                var nameSpan = document.createElement('span');
+                nameSpan.style.cssText = 'margin-left:8px;font-size:12px;color:var(--mvd-muted)';
+                nameSpan.textContent = rc.resultLoincName;
+                div.appendChild(nameSpan);
+                body.appendChild(div);
+            });
+        });
+
+        overlay.classList.add('visible');
+    }
+
+    function addDetailSection(parent, title, buildContent) {
+        var section = document.createElement('div');
+        section.className = 'detail-section';
+        var h3 = document.createElement('h3');
+        h3.textContent = title;
+        section.appendChild(h3);
+        buildContent(section);
+        parent.appendChild(section);
+    }
+
+    function closeDetail() {
+        document.getElementById('popoverOverlay').classList.remove('visible');
+    }
+
+    document.getElementById('popoverOverlay').addEventListener('click', function(e) {
+        if (e.target === e.currentTarget) closeDetail();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeDetail();
+    });
+
+    // ─── EXPORT XLSX ───
+    document.getElementById('btnExport').addEventListener('click', function() {
+        var exportData = filteredData.map(function(row) {
+            return {
+                'MVD Code': row.mvdTestCode,
+                'Order LOINC': row.orderLoincCode,
+                'Short Name': row.shortName,
+                'Test Name': row.testName,
+                'Category': row.category,
+                'Methodology': row.methodology,
+                'Organism': row.organism,
+                'Sample Type': row.sampleType,
+                'TAT': row.tat,
+                'CPT Codes': row._cpt,
+                'Reference Range': row.referenceRange,
+                'Result Units': row.resultUnits,
+                'Result LOINCs': row._resultLoincs,
+                'Result Names': row.resultComponents.map(function(c) { return c.resultLoincName; }).join('; '),
+                'Acceptable Sources': row._sources,
+                'Status': row.effectiveStatus,
+                'Created On': row.createdOn,
+                'Created By': row.createdBy,
+                'Updated On': row.updatedOn,
+                'Updated By': row.updatedBy
+            };
+        });
+
+        var ws = XLSX.utils.json_to_sheet(exportData);
+        ws['!cols'] = [
+            {wch:10},{wch:14},{wch:28},{wch:40},{wch:10},{wch:16},{wch:26},{wch:18},
+            {wch:20},{wch:12},{wch:16},{wch:10},{wch:16},{wch:60},{wch:40},
+            {wch:10},{wch:22},{wch:10},{wch:22},{wch:10}
+        ];
+        var wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Compendium');
+        XLSX.writeFile(wb, 'MVD-Compendium-' + new Date().toISOString().slice(0,10) + '.xlsx');
+    });
+
+    // ─── CLEAR FILTERS ───
+    document.getElementById('btnClearFilters').addEventListener('click', function() {
+        columnFilters = {};
+        activeCategoryChip = null;
+        document.getElementById('globalSearch').value = '';
+        document.querySelectorAll('thead select').forEach(function(s) { s.value = ''; });
+        document.querySelectorAll('thead input[data-col]').forEach(function(i) { i.value = ''; });
+        document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
+        applyFilters();
+    });
+
+    document.getElementById('globalSearch').addEventListener('input', debounce(function() { applyFilters(); }, 200));
+
+    // ─── UTILS ───
+    function debounce(fn, ms) {
+        var t;
+        return function() {
+            var args = arguments;
+            clearTimeout(t);
+            t = setTimeout(function() { fn.apply(null, args); }, ms);
+        };
+    }
+    function setText(id, text) {
+        document.getElementById(id).textContent = text;
+    }
+
+    // ─── GO ───
+    init();
+})();
+</script>
+</body>
+</html>

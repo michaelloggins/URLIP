@@ -1,0 +1,1719 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2026-03-18T16:13:14.034Z",
+  "generatedFrom": "Assay LOINC List for Clients - PFP Full.xlsx + HL7 Connection.2025Sep23.pdf",
+  "performingOrganization": {
+    "name": "MiraVista Diagnostics",
+    "cliaNumber": "15D0996282",
+    "address": "4705 Decatur Blvd.",
+    "city": "Indianapolis",
+    "state": "IN",
+    "zip": "46241",
+    "phone": "1-866-647-2847",
+    "labDirector": "Lauren Cooper, PhD, MPH, D(ABMM)"
+  },
+  "specimenSourceRules": {
+    "serumPlasma": {
+      "description": "Serum/Plasma specimens must specify type individually",
+      "rejected": [
+        "Ser/Plas",
+        "Serum/Plasma",
+        "S/P"
+      ],
+      "accepted": [
+        "Serum",
+        "Plasma"
+      ],
+      "rule": "Must specify either Serum or Plasma individually. Do not use combined terms."
+    },
+    "bronchoalveolarLavage": {
+      "description": "BAL/Lower respiratory specimen source formats",
+      "accepted": [
+        "Bronchial",
+        "Bronchial Wash",
+        "Lavage, Bronchial",
+        "Aspirate, Tracheal",
+        "Sputum"
+      ],
+      "rule": "Use specific BAL-type source names. Generic terms not accepted."
+    },
+    "bodyFluid": {
+      "description": "Body fluid specimens must use specific fluid type",
+      "rejected": [
+        "Body Fluid",
+        "Body fluid",
+        "Fluid"
+      ],
+      "accepted": [
+        "Abscess",
+        "Amniotic fluid",
+        "Body fluid, unsp",
+        "Drainage, Tube",
+        "Fluid, Abdomen",
+        "Fluid, Cerebral Cyst",
+        "Fluid, Chest",
+        "Fluid, Corpus Vitreum",
+        "Fluid, Cyst",
+        "Fluid, Flank",
+        "Fluid, Hepatic",
+        "Fluid, Hilum",
+        "Fluid, Hydrocele",
+        "Fluid, JP Drainage",
+        "Fluid, Knee Joint",
+        "Fluid, joint",
+        "Fluid, Kidney",
+        "Fluid, Liver",
+        "Fluid, Lymph Node",
+        "Fluid, Mass",
+        "Fluid, Maxillary Sinus",
+        "Fluid, Mediastinal",
+        "Fluid, Neck Mass",
+        "Fluid, Other",
+        "Fluid, Pancreatic Cyst",
+        "Fluid, Paracentesis",
+        "Fluid, Pelvic",
+        "Fluid, Pericardial",
+        "Fluid, Peripheral",
+        "Fluid, Pneumocystis",
+        "Fluid, Prostate",
+        "Fluid, Respiratory",
+        "Fluid, Trochanter",
+        "Fluid, Ventricular",
+        "Fluid, Wrist",
+        "Flush, Esophagus",
+        "Lavage, Peritoneal",
+        "Pancreatic fluid",
+        "Peritoneal fluid/ascites",
+        "Pleural fluid (thoracentesis fld)",
+        "Saliva",
+        "Swab, Nasopharyngeal",
+        "Synovial fluid (joint fluid)",
+        "Tracheal Lavage",
+        "Vitreous fluid",
+        "Wash",
+        "Wash, Bladder",
+        "Wash, Lymph node",
+        "Wash, Tracheal"
+      ],
+      "rule": "Do NOT use generic \"Body Fluid\". Specify the exact fluid type from the accepted list."
+    },
+    "csf": {
+      "description": "Cerebral Spinal Fluid specimen source",
+      "accepted": [
+        "Cerebral spinal fluid",
+        "CSF"
+      ],
+      "rule": "Use \"Cerebral spinal fluid\" or \"CSF\"."
+    },
+    "urine": {
+      "description": "Urine specimen source",
+      "accepted": [
+        "Urine"
+      ],
+      "rule": "Use \"Urine\"."
+    }
+  },
+  "summary": {
+    "totalTests": 18,
+    "totalOrderableLoincs": 42,
+    "categories": [
+      "Antigen",
+      "Antibody",
+      "PCR"
+    ],
+    "organisms": [
+      "Aspergillus sp",
+      "Histoplasma capsulatum",
+      "Coccidioides immitis",
+      "Blastomyces dermatitidis",
+      "Pan-fungal",
+      "Cryptococcus neoformans",
+      "Pneumocystis jirovecii",
+      "Multiple (Histo, Blasto, Cocci, Pneumocystis)"
+    ]
+  },
+  "tests": [
+    {
+      "mvdTestCode": "309",
+      "testName": "Aspergillus Galactomannan EIA",
+      "shortName": "Galactomannan Ag",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Aspergillus sp",
+      "cptCodes": [
+        {
+          "code": "87305",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "44357-2",
+          "orderLoincName": "Aspergillus Galactomannan EIA",
+          "shortName": "Galactomannan Ag",
+          "sampleType": "Serum",
+          "sampleHandling": "Acceptable Specimen: Serum separated from the clot in a leak-proof container.    \r\n\r\nMinumum volume = 0.8 mL",
+          "sampleStorage": "Specimen Stability: 48hrs TR, 5 days RF or up to 5 months FZ.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "Index <0.5",
+          "resultUnits": "Index",
+          "resultComponents": [
+            {
+              "resultLoincCode": "44357-2",
+              "resultLoincName": "Galactomannan Ag [Units/volume] in Serum or Plasma by Immunoassay",
+              "referenceRange": "Index <0.5",
+              "units": "Index"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "53865-2",
+          "orderLoincName": "Aspergillus Galactomannan EIA",
+          "shortName": "Galactomannan Ag",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen: CSF  in sterile leak-proof container.  \r\n\r\nMinumum volume = 0.8 mL",
+          "sampleStorage": "Specimen Stability: 48hrs TR, 5 days RF or up to 5 months FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Index <0.5",
+          "resultUnits": "Index",
+          "resultComponents": [
+            {
+              "resultLoincCode": "53865-2",
+              "resultLoincName": "Galactomannan Ag [Units/volume] in Cerebral spinal fluid by immunoassay",
+              "referenceRange": "Index <0.5",
+              "units": "Index"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "76075-1",
+          "orderLoincName": "Aspergillus Galactomannan EIA",
+          "shortName": "Galactomannan Ag",
+          "sampleType": "Bronchoalveolar Lavage",
+          "sampleHandling": "Acceptable Specimen:  BAL in sterile leak-proof container.  \r\n\r\nMinumum volume = 0.8 mL",
+          "sampleStorage": "Specimen Stability: 48hrs TR, 5 days RF or up to 5 months FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial"
+          ],
+          "referenceRange": "Index <0.5",
+          "resultUnits": "Index",
+          "resultComponents": [
+            {
+              "resultLoincCode": "76075-1",
+              "resultLoincName": "Galactomannan Ag [Units/volume] in Bronchoalveolar lavage by immunoassay",
+              "referenceRange": "Index <0.5",
+              "units": "Index"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "99084-6",
+          "orderLoincName": "Aspergillus Galactomannan EIA",
+          "shortName": "Aspergillus Ag Fld IA-aCnc",
+          "sampleType": "Body Fluid",
+          "sampleHandling": "Acceptable Specimen:  Other Body Fluid in sterile leak-proof container.  \r\n\r\nMinumum volume = 0.8 mL",
+          "sampleStorage": "Specimen Stability: 48hrs TR, 5 days RF or up to 5 months FZ.",
+          "acceptableSources": [
+            "Fluid, Chest",
+            "Fluid, Pericardial",
+            "Pleural fluid (thoracentesis fld)",
+            "Synovial fluid (Joint fluid)",
+            "Peritoneal fluid/ascites",
+            "Fluid, Lymph Node",
+            "Fluid, Abdomen"
+          ],
+          "referenceRange": "Index <0.5",
+          "resultUnits": "Index",
+          "resultComponents": [
+            {
+              "resultLoincCode": "99084-6",
+              "resultLoincName": "Aspergillus sp Ag [Units/volume] in Body fluid by Immunoassay",
+              "referenceRange": "Index <0.5",
+              "units": "Index"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "310",
+      "testName": "MVista® Histoplasma Ag Quantitative EIA",
+      "shortName": "Histoplasma capsulatum Ag",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [
+        {
+          "code": "87385",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-Sa, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "48952-6",
+          "orderLoincName": "MVista® Histoplasma Ag Quantitative EIA",
+          "shortName": "Histoplasma capsulatum Ag",
+          "sampleType": "Urine",
+          "sampleHandling": "Acceptable Specimen: Urine in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "48952-6",
+              "resultLoincName": "Histoplasma capsulatum Ag [Mass/volume] in Urine by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "51753-2",
+          "orderLoincName": "MVista® Histoplasma Ag Quantitative EIA",
+          "shortName": "Histoplasma capsulatum Ag",
+          "sampleType": "Serum/Plasma",
+          "sampleHandling": "Acceptable Specimen: Serum/plasma separated from the clot, in a leak-proof container.  \r\n\r\nMinimum Volume:  =1.2mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Serum",
+            "Plasma"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "51753-2",
+              "resultLoincName": "Histoplasma capsulatum Ag [Mass/volume] in Serum by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "51754-0",
+          "orderLoincName": "MVista® Histoplasma Ag Quantitative EIA",
+          "shortName": "Histoplasma capsulatum Ag",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.8ml",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "51754-0",
+              "resultLoincName": "Histoplasma capsulatum Ag [Mass/volume] in Cerebral spinal fluid by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "95073-3",
+          "orderLoincName": "MVista® Histoplasma Ag Quantitative EIA",
+          "shortName": "Histoplasma capsulatum Ag",
+          "sampleType": "Bronchoalveolar Lavage",
+          "sampleHandling": "Acceptable Specimen: BAL in sterile leak-proof container.\r\n\r\nMinimum Volume: =0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "95073-3",
+              "resultLoincName": "Histoplasma capsulatum Ag [Mass/volume] in Bronchoalveolar Lavage by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "57766-8",
+          "orderLoincName": "MVista® Histoplasma Ag Quantitative EIA",
+          "shortName": "Histoplasma capsulatum Ag",
+          "sampleType": "Body Fluid",
+          "sampleHandling": "Acceptable Specimen: Other Body Fluid in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Fluid, Chest",
+            "Fluid, Pericardial",
+            "Pleural fluid (thoracentesis fld)",
+            "Synovial fluid (Joint fluid)",
+            "Peritoneal fluid/ascites",
+            "Fluid, Lymph Node",
+            "Fluid, Abdomen"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "57766-8",
+              "resultLoincName": "Histoplasma capsulatum Ag [Mass/volume] in Body Fluid by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "315",
+      "testName": "MVista® Coccidioides Ag Quantitative EIA",
+      "shortName": "Coccidioides sp Ag",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [
+        {
+          "code": "87449",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "93227-7",
+          "orderLoincName": "MVista® Coccidioides Ag Quantitative EIA",
+          "shortName": "Coccidioides sp Ag",
+          "sampleType": "Urine",
+          "sampleHandling": "Acceptable Specimen: Urine in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93227-7",
+              "resultLoincName": "Coccidioides sp Ag [Mass/volume] in Urine by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93226-9",
+          "orderLoincName": "MVista® Coccidioides Ag Quantitative EIA",
+          "shortName": "Coccidioides sp Ag",
+          "sampleType": "Serum/Plasma",
+          "sampleHandling": "Acceptable Specimen: Serum/plasma separated from the clot, in a leak-proof container.  \r\n\r\nMinimum Volume:  =1.2mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Serum",
+            "Plasma"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93226-9",
+              "resultLoincName": "Coccidioides sp Ag [Mass/volume] in Serum or Plasma by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93225-1",
+          "orderLoincName": "MVista® Coccidioides Ag Quantitative EIA",
+          "shortName": "Coccidioides sp Ag",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.8ml",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93225-1",
+              "resultLoincName": "Coccidioides sp Ag [Mass/volume] in Cerebral spinal Fluid by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93224-4",
+          "orderLoincName": "MVista® Coccidioides Ag Quantitative EIA",
+          "shortName": "Coccidioides sp Ag",
+          "sampleType": "Bronchoalveolar Lavage",
+          "sampleHandling": "Acceptable Specimen: BAL in sterile leak-proof container.\r\n\r\nMinimum Volume: =0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93224-4",
+              "resultLoincName": "Coccidioides sp Ag [Mass/volume] in Bronchoalveolar Lavage by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "99082-0",
+          "orderLoincName": "MVista® Coccidioides Ag Quantitative EIA",
+          "shortName": "Coccidioides Ag Fld IA-mCnc",
+          "sampleType": "Body Fluid",
+          "sampleHandling": "Acceptable Specimen: Other Body Fluid in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Fluid, Chest",
+            "Fluid, Pericardial",
+            "Pleural fluid (thoracentesis fld)",
+            "Synovial fluid (Joint fluid)",
+            "Peritoneal fluid/ascites",
+            "Fluid, Lymph Node",
+            "Fluid, Abdomen"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "99082-0",
+              "resultLoincName": "Coccidioides sp Ag [Mass/volume] in Body fluid by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "316",
+      "testName": "MVista® Blastomyces Ag Quantitative EIA",
+      "shortName": "Blastomyces sp Ag",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [
+        {
+          "code": "87449",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-Sa, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "93429-9",
+          "orderLoincName": "MVista® Blastomyces Ag Quantitative EIA",
+          "shortName": "Blastomyces sp Ag",
+          "sampleType": "Urine",
+          "sampleHandling": "Acceptable Specimen: Urine in sterile leak-proff container.\r\n\r\nMinimum Volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:  2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93429-9",
+              "resultLoincName": "Blastomyces sp Ag [Mass/volume] in Urine by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93430-7",
+          "orderLoincName": "MVista® Blastomyces Ag Quantitative EIA",
+          "shortName": "Blastomyces sp Ag",
+          "sampleType": "Serum/Plasma",
+          "sampleHandling": "Acceptable Specimen: Serum/plasma separated from the clot, in a leak-proof container.  \r\n\r\nMinimum Volume:  =1.2mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Serum",
+            "Plasma"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93430-7",
+              "resultLoincName": "Blastomyces sp Ag [Mass/volume] in Serum or Plasma by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93431-5",
+          "orderLoincName": "MVista® Blastomyces Ag Quantitative EIA",
+          "shortName": "Blastomyces sp Ag",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.8ml",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93431-5",
+              "resultLoincName": "Blastomyces sp Ag [Mass/volume] in Cerebral spinal fluid by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93432-3",
+          "orderLoincName": "MVista® Blastomyces Ag Quantitative EIA",
+          "shortName": "Blastomyces sp Ag",
+          "sampleType": "Bronchoalveolar Lavage",
+          "sampleHandling": "Acceptable Specimen: BAL in sterile leak-proof container.\r\n\r\nMinimum Volume: =0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93432-3",
+              "resultLoincName": "Blastomyces sp Ag [Mass/volume] in Bronchoalveolar lavage by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "99083-8",
+          "orderLoincName": "MVista® Blastomyces Ag Quantitative EIA",
+          "shortName": "Blastomyces Fld IA-mCnc",
+          "sampleType": "Body Fluid",
+          "sampleHandling": "Acceptable Specimen: Other Body Fluid in sterile leak-proof container.\r\n\r\nMinimum Volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:   2 weeks RT/RF, indefinite if FZ.",
+          "acceptableSources": [
+            "Fluid, Chest",
+            "Fluid, Pericardial",
+            "Pleural fluid (thoracentesis fld)",
+            "Synovial fluid (Joint fluid)",
+            "Peritoneal fluid/ascites",
+            "Fluid, Lymph Node",
+            "Fluid, Abdomen"
+          ],
+          "referenceRange": "None Detected",
+          "resultUnits": "ng/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "99083-8",
+              "resultLoincName": "Blastomyces sp [Mass/volume] in Body fluid by Immunoassay",
+              "referenceRange": "None Detected",
+              "units": "ng/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "317",
+      "testName": "(1-3)-Beta-D-Glucan Colorimetric Assay",
+      "shortName": "1,3 beta glucan",
+      "category": "Antigen",
+      "methodology": "Colorimetric",
+      "organism": "Pan-fungal",
+      "cptCodes": [
+        {
+          "code": "87449",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "42176-8",
+          "orderLoincName": "(1-3)-Beta-D-Glucan Colorimetric Assay",
+          "shortName": "1,3 beta glucan",
+          "sampleType": "Serum",
+          "sampleHandling": "Acceptable Specimen: Collect serum in red-top or serum separator tube and separate from clot.  Pipette into a suitable ocntainer that is free of interfering levels of (1->3)-B-DGlucan.  \r\n\r\nMinumum volume = 0.2 mL",
+          "sampleStorage": "Specimen Stability: 5 days RF or longer if FZ.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "<60 pg/mL",
+          "resultUnits": "pg/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "42176-8",
+              "resultLoincName": "1,3 beta glucan [Mass/volume] in Serum",
+              "referenceRange": "<60 pg/mL",
+              "units": "pg/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "95072-5",
+          "orderLoincName": "(1-3)-Beta-D-Glucan Colorimetric Assay",
+          "shortName": "1,3 beta glucan",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:   Submit CSF in sterile leak-proof container.\r\n\r\nMinumum volume = 0.2 mL",
+          "sampleStorage": "Specimen Stability: 5 days RF or longer if FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "<60 pg/mL",
+          "resultUnits": "pg/mL",
+          "resultComponents": [
+            {
+              "resultLoincCode": "95072-5",
+              "resultLoincName": "1,3 beta glucan [Mass/volume] in Cerebral spinal fluid",
+              "referenceRange": "<60 pg/mL",
+              "units": "pg/mL"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "319",
+      "testName": "Cryptococcal Antigen by Latex Agglutination",
+      "shortName": "Cryptococcus sp Ag",
+      "category": "Antigen",
+      "methodology": "Latex Agglutination",
+      "organism": "Cryptococcus neoformans",
+      "cptCodes": [
+        {
+          "code": "86403",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "9820-2",
+          "orderLoincName": "Cryptococcal Antigen by Latex Agglutination",
+          "shortName": "Cryptococcus sp Ag",
+          "sampleType": "Serum",
+          "sampleHandling": "Acceptable Specimen: Serum separated from the clot in a leak-proof container.  \r\n\r\nMinumum volume = 0.25mL\r\n*Positive samples will reflex to a titer",
+          "sampleStorage": "Specimen Stability:2 months RF/FZ",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "Negative",
+          "resultUnits": "titer",
+          "resultComponents": [
+            {
+              "resultLoincCode": "9820-2",
+              "resultLoincName": "Cryptococcus sp Ag [Titer] in Serum by Latex agglutination",
+              "referenceRange": "Negative",
+              "units": "titer"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "9819-4",
+          "orderLoincName": "Cryptococcal Antigen by Latex Agglutination",
+          "shortName": "Cryptococcus sp Ag",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen: CSF in sterile leak-proof container.\r\n\r\nMinumum volume = 0.25mL\r\n*Positive samples will automaticall reflex to a titer",
+          "sampleStorage": "Specimen Stability:2 months RF/FZ",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Negative",
+          "resultUnits": "titer",
+          "resultComponents": [
+            {
+              "resultLoincCode": "9819-4",
+              "resultLoincName": "Cryptococcus sp Ag [Titer] in Cerebral spinal fluid by Latex agglutination",
+              "referenceRange": "Negative",
+              "units": "titer"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "320",
+      "testName": "Coccidioides Antibody by Immunodiffusion",
+      "shortName": "Coccidioides immitis Ab",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [
+        {
+          "code": "86635",
+          "quantity": 2
+        }
+      ],
+      "tat": "Tu&F, 3 days from setup date",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "62455-1",
+          "orderLoincName": "Coccidioides Antibody by Immunodiffu on",
+          "shortName": "Coccidioides immitis Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Acceptable Specimen: Serum separated from the clot in a leak-proof container.\r\n\r\nMinumum volume:  0.25mL per antibody",
+          "sampleStorage": "Specimen Stability: 14 days RF, up to 6 months FZ.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "Negative, Antibody Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "62455-1",
+              "resultLoincName": "Coccidioides sp F Ab [Presence] in Serum by Immune diffusion (ID)",
+              "referenceRange": "Negative, Antibody Not Detected",
+              "units": ""
+            },
+            {
+              "resultLoincCode": "62457-7",
+              "resultLoincName": "Coccidioides sp TP Ab [Presence] in Serum by Immune diffusion (ID)",
+              "referenceRange": "Negative, Antibody Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "321",
+      "testName": "Histoplasma Antibody by Immunodiffusion",
+      "shortName": "Histoplasma capsulatum Ab",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [
+        {
+          "code": "86698",
+          "quantity": 1
+        }
+      ],
+      "tat": "Tu&F, 3 days from setup date",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "35732-7",
+          "orderLoincName": "Histoplasma Antibody by Immunodiffusion",
+          "shortName": "Histoplasma capsulatum Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Acceptable Specimen: Serum separated from the clot in a leak-proof container.\r\n\r\nMinumum volume:  0.25mL per antibody",
+          "sampleStorage": "Specimen Stability: 14 days RF, up to 6 months FZ.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "Negative, Antibody Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "35732-7",
+              "resultLoincName": "Histoplasma capsulatum H Ab [Presence] in Serum by Immune diffusion (ID)",
+              "referenceRange": "Negative, Antibody Not Detected",
+              "units": ""
+            },
+            {
+              "resultLoincCode": "35733-5",
+              "resultLoincName": "Histoplasma capsulatum M Ab [Presence] in Serum by Immune diffusion (ID)",
+              "referenceRange": "Negative, Antibody Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "322",
+      "testName": "Blastomyces Antibody by Immunodiffusion",
+      "shortName": "Blastomyces sp Ab",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [
+        {
+          "code": "86612",
+          "quantity": 1
+        }
+      ],
+      "tat": "Tu&F, 3 days from setup date",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "5058-3",
+          "orderLoincName": "Blastomyces Antibody by Immunodiffusion",
+          "shortName": "Blastomyces sp Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Acceptable Specimen: Serum separated from the clot in a leak-proof container.\r\n\r\nMinumum volume:  0.25mL per antibody",
+          "sampleStorage": "Specimen Stability: 14 days RF, up to 6 months FZ.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "Negative, Antibody Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "5058-3",
+              "resultLoincName": "Deprecated Blastomyces sp Ab [Presence] in Serum by Immune diffusion (ID)",
+              "referenceRange": "Negative, Antibody Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "324",
+      "testName": "Aspergillus Antibody by Immunodiffusion",
+      "shortName": "Aspergillus sp Ab",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Aspergillus sp",
+      "cptCodes": [
+        {
+          "code": "86606",
+          "quantity": 1
+        }
+      ],
+      "tat": "Tu&F, 3 days from setup date",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "5052-6",
+          "orderLoincName": "Aspergillus Antibody by Immunodiffusion",
+          "shortName": "Aspergillus sp Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Acceptable Specimen: Serum separated from the clot in a leak-proof container.\r\n\r\nMinumum volume:  0.25mL per antibody",
+          "sampleStorage": "Specimen Stability: 14 days RF, up to 6 months FZ.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "Negative, Antibody Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "5052-6",
+              "resultLoincName": "Aspergillus sp Ab [Presence] in Serum by Immune diffusion (ID)",
+              "referenceRange": "Negative, Antibody Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "325",
+      "testName": "MVista® Coccidioides Antibody IgG, IgM EIA",
+      "shortName": "Coccidioides Antibody IgG, IgM EIA",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [
+        {
+          "code": "86635",
+          "quantity": 2
+        }
+      ],
+      "tat": "M, W, Th, F; next day",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "93835-7",
+          "orderLoincName": "MVista® Coccidioides Antibody IgG, IgM EIA",
+          "shortName": "Coccidioides Antibody IgG, IgM EIA",
+          "sampleType": "Serum/Plasma",
+          "sampleHandling": "Acceptable Sepcimen: Serum/plasma separated from the clot in a leak-proof container.  \r\n\r\nMinimum volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:  14 days RF, 14 days FZ.",
+          "acceptableSources": [
+            "Serum",
+            "Plasma"
+          ],
+          "referenceRange": "Negative",
+          "resultUnits": "Enzyme Units",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93836-5",
+              "resultLoincName": "Coccidioides sp IgG Ab [Units/volume] in Serum or Plasma by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            },
+            {
+              "resultLoincCode": "93835-7",
+              "resultLoincName": "Coccidioides sp IgM Ab [Units/volume] in Serum or Plasma by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93837-3",
+          "orderLoincName": "MVista® Coccidioides Antibody IgG, IgM EIA",
+          "shortName": "Coccidioides Antibody IgG, IgM EIA",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Sepcimen:  CSF in a sterile leak-proof container.  CSF will be reported with a rare specimen comment.\r\n\r\nMinimum volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:  14 days RF, 14 days FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Negative",
+          "resultUnits": "Enzyme Units",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93837-3",
+              "resultLoincName": "Coccidioides sp IgG Ab [Units/volume] in Cerebral spinal fluid by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            },
+            {
+              "resultLoincCode": "93834-0",
+              "resultLoincName": "Coccidioides sp IgM Ab [Units/volume] in Cerebral spinal fluid by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "326",
+      "testName": "MVista® Histoplasma Antibody IgG, IgM EIA",
+      "shortName": "Histoplasma Antibody IgG, IgM EIA",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [
+        {
+          "code": "86698",
+          "quantity": 2
+        }
+      ],
+      "tat": "M, W, Th, F; next day",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "9529-9",
+          "orderLoincName": "MVista® Histoplasma Antibody IgG, IgM EIA",
+          "shortName": "Histoplasma Antibody IgG, IgM EIA",
+          "sampleType": "Serum/Plasma",
+          "sampleHandling": "Acceptable Sepcimen: Serum/plasma separated from the clot in a leak-proof container.  \r\n\r\nMinimum volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:  14 days RF, 14 days FZ.",
+          "acceptableSources": [
+            "Serum",
+            "Plasma"
+          ],
+          "referenceRange": "Negative",
+          "resultUnits": "Enzyme Units",
+          "resultComponents": [
+            {
+              "resultLoincCode": "9529-9",
+              "resultLoincName": "Histoplasma capsulatum IgG Ab [Units/volume] in Serum or Plasma by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            },
+            {
+              "resultLoincCode": "9530-7",
+              "resultLoincName": "Histoplasma capsulatum IgM Ab [Units/volume] in Serum or Plasma by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "93839-9",
+          "orderLoincName": "MVista® Histoplasma Antibody IgG, IgM EIA",
+          "shortName": "Histoplasma Antibody IgG, IgM EIA",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Sepcimen: CSF in a sterile leak-proof container.  CSF will be reported with a rare specimen comment.\r\n\r\nMinimum volume = 0.5mL",
+          "sampleStorage": "Specimen Stability:  14 days RF, 14 days FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Negative",
+          "resultUnits": "Enzyme Units",
+          "resultComponents": [
+            {
+              "resultLoincCode": "93839-9",
+              "resultLoincName": "Histoplasma capsulatum IgG Ab [Units/volume] in Cerebral spinal fluid by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            },
+            {
+              "resultLoincCode": "93838-1",
+              "resultLoincName": "Histoplasma capsulatum IgM Ab [Units/volume] in Cerebral spinal fluid by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "Enzyme Units"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "331",
+      "testName": "MVista® Blastomyces Antibody IgG EIA",
+      "shortName": "B dermat IgG Ser IA-aCnc",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [
+        {
+          "code": "86612",
+          "quantity": 1
+        }
+      ],
+      "tat": "M, W, Th, F; next day",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "99098-6",
+          "orderLoincName": "MVista® Blastomyces Antibody IgG EIA",
+          "shortName": "B dermat IgG Ser IA-aCnc",
+          "sampleType": "Serum/Plasma",
+          "sampleHandling": "Acceptable Specimen:  Serum separated from the clot in a leak-proof container. Plasma separated from red blood cells in a sterile leak-proof container.  Plasma will be reported with a rare specimen comment.\r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "30 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Serum",
+            "Plasma"
+          ],
+          "referenceRange": "Negative",
+          "resultUnits": "EU",
+          "resultComponents": [
+            {
+              "resultLoincCode": "99098-6",
+              "resultLoincName": "Blastomyces dermatitidis IgG Ab [Units/volume] in Serum by Immunoassay",
+              "referenceRange": "Negative",
+              "units": "EU"
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "402",
+      "testName": "MVista® Pneumocystis DNA, PCR",
+      "shortName": "P jiroveci DNA Lower resp Ql NAA+probe",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Pneumocystis jirovecii",
+      "cptCodes": [
+        {
+          "code": "87798",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "88690-3",
+          "orderLoincName": "MVista® Pneumocystis DNA, PCR",
+          "shortName": "P jiroveci DNA Lower resp Ql NAA+probe",
+          "sampleType": "Lower Respiratory",
+          "sampleHandling": "Acceptable Specimen:  BAL, sputum, tracheal aspirate,  or bronchial wash in sterile leak-proof container.  Tracheal aspirate and bronchial wash will be reported with a rare specimen comment. \r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "30 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial",
+            "Aspirate, Tracheal",
+            "Sputum"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "88690-3",
+              "resultLoincName": "Pneumocystis jiroveci DNA [Presence] in Lower respiratory specimen by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "103686-2",
+          "orderLoincName": "MVista® Pneumocystis DNA, PCR",
+          "shortName": "P jiroveci DNA CSF Ql NAA+probe",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "31 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "103686-2",
+              "resultLoincName": "Pneumocystis jiroveci DNA [Presence] in Cerebral spinal fluid by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "403",
+      "testName": "MVista® Histoplasma DNA, PCR",
+      "shortName": "H capsulatum DNA Lower resp Ql NAA+probe",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [
+        {
+          "code": "87798",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "95917-1",
+          "orderLoincName": "MVista® Histoplasma DNA, PCR",
+          "shortName": "H capsulatum DNA Lower resp Ql NAA+probe",
+          "sampleType": "Lower Respiratory",
+          "sampleHandling": "Acceptable Specimen:  BAL, sputum, tracheal aspirate,  or bronchial wash in sterile leak-proof container.  Tracheal aspirate and bronchial wash will be reported with a rare specimen comment. \r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "32 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial",
+            "Aspirate, Tracheal",
+            "Sputum"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "95917-1",
+              "resultLoincName": "Histoplasma capsulatum DNA [Presence] in Lower respiratory specimen by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "103689-6",
+          "orderLoincName": "MVista® Histoplasma DNA, PCR",
+          "shortName": "Histoplasma DNA CSF Ql NAA+probe",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "33 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "103689-6",
+              "resultLoincName": "Histoplasma sp DNA [Presence] in Cerebral spinal fluid by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "404",
+      "testName": "MVista® Blastomyces DNA, PCR",
+      "shortName": "Blastomyces sp DNA Lower resp Ql NAA+probe",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [
+        {
+          "code": "87798",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "95916-3",
+          "orderLoincName": "MVista® Blastomyces DNA, PCR",
+          "shortName": "Blastomyces sp DNA Lower resp Ql NAA+probe",
+          "sampleType": "Lower Respiratory",
+          "sampleHandling": "Acceptable Specimen:  BAL, sputum, tracheal aspirate,  or bronchial wash in sterile leak-proof container.  Tracheal aspirate and bronchial wash will be reported with a rare specimen comment. \r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "34 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial",
+            "Aspirate, Tracheal",
+            "Sputum"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "95916-3",
+              "resultLoincName": "Blastomyces sp DNA [Presence] in Lower respiratory specimen by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "103688-8",
+          "orderLoincName": "MVista® Blastomyces DNA, PCR",
+          "shortName": "Blastomyces DNA CSF Ql NAA+probe",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "35 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "103688-8",
+              "resultLoincName": "Blastomyces sp DNA [Presence] in Cerebral spinal fluid by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "405",
+      "testName": "MVista® Coccidioides DNA, PCR",
+      "shortName": "Coccidioides sp DNA Lower resp Ql NAA+probe",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [
+        {
+          "code": "87798",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "95915-5",
+          "orderLoincName": "MVista® Coccidioides DNA, PCR",
+          "shortName": "Coccidioides sp DNA Lower resp Ql NAA+probe",
+          "sampleType": "Lower Respiratory",
+          "sampleHandling": "Acceptable Specimen:  BAL, sputum, tracheal aspirate,  or bronchial wash in sterile leak-proof container.  Tracheal aspirate and bronchial wash will be reported with a rare specimen comment. \r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "36 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial",
+            "Aspirate, Tracheal",
+            "Sputum"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "95915-5",
+              "resultLoincName": "Coccidioides sp DNA [Presence] in Lower respiratory specimen by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "103687-0",
+          "orderLoincName": "MVista® Coccidioides DNA, PCR",
+          "shortName": "Coccidioides DNA CSF Ql NAA+probe",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "37 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "103687-0",
+              "resultLoincName": "Coccidioides sp DNA [Presence] in Cerebral spinal fluid by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "1000",
+      "testName": "MVista® Pulmonary Fungal PCR Panel",
+      "shortName": "Fungal pathogens panel DNA Lower resp Ql NAA+probe",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Multiple (Histo, Blasto, Cocci, Pneumocystis)",
+      "cptCodes": [
+        {
+          "code": "87798",
+          "quantity": 1
+        }
+      ],
+      "tat": "M-F, 1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "95919-7",
+          "orderLoincName": "MVista® Pulmonary Fungal PCR Panel",
+          "shortName": "Fungal pathogens panel DNA Lower resp Ql NAA+probe",
+          "sampleType": "Lower Respiratory",
+          "sampleHandling": "Acceptable Specimen:  BAL, sputum, tracheal aspirate,  or bronchial wash in sterile leak-proof container.  Tracheal aspirate and bronchial wash will be reported with a rare specimen comment. \r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "38 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Bronchial",
+            "Bronchial Wash",
+            "Lavage, Bronchial",
+            "Aspirate, Tracheal",
+            "Sputum"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "95919-7",
+              "resultLoincName": "Fungal pathogens panel - Lower respiratory specimen by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "103690-4",
+          "orderLoincName": "MVista® Pulmonary Fungal PCR Panel",
+          "shortName": "Fungal path panel CSF NAA+probe",
+          "sampleType": "Cerebral Spinal Fluid",
+          "sampleHandling": "Acceptable Specimen:  CSF in sterile leak-proof container.\r\n\r\nMinumum volume:  0.5 mL",
+          "sampleStorage": "39 days RT, RF, or FZ.",
+          "acceptableSources": [
+            "Cerebral spinal fluid"
+          ],
+          "referenceRange": "Not Detected",
+          "resultUnits": "",
+          "resultComponents": [
+            {
+              "resultLoincCode": "103690-4",
+              "resultLoincName": "Fungal pathogens panel - Cerebral spinal fluid by NAA with probe detection",
+              "referenceRange": "Not Detected",
+              "units": ""
+            }
+          ],
+          "status": "Active",
+          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedBy": "system"
+        }
+      ]
+    }
+  ]
+}

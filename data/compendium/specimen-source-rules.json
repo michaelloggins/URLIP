@@ -1,0 +1,101 @@
+{
+  "serumPlasma": {
+    "description": "Serum/Plasma specimens must specify type individually",
+    "rejected": [
+      "Ser/Plas",
+      "Serum/Plasma",
+      "S/P"
+    ],
+    "accepted": [
+      "Serum",
+      "Plasma"
+    ],
+    "rule": "Must specify either Serum or Plasma individually. Do not use combined terms."
+  },
+  "bronchoalveolarLavage": {
+    "description": "BAL/Lower respiratory specimen source formats",
+    "accepted": [
+      "Bronchial",
+      "Bronchial Wash",
+      "Lavage, Bronchial",
+      "Aspirate, Tracheal",
+      "Sputum"
+    ],
+    "rule": "Use specific BAL-type source names. Generic terms not accepted."
+  },
+  "bodyFluid": {
+    "description": "Body fluid specimens must use specific fluid type",
+    "rejected": [
+      "Body Fluid",
+      "Body fluid",
+      "Fluid"
+    ],
+    "accepted": [
+      "Abscess",
+      "Amniotic fluid",
+      "Body fluid, unsp",
+      "Drainage, Tube",
+      "Fluid, Abdomen",
+      "Fluid, Cerebral Cyst",
+      "Fluid, Chest",
+      "Fluid, Corpus Vitreum",
+      "Fluid, Cyst",
+      "Fluid, Flank",
+      "Fluid, Hepatic",
+      "Fluid, Hilum",
+      "Fluid, Hydrocele",
+      "Fluid, JP Drainage",
+      "Fluid, Knee Joint",
+      "Fluid, joint",
+      "Fluid, Kidney",
+      "Fluid, Liver",
+      "Fluid, Lymph Node",
+      "Fluid, Mass",
+      "Fluid, Maxillary Sinus",
+      "Fluid, Mediastinal",
+      "Fluid, Neck Mass",
+      "Fluid, Other",
+      "Fluid, Pancreatic Cyst",
+      "Fluid, Paracentesis",
+      "Fluid, Pelvic",
+      "Fluid, Pericardial",
+      "Fluid, Peripheral",
+      "Fluid, Pneumocystis",
+      "Fluid, Prostate",
+      "Fluid, Respiratory",
+      "Fluid, Trochanter",
+      "Fluid, Ventricular",
+      "Fluid, Wrist",
+      "Flush, Esophagus",
+      "Lavage, Peritoneal",
+      "Pancreatic fluid",
+      "Peritoneal fluid/ascites",
+      "Pleural fluid (thoracentesis fld)",
+      "Saliva",
+      "Swab, Nasopharyngeal",
+      "Synovial fluid (joint fluid)",
+      "Tracheal Lavage",
+      "Vitreous fluid",
+      "Wash",
+      "Wash, Bladder",
+      "Wash, Lymph node",
+      "Wash, Tracheal"
+    ],
+    "rule": "Do NOT use generic \"Body Fluid\". Specify the exact fluid type from the accepted list."
+  },
+  "csf": {
+    "description": "Cerebral Spinal Fluid specimen source",
+    "accepted": [
+      "Cerebral spinal fluid",
+      "CSF"
+    ],
+    "rule": "Use \"Cerebral spinal fluid\" or \"CSF\"."
+  },
+  "urine": {
+    "description": "Urine specimen source",
+    "accepted": [
+      "Urine"
+    ],
+    "rule": "Use \"Urine\"."
+  }
+}
