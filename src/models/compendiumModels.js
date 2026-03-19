@@ -50,14 +50,17 @@
 /**
  * @typedef {Object} CompendiumTest
  * @property {string} mvdTestCode - MVD internal test code (e.g., "310")
+ * @property {string} market - Target market: 'Human' or 'Veterinary'
+ * @property {string} species - Target species: 'Human', 'Canine', 'Feline', 'Canine and Feline', 'All'
  * @property {string} testName - Full test name
  * @property {string} shortName - Short display name
- * @property {string} category - Test category: Antigen, Antibody, PCR, Panel
- * @property {string} methodology - Test methodology: EIA, Immunodiffusion, PCR, etc.
+ * @property {string} category - Test category: Antigen, Antibody, PCR, Panel, Therapeutic Drug Monitoring
+ * @property {string} methodology - Test methodology: EIA, Immunodiffusion, PCR, Bioassay, etc.
  * @property {string} organism - Target organism
- * @property {CptCode[]} cptCodes - CPT billing codes
+ * @property {CptCode[]} cptCodes - CPT billing codes (empty for vet tests)
  * @property {string} tat - Turnaround time description
- * @property {OrderableLoinc[]} orderableLoincs - Orderable LOINC variants
+ * @property {string[]} [componentTests] - For panels: MVD test codes of included tests
+ * @property {OrderableLoinc[]} orderableLoincs - Orderable LOINC variants (may lack LOINC codes for vet)
  * @property {string} status - Record status: 'Active', 'New', 'Disabled'
  * @property {string} createdOn - ISO 8601 timestamp
  * @property {string} createdBy - Creator
@@ -67,6 +70,12 @@
 
 /** Valid status values */
 const VALID_STATUSES = ['Active', 'New', 'Disabled'];
+
+/** Valid market values */
+const VALID_MARKETS = ['Human', 'Veterinary'];
+
+/** Valid species values */
+const VALID_SPECIES = ['Human', 'Canine', 'Feline', 'Canine and Feline', 'All'];
 
 /**
  * @typedef {Object} PerformingOrganization
@@ -292,6 +301,12 @@ function validateCompendiumTest(test) {
     if (!test.testName) errors.push('Missing testName');
     if (!test.category) errors.push('Missing category');
     if (!test.methodology) errors.push('Missing methodology');
+    if (test.market && !VALID_MARKETS.includes(test.market)) {
+        errors.push(`Invalid market "${test.market}". Must be one of: ${VALID_MARKETS.join(', ')}`);
+    }
+    if (test.species && !VALID_SPECIES.includes(test.species)) {
+        errors.push(`Invalid species "${test.species}". Must be one of: ${VALID_SPECIES.join(', ')}`);
+    }
     if (test.status && !VALID_STATUSES.includes(test.status)) {
         errors.push(`Invalid status "${test.status}". Must be one of: ${VALID_STATUSES.join(', ')}`);
     }
@@ -318,6 +333,8 @@ function validateCompendiumTest(test) {
 module.exports = {
     PERFORMING_ORGANIZATION,
     VALID_STATUSES,
+    VALID_MARKETS,
+    VALID_SPECIES,
     categorizeTest,
     normalizeCptCode,
     parseResultComponents,

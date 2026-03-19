@@ -16,12 +16,13 @@ const { getEffectiveStatus } = require('../models/compendiumModels');
  * @param {string} [params.category] - Filter by category
  * @param {string} [params.organism] - Filter by organism
  * @param {string} [params.status] - Filter by test-level status (Active, New, Disabled)
+ * @param {string} [params.market] - Filter by market (Human, Veterinary)
  * @param {number} [params.page=1] - Page number (1-based)
  * @param {number} [params.pageSize=50] - Items per page
  * @returns {Object}
  */
-function getAllTests({ view = 'grouped', category, organism, status, page = 1, pageSize = 50 } = {}) {
-    let tests = dataAccess.searchTests({ category, organism, status });
+function getAllTests({ view = 'grouped', category, organism, status, market, page = 1, pageSize = 50 } = {}) {
+    let tests = dataAccess.searchTests({ category, organism, status, market });
 
     if (view === 'flat') {
         // Flatten to orderable LOINCs with effectiveStatus
@@ -30,6 +31,8 @@ function getAllTests({ view = 'grouped', category, organism, status, page = 1, p
             for (const ol of test.orderableLoincs) {
                 flat.push({
                     mvdTestCode: test.mvdTestCode,
+                    market: test.market || 'Human',
+                    species: test.species || 'Human',
                     testName: test.testName,
                     category: test.category,
                     methodology: test.methodology,
@@ -177,7 +180,7 @@ function getVersion() {
  */
 function generateCsv(tests) {
     const headers = [
-        'MVD Test Code', 'Test Name', 'Category', 'Methodology', 'Organism',
+        'MVD Test Code', 'Market', 'Species', 'Test Name', 'Category', 'Methodology', 'Organism',
         'Order LOINC', 'Short Name', 'Sample Type', 'TAT',
         'CPT Codes', 'Reference Range', 'Result Units',
         'Result LOINCs', 'Result Names',
@@ -200,6 +203,8 @@ function generateCsv(tests) {
 
             const row = [
                 test.mvdTestCode,
+                test.market || 'Human',
+                test.species || 'Human',
                 csvEscape(test.testName),
                 test.category,
                 test.methodology,

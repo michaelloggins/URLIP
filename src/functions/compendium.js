@@ -22,12 +22,13 @@ app.http('compendiumList', {
             const category = url.searchParams.get('category') || undefined;
             const organism = url.searchParams.get('organism') || undefined;
             const status = url.searchParams.get('status') || undefined;
+            const market = url.searchParams.get('market') || undefined;
             const page = parseInt(url.searchParams.get('page'), 10) || 1;
             const pageSize = Math.min(parseInt(url.searchParams.get('pageSize'), 10) || 50, 200);
 
-            context.log(`Compendium list: view=${view}, category=${category}, organism=${organism}, status=${status}, page=${page}`);
+            context.log(`Compendium list: view=${view}, category=${category}, status=${status}, market=${market}, page=${page}`);
 
-            const result = compendiumService.getAllTests({ view, category, organism, status, page, pageSize });
+            const result = compendiumService.getAllTests({ view, category, organism, status, market, page, pageSize });
             return { status: 200, jsonBody: result };
         } catch (error) {
             context.error('Compendium list error:', error);
@@ -52,10 +53,11 @@ app.http('compendiumSearch', {
             const sampleType = url.searchParams.get('sampleType') || undefined;
             const cptCode = url.searchParams.get('cptCode') || undefined;
             const status = url.searchParams.get('status') || undefined;
+            const market = url.searchParams.get('market') || undefined;
 
-            context.log(`Compendium search: q=${query}, category=${category}, status=${status}`);
+            context.log(`Compendium search: q=${query}, category=${category}, status=${status}, market=${market}`);
 
-            const result = compendiumService.searchTests({ query, category, organism, sampleType, cptCode, status });
+            const result = compendiumService.searchTests({ query, category, organism, sampleType, cptCode, status, market });
             return { status: 200, jsonBody: result };
         } catch (error) {
             context.error('Compendium search error:', error);

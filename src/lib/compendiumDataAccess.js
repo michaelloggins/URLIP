@@ -75,15 +75,21 @@ function getTestByLoincCode(loinc) {
  * @param {string} [params.sampleType] - Filter by sample type (partial match)
  * @param {string} [params.cptCode] - Filter by CPT code
  * @param {string} [params.status] - Filter by test-level status (Active, New, Disabled)
+ * @param {string} [params.market] - Filter by market (Human, Veterinary)
  * @returns {Object[]} Matching CompendiumTest objects
  */
-function searchTests({ query, category, organism, sampleType, cptCode, status } = {}) {
+function searchTests({ query, category, organism, sampleType, cptCode, status, market } = {}) {
     ensureLoaded();
     let results = [...cachedCompendium.tests];
 
     if (status) {
         const st = status.toLowerCase();
         results = results.filter(t => (t.status || 'Active').toLowerCase() === st);
+    }
+
+    if (market) {
+        const mk = market.toLowerCase();
+        results = results.filter(t => (t.market || 'Human').toLowerCase() === mk);
     }
 
     if (category) {

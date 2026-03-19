@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0",
-  "lastUpdated": "2026-03-18T16:13:14.034Z",
-  "generatedFrom": "Assay LOINC List for Clients - PFP Full.xlsx + HL7 Connection.2025Sep23.pdf",
+  "version": "2.1.0",
+  "lastUpdated": "2026-03-19T00:46:34.956Z",
+  "generatedFrom": "Assay LOINC List for Clients.xlsx + HL7 Spec + Veterinary Test Menu PDF + Medical Test Menu PDF",
   "performingOrganization": {
     "name": "MiraVista Diagnostics",
     "cliaNumber": "15D0996282",
@@ -114,12 +114,27 @@
     }
   },
   "summary": {
-    "totalTests": 18,
-    "totalOrderableLoincs": 42,
+    "totalTests": 64,
+    "totalOrderableLoincs": 160,
+    "humanTests": 18,
+    "veterinaryTests": 46,
     "categories": [
       "Antigen",
       "Antibody",
-      "PCR"
+      "PCR",
+      "Therapeutic Drug Monitoring",
+      "Panel"
+    ],
+    "markets": [
+      "Human",
+      "Veterinary"
+    ],
+    "species": [
+      "Human",
+      "All",
+      "Canine",
+      "Feline",
+      "Canine and Feline"
     ],
     "organisms": [
       "Aspergillus sp",
@@ -129,12 +144,18 @@
       "Pan-fungal",
       "Cryptococcus neoformans",
       "Pneumocystis jirovecii",
-      "Multiple (Histo, Blasto, Cocci, Pneumocystis)"
+      "Multiple (Histo, Blasto, Cocci, Pneumocystis)",
+      "N/A",
+      "Pythium insidiosum",
+      "Pneumocystis canis",
+      "Multiple"
     ]
   },
   "tests": [
     {
       "mvdTestCode": "309",
+      "market": "Human",
+      "species": "Human",
       "testName": "Aspergillus Galactomannan EIA",
       "shortName": "Galactomannan Ag",
       "category": "Antigen",
@@ -148,9 +169,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -174,9 +195,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -200,9 +221,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -228,9 +249,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -260,15 +281,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "310",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Histoplasma Ag Quantitative EIA",
       "shortName": "Histoplasma capsulatum Ag",
       "category": "Antigen",
@@ -282,9 +305,9 @@
       ],
       "tat": "M-Sa, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdOn": "2026-03-19T00:46:34.954Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedOn": "2026-03-19T00:46:34.954Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -308,9 +331,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -335,9 +358,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -361,9 +384,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -389,9 +412,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -421,15 +444,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "315",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Coccidioides Ag Quantitative EIA",
       "shortName": "Coccidioides sp Ag",
       "category": "Antigen",
@@ -443,9 +468,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -469,9 +494,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -496,9 +521,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -522,9 +547,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -550,9 +575,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -582,15 +607,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "316",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Blastomyces Ag Quantitative EIA",
       "shortName": "Blastomyces sp Ag",
       "category": "Antigen",
@@ -604,9 +631,9 @@
       ],
       "tat": "M-Sa, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -630,9 +657,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -657,9 +684,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -683,9 +710,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -711,9 +738,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -743,15 +770,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "317",
+      "market": "Human",
+      "species": "Human",
       "testName": "(1-3)-Beta-D-Glucan Colorimetric Assay",
       "shortName": "1,3 beta glucan",
       "category": "Antigen",
@@ -765,9 +794,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -791,9 +820,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -817,15 +846,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "319",
+      "market": "Human",
+      "species": "Human",
       "testName": "Cryptococcal Antigen by Latex Agglutination",
       "shortName": "Cryptococcus sp Ag",
       "category": "Antigen",
@@ -839,9 +870,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -865,9 +896,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -891,15 +922,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "320",
+      "market": "Human",
+      "species": "Human",
       "testName": "Coccidioides Antibody by Immunodiffusion",
       "shortName": "Coccidioides immitis Ab",
       "category": "Antibody",
@@ -913,9 +946,9 @@
       ],
       "tat": "Tu&F, 3 days from setup date",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -945,15 +978,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "321",
+      "market": "Human",
+      "species": "Human",
       "testName": "Histoplasma Antibody by Immunodiffusion",
       "shortName": "Histoplasma capsulatum Ab",
       "category": "Antibody",
@@ -967,9 +1002,9 @@
       ],
       "tat": "Tu&F, 3 days from setup date",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.033Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.033Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -999,15 +1034,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.033Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.033Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "322",
+      "market": "Human",
+      "species": "Human",
       "testName": "Blastomyces Antibody by Immunodiffusion",
       "shortName": "Blastomyces sp Ab",
       "category": "Antibody",
@@ -1021,9 +1058,9 @@
       ],
       "tat": "Tu&F, 3 days from setup date",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1047,15 +1084,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "324",
+      "market": "Human",
+      "species": "Human",
       "testName": "Aspergillus Antibody by Immunodiffusion",
       "shortName": "Aspergillus sp Ab",
       "category": "Antibody",
@@ -1069,9 +1108,9 @@
       ],
       "tat": "Tu&F, 3 days from setup date",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1095,15 +1134,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "325",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Coccidioides Antibody IgG, IgM EIA",
       "shortName": "Coccidioides Antibody IgG, IgM EIA",
       "category": "Antibody",
@@ -1117,9 +1158,9 @@
       ],
       "tat": "M, W, Th, F; next day",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1150,9 +1191,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -1182,15 +1223,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "326",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Histoplasma Antibody IgG, IgM EIA",
       "shortName": "Histoplasma Antibody IgG, IgM EIA",
       "category": "Antibody",
@@ -1204,9 +1247,9 @@
       ],
       "tat": "M, W, Th, F; next day",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1237,9 +1280,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -1269,15 +1312,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "331",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Blastomyces Antibody IgG EIA",
       "shortName": "B dermat IgG Ser IA-aCnc",
       "category": "Antibody",
@@ -1291,9 +1336,9 @@
       ],
       "tat": "M, W, Th, F; next day",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1318,15 +1363,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "402",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Pneumocystis DNA, PCR",
       "shortName": "P jiroveci DNA Lower resp Ql NAA+probe",
       "category": "PCR",
@@ -1340,9 +1387,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1370,9 +1417,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -1396,15 +1443,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "403",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Histoplasma DNA, PCR",
       "shortName": "H capsulatum DNA Lower resp Ql NAA+probe",
       "category": "PCR",
@@ -1418,9 +1467,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1448,9 +1497,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -1474,15 +1523,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "404",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Blastomyces DNA, PCR",
       "shortName": "Blastomyces sp DNA Lower resp Ql NAA+probe",
       "category": "PCR",
@@ -1496,9 +1547,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1526,9 +1577,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -1552,15 +1603,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "405",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Coccidioides DNA, PCR",
       "shortName": "Coccidioides sp DNA Lower resp Ql NAA+probe",
       "category": "PCR",
@@ -1574,9 +1627,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1604,9 +1657,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -1630,15 +1683,17 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         }
       ]
     },
     {
       "mvdTestCode": "1000",
+      "market": "Human",
+      "species": "Human",
       "testName": "MVista® Pulmonary Fungal PCR Panel",
       "shortName": "Fungal pathogens panel DNA Lower resp Ql NAA+probe",
       "category": "PCR",
@@ -1652,9 +1707,9 @@
       ],
       "tat": "M-F, 1-2 days",
       "status": "Active",
-      "createdOn": "2026-03-18T16:13:14.034Z",
+      "createdOn": "2026-03-19T00:46:34.955Z",
       "createdBy": "system",
-      "updatedOn": "2026-03-18T16:13:14.034Z",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
       "updatedBy": "system",
       "orderableLoincs": [
         {
@@ -1682,9 +1737,9 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
           "updatedBy": "system"
         },
         {
@@ -1708,9 +1763,3270 @@
             }
           ],
           "status": "Active",
-          "createdOn": "2026-03-18T16:13:14.034Z",
+          "createdOn": "2026-03-19T00:46:34.955Z",
           "createdBy": "system",
-          "updatedOn": "2026-03-18T16:13:14.034Z",
+          "updatedOn": "2026-03-19T00:46:34.955Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "309",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "Aspergillus Antigen EIA (Vet)",
+      "shortName": "Galactomannan Ag (Vet)",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Aspergillus sp",
+      "cptCodes": [],
+      "tat": "12-24 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antigen EIA (Vet)",
+          "shortName": "Galactomannan Ag (Vet)",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: EDTA. Container: Serum in separator or transfer tube.\n\nVolume: 0.4 mL",
+          "sampleStorage": "Serum/BAL: RT=48hrs, RF=5 days, FZ=5 months. CSF: RT=30 days, RF=30 days, FZ=60 days. Shipping: Overnight or 2nd day - with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antigen EIA (Vet)",
+          "shortName": "Galactomannan Ag (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: EDTA. Container: Serum in separator or transfer tube.\n\nVolume: 0.4 mL",
+          "sampleStorage": "Serum/BAL: RT=48hrs, RF=5 days, FZ=5 months. CSF: RT=30 days, RF=30 days, FZ=60 days. Shipping: Overnight or 2nd day - with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antigen EIA (Vet)",
+          "shortName": "Galactomannan Ag (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: EDTA. Container: Serum in separator or transfer tube.\n\nVolume: 0.4 mL",
+          "sampleStorage": "Serum/BAL: RT=48hrs, RF=5 days, FZ=5 months. CSF: RT=30 days, RF=30 days, FZ=60 days. Shipping: Overnight or 2nd day - with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antigen EIA (Vet)",
+          "shortName": "Galactomannan Ag (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: EDTA. Container: Serum in separator or transfer tube.\n\nVolume: 0.4 mL",
+          "sampleStorage": "Serum/BAL: RT=48hrs, RF=5 days, FZ=5 months. CSF: RT=30 days, RF=30 days, FZ=60 days. Shipping: Overnight or 2nd day - with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antigen EIA (Vet)",
+          "shortName": "Galactomannan Ag (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: EDTA. Container: Serum in separator or transfer tube.\n\nVolume: 0.4 mL",
+          "sampleStorage": "Serum/BAL: RT=48hrs, RF=5 days, FZ=5 months. CSF: RT=30 days, RF=30 days, FZ=60 days. Shipping: Overnight or 2nd day - with cold pack.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "310",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Histoplasma Antigen EIA",
+      "shortName": "Histoplasma Ag (Vet)",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [],
+      "tat": "12-24 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.955Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.955Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Antigen EIA",
+          "shortName": "Histoplasma Ag (Vet)",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Histo: 2 weeks RT/RF, Indefinitely FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Antigen EIA",
+          "shortName": "Histoplasma Ag (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Histo: 2 weeks RT/RF, Indefinitely FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Antigen EIA",
+          "shortName": "Histoplasma Ag (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Histo: 2 weeks RT/RF, Indefinitely FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Antigen EIA",
+          "shortName": "Histoplasma Ag (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Histo: 2 weeks RT/RF, Indefinitely FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Antigen EIA",
+          "shortName": "Histoplasma Ag (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Histo: 2 weeks RT/RF, Indefinitely FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "312",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Itraconazole Bioassay",
+      "shortName": "Itraconazole Level",
+      "category": "Therapeutic Drug Monitoring",
+      "methodology": "Bioassay",
+      "organism": "N/A",
+      "cptCodes": [],
+      "tat": "Reported on Thursdays",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Itraconazole Bioassay",
+          "shortName": "Itraconazole Level",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=10 days, RF=10 days, FZ=Indefinite. Shipping: Overnight or 2nd day - with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Itraconazole Bioassay",
+          "shortName": "Itraconazole Level",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=10 days, RF=10 days, FZ=Indefinite. Shipping: Overnight or 2nd day - with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "315",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Coccidioides Antigen EIA",
+      "shortName": "Coccidioides Ag (Vet)",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [],
+      "tat": "12-24 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Antigen EIA",
+          "shortName": "Coccidioides Ag (Vet)",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Cocci: 28 days RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Antigen EIA",
+          "shortName": "Coccidioides Ag (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Cocci: 28 days RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Antigen EIA",
+          "shortName": "Coccidioides Ag (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Cocci: 28 days RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Antigen EIA",
+          "shortName": "Coccidioides Ag (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Cocci: 28 days RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Antigen EIA",
+          "shortName": "Coccidioides Ag (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Cocci: 28 days RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "316",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Blastomyces Antigen EIA",
+      "shortName": "Blastomyces Ag (Vet)",
+      "category": "Antigen",
+      "methodology": "EIA",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [],
+      "tat": "8-24 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Antigen EIA",
+          "shortName": "Blastomyces Ag (Vet)",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Blasto: 2 weeks RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Antigen EIA",
+          "shortName": "Blastomyces Ag (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Blasto: 2 weeks RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Antigen EIA",
+          "shortName": "Blastomyces Ag (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Blasto: 2 weeks RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Antigen EIA",
+          "shortName": "Blastomyces Ag (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Blasto: 2 weeks RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Antigen EIA",
+          "shortName": "Blastomyces Ag (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: Urine, serum, plasma, CSF, BAL. Anticoagulant: Heparin, EDTA, NaCit. Container: Serum in separator or transfer tube. Urine, CSF and BAL in a leak-proof container.\n\nVolume: 0.8 mL",
+          "sampleStorage": "Blasto: 2 weeks RT/RF, 60 days FZ. Shipping: Overnight or 2nd day - ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "317",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "β-D-Glucan Antigen Colorimetric Assay (Vet)",
+      "shortName": "Beta-D-Glucan (Vet)",
+      "category": "Antigen",
+      "methodology": "Colorimetric",
+      "organism": "Pan-fungal",
+      "cptCodes": [],
+      "tat": "12-24 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "β-D-Glucan Antigen Colorimetric Assay (Vet)",
+          "shortName": "Beta-D-Glucan (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF. Container: Serum in separator or sterile plastic tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RF=15 days, FZ=27 days. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "β-D-Glucan Antigen Colorimetric Assay (Vet)",
+          "shortName": "Beta-D-Glucan (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF. Container: Serum in separator or sterile plastic tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RF=15 days, FZ=27 days. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "319",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "Cryptococcus Antigen Latex Agglutination (Vet)",
+      "shortName": "Cryptococcus Ag (Vet)",
+      "category": "Antigen",
+      "methodology": "Latex Agglutination",
+      "organism": "Cryptococcus neoformans",
+      "cptCodes": [],
+      "tat": "12-24 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Cryptococcus Antigen Latex Agglutination (Vet)",
+          "shortName": "Cryptococcus Ag (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum, CSF. Container: Serum in separator or transfer tube. CSF in leak-proof container.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=7 days, RF=2 months, FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Cryptococcus Antigen Latex Agglutination (Vet)",
+          "shortName": "Cryptococcus Ag (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum, CSF. Container: Serum in separator or transfer tube. CSF in leak-proof container.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=7 days, RF=2 months, FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "320",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "Coccidioides Antibody by Immunodiffusion (Vet)",
+      "shortName": "Coccidioides Ab ID (Vet)",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [],
+      "tat": "72 hours from set up",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Coccidioides Antibody by Immunodiffusion (Vet)",
+          "shortName": "Coccidioides Ab ID (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Coccidioides Antibody by Immunodiffusion (Vet)",
+          "shortName": "Coccidioides Ab ID (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Coccidioides Antibody by Immunodiffusion (Vet)",
+          "shortName": "Coccidioides Ab ID (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "321",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "Histoplasma Antibody by Immunodiffusion (Vet)",
+      "shortName": "Histoplasma Ab ID (Vet)",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [],
+      "tat": "72 hours from set up",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Histoplasma Antibody by Immunodiffusion (Vet)",
+          "shortName": "Histoplasma Ab ID (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Histoplasma Antibody by Immunodiffusion (Vet)",
+          "shortName": "Histoplasma Ab ID (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Histoplasma Antibody by Immunodiffusion (Vet)",
+          "shortName": "Histoplasma Ab ID (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "322",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "Blastomyces Antibody by Immunodiffusion (Vet)",
+      "shortName": "Blastomyces Ab ID (Vet)",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [],
+      "tat": "72 hours from set up",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Blastomyces Antibody by Immunodiffusion (Vet)",
+          "shortName": "Blastomyces Ab ID (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Blastomyces Antibody by Immunodiffusion (Vet)",
+          "shortName": "Blastomyces Ab ID (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Blastomyces Antibody by Immunodiffusion (Vet)",
+          "shortName": "Blastomyces Ab ID (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "324",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "Aspergillus Antibody by Immunodiffusion (Vet)",
+      "shortName": "Aspergillus Ab ID (Vet)",
+      "category": "Antibody",
+      "methodology": "Immunodiffusion",
+      "organism": "Aspergillus sp",
+      "cptCodes": [],
+      "tat": "72 hours from set up",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antibody by Immunodiffusion (Vet)",
+          "shortName": "Aspergillus Ab ID (Vet)",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antibody by Immunodiffusion (Vet)",
+          "shortName": "Aspergillus Ab ID (Vet)",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "Aspergillus Antibody by Immunodiffusion (Vet)",
+          "shortName": "Aspergillus Ab ID (Vet)",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight - with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "327",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Histoplasma Canine IgG Antibody EIA",
+      "shortName": "Histo Canine IgG Ab",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Canine IgG Antibody EIA",
+          "shortName": "Histo Canine IgG Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Canine IgG Antibody EIA",
+          "shortName": "Histo Canine IgG Ab",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Canine IgG Antibody EIA",
+          "shortName": "Histo Canine IgG Ab",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "328",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Histoplasma Feline IgG Antibody EIA",
+      "shortName": "Histo Feline IgG Ab",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Feline IgG Antibody EIA",
+          "shortName": "Histo Feline IgG Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Feline IgG Antibody EIA",
+          "shortName": "Histo Feline IgG Ab",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma Feline IgG Antibody EIA",
+          "shortName": "Histo Feline IgG Ab",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "329",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Coccidioides Canine IgG Antibody EIA",
+      "shortName": "Cocci Canine IgG Ab",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Canine IgG Antibody EIA",
+          "shortName": "Cocci Canine IgG Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Canine IgG Antibody EIA",
+          "shortName": "Cocci Canine IgG Ab",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides Canine IgG Antibody EIA",
+          "shortName": "Cocci Canine IgG Ab",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "330",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Blastomyces Canine IgG Antibody EIA",
+      "shortName": "Blasto Canine IgG Ab",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Canine IgG Antibody EIA",
+          "shortName": "Blasto Canine IgG Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Canine IgG Antibody EIA",
+          "shortName": "Blasto Canine IgG Ab",
+          "sampleType": "CSF",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "CSF"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces Canine IgG Antibody EIA",
+          "shortName": "Blasto Canine IgG Ab",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum. Uncommon: CSF, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=28 days, RF=6 months, FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "332",
+      "market": "Veterinary",
+      "species": "Canine and Feline",
+      "testName": "MVista® Pythium IgG Antibody EIA",
+      "shortName": "Pythium IgG Ab",
+      "category": "Antibody",
+      "methodology": "EIA",
+      "organism": "Pythium insidiosum",
+      "cptCodes": [],
+      "tat": "12-24 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pythium IgG Antibody EIA",
+          "shortName": "Pythium IgG Ab",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pythium IgG Antibody EIA",
+          "shortName": "Pythium IgG Ab",
+          "sampleType": "Plasma",
+          "sampleHandling": "Specimen: Serum, plasma. Anticoagulant: Heparin, EDTA, NaCit. Container: Separator or transfer tube.\n\nVolume: 0.25 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Plasma"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "403",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Histoplasma DNA, PCR (Vet)",
+      "shortName": "Histo PCR (Vet)",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma DNA, PCR (Vet)",
+          "shortName": "Histo PCR (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma DNA, PCR (Vet)",
+          "shortName": "Histo PCR (Vet)",
+          "sampleType": "Cavitary Effusion",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Cavitary Effusion"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma DNA, PCR (Vet)",
+          "shortName": "Histo PCR (Vet)",
+          "sampleType": "Tracheal aspirate",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Tracheal aspirate"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Histoplasma DNA, PCR (Vet)",
+          "shortName": "Histo PCR (Vet)",
+          "sampleType": "Bronchial wash",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Bronchial wash"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "404",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Blastomyces DNA, PCR (Vet)",
+      "shortName": "Blasto PCR (Vet)",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces DNA, PCR (Vet)",
+          "shortName": "Blasto PCR (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces DNA, PCR (Vet)",
+          "shortName": "Blasto PCR (Vet)",
+          "sampleType": "Cavitary Effusion",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Cavitary Effusion"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces DNA, PCR (Vet)",
+          "shortName": "Blasto PCR (Vet)",
+          "sampleType": "Tracheal aspirate",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Tracheal aspirate"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Blastomyces DNA, PCR (Vet)",
+          "shortName": "Blasto PCR (Vet)",
+          "sampleType": "Bronchial wash",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Bronchial wash"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "405",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Coccidioides DNA, PCR (Vet)",
+      "shortName": "Cocci PCR (Vet)",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides DNA, PCR (Vet)",
+          "shortName": "Cocci PCR (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides DNA, PCR (Vet)",
+          "shortName": "Cocci PCR (Vet)",
+          "sampleType": "Cavitary Effusion",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Cavitary Effusion"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides DNA, PCR (Vet)",
+          "shortName": "Cocci PCR (Vet)",
+          "sampleType": "Tracheal aspirate",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Tracheal aspirate"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Coccidioides DNA, PCR (Vet)",
+          "shortName": "Cocci PCR (Vet)",
+          "sampleType": "Bronchial wash",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=30 days, RF=30 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Bronchial wash"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "406",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Pneumocystis Canine DNA, PCR",
+      "shortName": "Pneumocystis Canine PCR",
+      "category": "PCR",
+      "methodology": "PCR",
+      "organism": "Pneumocystis canis",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pneumocystis Canine DNA, PCR",
+          "shortName": "Pneumocystis Canine PCR",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: BAL. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=21 days, RF=21 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pneumocystis Canine DNA, PCR",
+          "shortName": "Pneumocystis Canine PCR",
+          "sampleType": "Tracheal aspirate",
+          "sampleHandling": "Specimen: BAL. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=21 days, RF=21 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Tracheal aspirate"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pneumocystis Canine DNA, PCR",
+          "shortName": "Pneumocystis Canine PCR",
+          "sampleType": "Bronchial wash",
+          "sampleHandling": "Specimen: BAL. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=21 days, RF=21 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Bronchial wash"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "900",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Panel, Extended",
+      "shortName": "Feline Panel Ext",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "319",
+        "320",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel, Extended",
+          "shortName": "Feline Panel Ext",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 1 mL each urine and serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel, Extended",
+          "shortName": "Feline Panel Ext",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 1 mL each urine and serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "901",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Panel West, Extended",
+      "shortName": "Canine Panel West Ext",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "329",
+        "309",
+        "319"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel West, Extended",
+          "shortName": "Canine Panel West Ext",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 1 mL each urine and serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel West, Extended",
+          "shortName": "Canine Panel West Ext",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 1 mL each urine and serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "902",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Panel East, Extended",
+      "shortName": "Canine Panel East Ext",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "316",
+        "329",
+        "309",
+        "319"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel East, Extended",
+          "shortName": "Canine Panel East Ext",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 1 mL each urine and serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel East, Extended",
+          "shortName": "Canine Panel East Ext",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 1 mL each urine and serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "903",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Panel",
+      "shortName": "Feline Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "319",
+        "320"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel",
+          "shortName": "Feline Panel",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 7 days serum; RF=2 weeks; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel",
+          "shortName": "Feline Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 7 days serum; RF=2 weeks; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "904",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Panel West",
+      "shortName": "Canine Panel West",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "329",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel West",
+          "shortName": "Canine Panel West",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel West",
+          "shortName": "Canine Panel West",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "905",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Panel East",
+      "shortName": "Canine Panel East",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-2 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "316",
+        "319",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel East",
+          "shortName": "Canine Panel East",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel East",
+          "shortName": "Canine Panel East",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "906",
+      "market": "Veterinary",
+      "species": "All",
+      "testName": "MVista® Pulmonary Fungal PCR Panel (Vet)",
+      "shortName": "Pulm Fungal PCR Panel (Vet)",
+      "category": "Panel",
+      "methodology": "PCR",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "24-48 hours",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "403",
+        "404",
+        "405",
+        "406"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pulmonary Fungal PCR Panel (Vet)",
+          "shortName": "Pulm Fungal PCR Panel (Vet)",
+          "sampleType": "BAL",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=21 days, RF=21 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "BAL"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pulmonary Fungal PCR Panel (Vet)",
+          "shortName": "Pulm Fungal PCR Panel (Vet)",
+          "sampleType": "Cavitary Effusion",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=21 days, RF=21 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Cavitary Effusion"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pulmonary Fungal PCR Panel (Vet)",
+          "shortName": "Pulm Fungal PCR Panel (Vet)",
+          "sampleType": "Tracheal aspirate",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=21 days, RF=21 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Tracheal aspirate"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Pulmonary Fungal PCR Panel (Vet)",
+          "shortName": "Pulm Fungal PCR Panel (Vet)",
+          "sampleType": "Bronchial wash",
+          "sampleHandling": "Specimen: BAL or Cavitary Effusion. Uncommon: Tracheal aspirate or bronchial wash. Container: Transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=21 days, RF=21 days, FZ=30 days. Shipping: Dry ice, frozen ice packs, or ambient.",
+          "acceptableSources": [
+            "Bronchial wash"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "907",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Panel East",
+      "shortName": "Feline Panel East",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "319",
+        "310",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel East",
+          "shortName": "Feline Panel East",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel East",
+          "shortName": "Feline Panel East",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "908",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Panel, Comprehensive",
+      "shortName": "Canine Comprehensive",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "316",
+        "309",
+        "319",
+        "329",
+        "327",
+        "330",
+        "320"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel, Comprehensive",
+          "shortName": "Canine Comprehensive",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Panel, Comprehensive",
+          "shortName": "Canine Comprehensive",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "909",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Panel, Comprehensive",
+      "shortName": "Feline Comprehensive",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "309",
+        "319",
+        "328",
+        "320"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel, Comprehensive",
+          "shortName": "Feline Comprehensive",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1.25 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Panel, Comprehensive",
+          "shortName": "Feline Comprehensive",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1.25 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "910",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Blastomycosis Panel",
+      "shortName": "Canine Blasto Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Blastomyces dermatitidis",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "316",
+        "330"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Blastomycosis Panel",
+          "shortName": "Canine Blasto Panel",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks; RF=2 weeks; FZ=2 months urine, indefinite serum. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Blastomycosis Panel",
+          "shortName": "Canine Blasto Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks; RF=2 weeks; FZ=2 months urine, indefinite serum. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "911",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Histoplasmosis Panel",
+      "shortName": "Canine Histo Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "327"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Histoplasmosis Panel",
+          "shortName": "Canine Histo Panel",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks; RF=2 weeks; FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Histoplasmosis Panel",
+          "shortName": "Canine Histo Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks; RF=2 weeks; FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "912",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Coccidioidomycosis Panel",
+      "shortName": "Canine Cocci Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Coccidioides immitis",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "329",
+        "320"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Coccidioidomycosis Panel",
+          "shortName": "Canine Cocci Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=28 days; RF=6 months; FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "913",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Histoplasmosis Panel",
+      "shortName": "Feline Histo Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Histoplasma capsulatum",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "328"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Histoplasmosis Panel",
+          "shortName": "Feline Histo Panel",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks; RF=2 weeks; FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Histoplasmosis Panel",
+          "shortName": "Feline Histo Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks; RF=2 weeks; FZ=indefinite. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "914",
+      "market": "Veterinary",
+      "species": "Canine and Feline",
+      "testName": "MVista® Canine & Feline Mold-Hyphae Panel",
+      "shortName": "Mold-Hyphae Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "309",
+        "317",
+        "332"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine & Feline Mold-Hyphae Panel",
+          "shortName": "Mold-Hyphae Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Container: Separator or transfer tube.\n\nVolume: 1 mL",
+          "sampleStorage": "RF=5 days; FZ=1 month. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "915",
+      "market": "Veterinary",
+      "species": "Canine and Feline",
+      "testName": "MVista® Canine & Feline Fungal Nasal Panel",
+      "shortName": "Fungal Nasal Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "319",
+        "324"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine & Feline Fungal Nasal Panel",
+          "shortName": "Fungal Nasal Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL",
+          "sampleStorage": "RT=7 days; RF=28 days; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "916",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal GI Panel",
+      "shortName": "Canine GI Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "327",
+        "332"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal GI Panel",
+          "shortName": "Canine GI Panel",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 28 days serum; RF=2 weeks urine, 30 days serum; FZ=30 days. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal GI Panel",
+          "shortName": "Canine GI Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 28 days serum; RF=2 weeks urine, 30 days serum; FZ=30 days. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "917",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal GI Panel",
+      "shortName": "Feline GI Panel",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "328",
+        "332"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal GI Panel",
+          "shortName": "Feline GI Panel",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 28 days serum; RF=2 weeks urine, 30 days serum; FZ=30 days. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal GI Panel",
+          "shortName": "Feline GI Panel",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 28 days serum; RF=2 weeks urine, 30 days serum; FZ=30 days. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "918",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Bone Panel East",
+      "shortName": "Canine Bone East",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "316",
+        "330",
+        "327",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Bone Panel East",
+          "shortName": "Canine Bone East",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Bone Panel East",
+          "shortName": "Canine Bone East",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "919",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Bone Panel West",
+      "shortName": "Canine Bone West",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "329",
+        "327",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Bone Panel West",
+          "shortName": "Canine Bone West",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Bone Panel West",
+          "shortName": "Canine Bone West",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "920",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Bone Panel West",
+      "shortName": "Feline Bone West",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "320",
+        "328",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Bone Panel West",
+          "shortName": "Feline Bone West",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Bone Panel West",
+          "shortName": "Feline Bone West",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "921",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Bone Panel East",
+      "shortName": "Feline Bone East",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "328",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Bone Panel East",
+          "shortName": "Feline Bone East",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Bone Panel East",
+          "shortName": "Feline Bone East",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL each",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=5 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "922",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Eye Panel West",
+      "shortName": "Canine Eye West",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "329",
+        "327",
+        "309",
+        "319"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Eye Panel West",
+          "shortName": "Canine Eye West",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Eye Panel West",
+          "shortName": "Canine Eye West",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "923",
+      "market": "Veterinary",
+      "species": "Canine",
+      "testName": "MVista® Canine Fungal Eye Panel East",
+      "shortName": "Canine Eye East",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "316",
+        "330",
+        "327",
+        "309",
+        "319"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Eye Panel East",
+          "shortName": "Canine Eye East",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Canine Fungal Eye Panel East",
+          "shortName": "Canine Eye East",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "924",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Eye Panel West",
+      "shortName": "Feline Eye West",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "320",
+        "319",
+        "328",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Eye Panel West",
+          "shortName": "Feline Eye West",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Eye Panel West",
+          "shortName": "Feline Eye West",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 1 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        }
+      ]
+    },
+    {
+      "mvdTestCode": "925",
+      "market": "Veterinary",
+      "species": "Feline",
+      "testName": "MVista® Feline Fungal Eye Panel East",
+      "shortName": "Feline Eye East",
+      "category": "Panel",
+      "methodology": "Multiple",
+      "organism": "Multiple",
+      "cptCodes": [],
+      "tat": "1-6 days",
+      "status": "Active",
+      "createdOn": "2026-03-19T00:46:34.956Z",
+      "createdBy": "system",
+      "updatedOn": "2026-03-19T00:46:34.956Z",
+      "updatedBy": "system",
+      "componentTests": [
+        "310",
+        "328",
+        "319",
+        "309"
+      ],
+      "orderableLoincs": [
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Eye Panel East",
+          "shortName": "Feline Eye East",
+          "sampleType": "Urine",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Urine"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
+          "updatedBy": "system"
+        },
+        {
+          "orderLoincCode": "",
+          "orderLoincName": "MVista® Feline Fungal Eye Panel East",
+          "shortName": "Feline Eye East",
+          "sampleType": "Serum",
+          "sampleHandling": "Specimen: Urine and Serum. Container: Separator or transfer tube.\n\nVolume: 0.5 mL urine, 0.75 mL serum",
+          "sampleStorage": "RT=2 weeks urine, 2 days serum; RF=2 weeks urine, 5 days serum; FZ=2 months. Shipping: Overnight or 2nd day - ambient or with cold pack.",
+          "acceptableSources": [
+            "Serum"
+          ],
+          "referenceRange": "",
+          "resultUnits": "",
+          "resultComponents": [],
+          "status": "Active",
+          "createdOn": "2026-03-19T00:46:34.956Z",
+          "createdBy": "system",
+          "updatedOn": "2026-03-19T00:46:34.956Z",
           "updatedBy": "system"
         }
       ]

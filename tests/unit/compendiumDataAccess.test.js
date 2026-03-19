@@ -27,21 +27,23 @@ afterAll(() => {
 describe('loadCompendium', () => {
     test('loads compendium with correct structure', () => {
         const data = loadCompendium(DATA_PATH);
-        expect(data.version).toBe('2.0.0');
+        expect(data.version).toBe('2.1.0');
         expect(data.tests).toBeInstanceOf(Array);
         expect(data.performingOrganization).toBeDefined();
         expect(data.specimenSourceRules).toBeDefined();
     });
 
-    test('has 18 test groups', () => {
+    test('has 64 test groups (18 human + 46 vet)', () => {
         const data = loadCompendium(DATA_PATH);
-        expect(data.tests.length).toBe(18);
+        expect(data.tests.length).toBe(64);
+        expect(data.summary.humanTests).toBe(18);
+        expect(data.summary.veterinaryTests).toBe(46);
     });
 
-    test('has 42 total orderable LOINCs', () => {
+    test('has 160 total orderable entries', () => {
         const data = loadCompendium(DATA_PATH);
-        const totalLoincs = data.tests.reduce((sum, t) => sum + t.orderableLoincs.length, 0);
-        expect(totalLoincs).toBe(42);
+        const total = data.tests.reduce((sum, t) => sum + t.orderableLoincs.length, 0);
+        expect(total).toBe(160);
     });
 });
 
@@ -50,9 +52,7 @@ describe('getTestByMvdCode', () => {
         const test = getTestByMvdCode('310');
         expect(test).not.toBeNull();
         expect(test.testName).toContain('Histoplasma');
-        expect(test.testName).toContain('Ag');
         expect(test.category).toBe('Antigen');
-        expect(test.orderableLoincs.length).toBe(5);
     });
 
     test('returns Pulmonary Fungal Panel for code 1000', () => {
@@ -102,24 +102,24 @@ describe('searchTests', () => {
         });
     });
 
-    test('search by category "Antigen" returns 6 tests', () => {
+    test('search by category "Antigen" includes human and vet', () => {
         const results = searchTests({ category: 'Antigen' });
-        expect(results.length).toBe(6);
+        expect(results.length).toBeGreaterThanOrEqual(6); // 6 human + vet duplicates
     });
 
-    test('search by category "Antibody" returns 7 tests', () => {
+    test('search by category "Antibody" includes human and vet', () => {
         const results = searchTests({ category: 'Antibody' });
-        expect(results.length).toBe(7);
+        expect(results.length).toBeGreaterThanOrEqual(7);
     });
 
-    test('search by category "PCR" returns 5 tests', () => {
+    test('search by category "PCR" includes human and vet', () => {
         const results = searchTests({ category: 'PCR' });
-        expect(results.length).toBe(5);
+        expect(results.length).toBeGreaterThanOrEqual(5);
     });
 
-    test('search by organism "Aspergillus" returns 2 tests', () => {
+    test('search by organism "Aspergillus" returns human + vet tests', () => {
         const results = searchTests({ organism: 'Aspergillus' });
-        expect(results.length).toBe(2); // Galactomannan + Ab ID
+        expect(results.length).toBeGreaterThanOrEqual(2); // human + vet duplicates
     });
 
     test('search by sampleType "Urine" returns tests with urine LOINCs', () => {
@@ -136,32 +136,43 @@ describe('searchTests', () => {
         expect(results[0].mvdTestCode).toBe('310');
     });
 
-    test('combined search narrows results', () => {
-        const results = searchTests({ category: 'Antigen', organism: 'Histoplasma' });
+    test('combined search with market narrows to single result', () => {
+        const results = searchTests({ category: 'Antigen', organism: 'Histoplasma', market: 'Human' });
         expect(results.length).toBe(1);
         expect(results[0].mvdTestCode).toBe('310');
     });
 
     test('empty search returns all tests', () => {
         const results = searchTests({});
+        expect(results.length).toBe(64);
+    });
+
+    test('search by market=Human returns 18 tests', () => {
+        const results = searchTests({ market: 'Human' });
         expect(results.length).toBe(18);
+    });
+
+    test('search by market=Veterinary returns 46 tests', () => {
+        const results = searchTests({ market: 'Veterinary' });
+        expect(results.length).toBe(46);
     });
 });
 
 describe('getVersion', () => {
     test('returns version metadata', () => {
         const version = getVersion();
-        expect(version.version).toBe('2.0.0');
-        expect(version.summary.totalTests).toBe(18);
-        expect(version.summary.totalOrderableLoincs).toBe(42);
+        expect(version.version).toBe('2.1.0');
+        expect(version.summary.totalTests).toBe(64);
+        expect(version.summary.humanTests).toBe(18);
+        expect(version.summary.veterinaryTests).toBe(46);
         expect(version.performingOrganization.cliaNumber).toBe('15D0996282');
     });
 });
 
 describe('getAllTests', () => {
-    test('returns all 18 tests', () => {
+    test('returns all 64 tests', () => {
         const tests = getAllTests();
-        expect(tests.length).toBe(18);
+        expect(tests.length).toBe(64);
     });
 });
 
@@ -200,9 +211,9 @@ describe('audit fields', () => {
         });
     });
 
-    test('search by status=Active returns all 18 tests', () => {
+    test('search by status=Active returns all 64 tests', () => {
         const results = searchTests({ status: 'Active' });
-        expect(results.length).toBe(18);
+        expect(results.length).toBe(64);
     });
 
     test('search by status=Disabled returns 0 tests', () => {

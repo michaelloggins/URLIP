@@ -265,6 +265,8 @@ tbody td {
 
     const COLUMNS = [
         { key: 'mvdTestCode',    label: 'MVD Code',    type: 'text',   width: '80px',  render: 'mvdCode' },
+        { key: 'market',         label: 'Market',       type: 'select', width: '90px',  render: 'text' },
+        { key: 'species',        label: 'Species',      type: 'select', width: '100px', render: 'text' },
         { key: 'orderLoincCode', label: 'Order LOINC',  type: 'text',   width: '100px', render: 'loincCode' },
         { key: 'shortName',      label: 'Short Name',   type: 'text',   width: '160px', render: 'truncate' },
         { key: 'testName',       label: 'Test Name',    type: 'text',   width: '220px', render: 'truncate' },
@@ -591,6 +593,8 @@ tbody td {
         grid.className = 'detail-grid';
         var fields = [
             ['MVD Code', row.mvdTestCode, 'cell-mvd'],
+            ['Market', row.market || 'Human'],
+            ['Species', row.species || 'Human'],
             ['Order LOINC', row.orderLoincCode, 'cell-code'],
             ['Category', row.category, 'badge badge-' + row.category.toLowerCase()],
             ['Methodology', row.methodology],
@@ -706,6 +710,8 @@ tbody td {
         var exportData = filteredData.map(function(row) {
             return {
                 'MVD Code': row.mvdTestCode,
+                'Market': row.market || 'Human',
+                'Species': row.species || 'Human',
                 'Order LOINC': row.orderLoincCode,
                 'Short Name': row.shortName,
                 'Test Name': row.testName,

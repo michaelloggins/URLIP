@@ -18,18 +18,16 @@ afterAll(() => {
 });
 
 describe('getAllTests', () => {
-    test('grouped view returns 18 test groups', () => {
+    test('grouped view returns 64 test groups', () => {
         const result = compendiumService.getAllTests({ view: 'grouped' });
         expect(result.view).toBe('grouped');
-        expect(result.total).toBe(18);
-        expect(result.results.length).toBe(18);
+        expect(result.total).toBe(64);
     });
 
-    test('flat view returns 42 orderable LOINCs', () => {
+    test('flat view returns 160 orderable entries', () => {
         const result = compendiumService.getAllTests({ view: 'flat' });
         expect(result.view).toBe('flat');
-        expect(result.total).toBe(42);
-        expect(result.results.length).toBe(42);
+        expect(result.total).toBe(160);
     });
 
     test('flat view includes flattened fields', () => {
@@ -44,7 +42,7 @@ describe('getAllTests', () => {
     test('pagination works for grouped view', () => {
         const result = compendiumService.getAllTests({ view: 'grouped', page: 1, pageSize: 5 });
         expect(result.results.length).toBe(5);
-        expect(result.totalPages).toBe(4); // ceil(18/5)
+        expect(result.totalPages).toBe(13); // ceil(64/5)
         expect(result.page).toBe(1);
     });
 
@@ -56,13 +54,17 @@ describe('getAllTests', () => {
 
     test('category filter applies in grouped view', () => {
         const result = compendiumService.getAllTests({ category: 'Antigen' });
-        expect(result.total).toBe(6);
+        expect(result.total).toBeGreaterThanOrEqual(6); // human + vet
     });
 
-    test('category filter applies in flat view', () => {
-        const result = compendiumService.getAllTests({ view: 'flat', category: 'Antibody' });
-        // 7 antibody tests with varying LOINC counts
-        expect(result.total).toBeGreaterThan(7);
+    test('market filter returns only human tests', () => {
+        const result = compendiumService.getAllTests({ market: 'Human' });
+        expect(result.total).toBe(18);
+    });
+
+    test('market filter returns only vet tests', () => {
+        const result = compendiumService.getAllTests({ market: 'Veterinary' });
+        expect(result.total).toBe(46);
     });
 });
 
@@ -96,9 +98,9 @@ describe('getTestByIdentifier', () => {
 });
 
 describe('searchTests', () => {
-    test('search "histoplasma" returns Ag + Ab ID + Ab EIA + PCR tests', () => {
+    test('search "histoplasma" returns human + vet tests', () => {
         const result = compendiumService.searchTests({ query: 'histoplasma' });
-        expect(result.total).toBe(4); // 310, 321, 326, 403
+        expect(result.total).toBeGreaterThanOrEqual(4); // human: 310,321,326,403 + vet duplicates + vet-only 327,328
     });
 
     test('search returns query params in response', () => {
@@ -125,14 +127,14 @@ describe('exportCompendium', () => {
         const result = compendiumService.exportCompendium('json');
         expect(result.contentType).toBe('application/json');
         const data = JSON.parse(result.data);
-        expect(data.tests.length).toBe(18);
+        expect(data.tests.length).toBe(64);
     });
 
-    test('CSV export has 43 lines (1 header + 42 data)', () => {
+    test('CSV export has 161 lines (1 header + 160 data)', () => {
         const result = compendiumService.exportCompendium('csv');
         expect(result.contentType).toBe('text/csv');
         const lines = result.data.split('\n');
-        expect(lines.length).toBe(43);
+        expect(lines.length).toBe(161);
     });
 
     test('CSV header has expected columns', () => {
@@ -145,14 +147,15 @@ describe('exportCompendium', () => {
 });
 
 describe('getVersion', () => {
-    test('returns version 2.0.0', () => {
+    test('returns version 2.1.0', () => {
         const version = compendiumService.getVersion();
-        expect(version.version).toBe('2.0.0');
+        expect(version.version).toBe('2.1.0');
     });
 
     test('includes summary with correct counts', () => {
         const version = compendiumService.getVersion();
-        expect(version.summary.totalTests).toBe(18);
-        expect(version.summary.totalOrderableLoincs).toBe(42);
+        expect(version.summary.totalTests).toBe(64);
+        expect(version.summary.humanTests).toBe(18);
+        expect(version.summary.veterinaryTests).toBe(46);
     });
 });

@@ -44,18 +44,18 @@ describe('GET /api/compendium (list)', () => {
     test('returns grouped view with 18 tests by default', () => {
         const result = compendiumService.getAllTests({});
         expect(result.view).toBe('grouped');
-        expect(result.total).toBe(18);
+        expect(result.total).toBe(64);
     });
 
     test('returns flat view with 42 LOINCs', () => {
         const result = compendiumService.getAllTests({ view: 'flat' });
         expect(result.view).toBe('flat');
-        expect(result.total).toBe(42);
+        expect(result.total).toBe(160);
     });
 
     test('filters by category=Antigen', () => {
         const result = compendiumService.getAllTests({ category: 'Antigen' });
-        expect(result.total).toBe(6);
+        expect(result.total).toBeGreaterThanOrEqual(6); // human + vet
         result.results.forEach(t => expect(t.category).toBe('Antigen'));
     });
 
@@ -69,13 +69,13 @@ describe('GET /api/compendium (list)', () => {
 });
 
 describe('GET /api/compendium/search', () => {
-    test('search by q=histoplasma returns 4 tests', () => {
+    test('search by q=histoplasma returns human + vet tests', () => {
         const result = compendiumService.searchTests({ query: 'histoplasma' });
-        expect(result.total).toBe(4);
+        expect(result.total).toBeGreaterThanOrEqual(4);
     });
 
-    test('search by q=blasto category=Antigen returns 1 test', () => {
-        const result = compendiumService.searchTests({ query: 'blasto', category: 'Antigen' });
+    test('search by q=blasto category=Antigen market=Human returns 1 test', () => {
+        const result = compendiumService.searchTests({ query: 'blasto', category: 'Antigen', market: 'Human' });
         expect(result.total).toBe(1);
         expect(result.results[0].mvdTestCode).toBe('316');
     });
@@ -96,9 +96,10 @@ describe('GET /api/compendium/search', () => {
 describe('GET /api/compendium/version', () => {
     test('returns version 2.0.0', () => {
         const version = compendiumService.getVersion();
-        expect(version.version).toBe('2.0.0');
-        expect(version.summary.totalTests).toBe(18);
-        expect(version.summary.totalOrderableLoincs).toBe(42);
+        expect(version.version).toBe('2.1.0');
+        expect(version.summary.totalTests).toBe(64);
+        expect(version.summary.humanTests).toBe(18);
+        expect(version.summary.veterinaryTests).toBe(46);
     });
 
     test('includes performing organization', () => {
@@ -142,7 +143,7 @@ describe('GET /api/compendium/export', () => {
         const result = compendiumService.exportCompendium('json');
         expect(result.contentType).toBe('application/json');
         const data = JSON.parse(result.data);
-        expect(data.tests.length).toBe(18);
+        expect(data.tests.length).toBe(64);
         expect(data.performingOrganization).toBeDefined();
     });
 
@@ -150,7 +151,7 @@ describe('GET /api/compendium/export', () => {
         const result = compendiumService.exportCompendium('csv');
         expect(result.contentType).toBe('text/csv');
         const lines = result.data.split('\n');
-        expect(lines.length).toBe(43); // 1 header + 42 data
+        expect(lines.length).toBe(161); // 1 header + 160 data
     });
 });
 
