@@ -67,3 +67,6 @@ docs/.doctrees/
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
+
+# Schema discovery output (may contain sensitive DB schema information)
+scripts/starlims-schema-discovery.json
