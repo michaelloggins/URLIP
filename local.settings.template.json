@@ -12,7 +12,12 @@
     "AZURE_KEY_VAULT_URL": "https://urlip-dev-kv.vault.azure.net/",
 
     "// Database Connections": "",
-    "STARLIMS_CONNECTION_STRING": "<starlims-connection-string>",
+    "STARLIMS_CONNECTION_STRING": "Server=vm-sql-dev-001.miralan.loc;Database=STARLIMS_DATA;Integrated Security=true;TrustServerCertificate=true;",
+
+    "// Compendium Blob Storage": "",
+    "COMPENDIUM_BLOB_CONNECTION_STRING": "<blob-storage-connection-string>",
+    "COMPENDIUM_BLOB_CONTAINER": "compendium",
+    "COMPENDIUM_SYNC_SCHEDULE": "0 */30 * * * *",
 
     "// Feature Flags": "",
     "FEATURE_ORDER_ENTRY_ENABLED": "true",

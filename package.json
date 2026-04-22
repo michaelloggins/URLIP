@@ -34,7 +34,9 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0"
+    "@azure/functions": "^4.0.0",
+    "@azure/storage-blob": "^12.31.0",
+    "mssql": "^12.3.1"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

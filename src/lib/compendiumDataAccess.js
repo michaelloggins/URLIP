@@ -3,6 +3,13 @@
  *
  * Loads the compendium JSON, builds lookup indexes for O(1) access,
  * and provides search/filter capabilities.
+ *
+ * Two loading paths:
+ *   1. Azure Blob Storage (production) — triggered when COMPENDIUM_BLOB_CONNECTION_STRING is set.
+ *      Uses a 30-minute TTL cache; call `await loadCompendium()` at the start of each
+ *      Azure Function handler to ensure fresh data, then use the synchronous getters.
+ *   2. Local JSON file (dev/test) — synchronous read, cached indefinitely until path changes.
+ *      Falls through to this path when COMPENDIUM_BLOB_CONNECTION_STRING is not set.
  */
 
 const fs = require('fs');
@@ -14,27 +21,51 @@ let cachedCompendium = null;
 let mvdCodeIndex = null;   // Map<string, CompendiumTest>
 let loincIndex = null;     // Map<string, { test: CompendiumTest, orderable: OrderableLoinc }>
 
+// ============================================================================
+// Private helpers
+// ============================================================================
+
 /**
- * Load and cache the compendium data, building lookup indexes.
- * @param {string} [dataPath] - Override path to compendium JSON
- * @returns {Object} The full compendium envelope
+ * Read a Node.js Readable stream to a UTF-8 string.
+ * @param {import('stream').Readable} readable
+ * @returns {Promise<string>}
  */
-function loadCompendium(dataPath) {
-    const filePath = dataPath || process.env.COMPENDIUM_DATA_PATH || DEFAULT_DATA_PATH;
-
-    if (cachedCompendium && cachedCompendium._loadedFrom === filePath) {
-        return cachedCompendium;
+async function streamToString(readable) {
+    const chunks = [];
+    for await (const chunk of readable) {
+        chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
     }
+    return Buffer.concat(chunks).toString('utf-8');
+}
 
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    const compendium = JSON.parse(raw);
-    compendium._loadedFrom = filePath;
+/**
+ * Download the live compendium JSON from Azure Blob Storage.
+ * @returns {Promise<string>} Raw JSON string
+ */
+async function loadFromBlob() {
+    const { BlobServiceClient } = require('@azure/storage-blob');
+    const connStr = process.env.COMPENDIUM_BLOB_CONNECTION_STRING;
+    const container = process.env.COMPENDIUM_BLOB_CONTAINER || 'compendium';
+    const blobName = 'mvd-compendium-live.json';
 
-    // Build indexes
+    const client = BlobServiceClient.fromConnectionString(connStr);
+    const containerClient = client.getContainerClient(container);
+    const blobClient = containerClient.getBlobClient(blobName);
+    const downloadResponse = await blobClient.download();
+    return await streamToString(downloadResponse.readableStreamBody);
+}
+
+/**
+ * Build the in-memory indexes from a parsed compendium envelope.
+ * Stamps `_loadedAt` on the object and populates module-level index Maps.
+ * @param {Object} envelope - Parsed compendium JSON object
+ * @returns {Object} The same envelope object (mutated with `_loadedAt`)
+ */
+function buildCache(envelope) {
     mvdCodeIndex = new Map();
     loincIndex = new Map();
 
-    for (const test of compendium.tests) {
+    for (const test of envelope.tests) {
         mvdCodeIndex.set(test.mvdTestCode, test);
 
         for (const orderable of test.orderableLoincs) {
@@ -42,8 +73,51 @@ function loadCompendium(dataPath) {
         }
     }
 
-    cachedCompendium = compendium;
-    return compendium;
+    envelope._loadedAt = Date.now();
+    cachedCompendium = envelope;
+    return envelope;
+}
+
+// ============================================================================
+// Public API
+// ============================================================================
+
+/**
+ * Load and cache the compendium data, building lookup indexes.
+ *
+ * When COMPENDIUM_BLOB_CONNECTION_STRING is set, data is loaded from Azure
+ * Blob Storage with a 30-minute TTL cache.  Otherwise, falls back to a local
+ * JSON file (dev/test path), which is cached indefinitely until the path changes.
+ *
+ * Always `await` this at the start of Azure Function handlers so the
+ * synchronous getters below work on fresh data.
+ *
+ * @param {string} [dataPath] - Override path to compendium JSON (local path only)
+ * @returns {Promise<Object>} The full compendium envelope
+ */
+async function loadCompendium(dataPath) {
+    // ── Blob Storage path (production) ──────────────────────────────────────
+    if (process.env.COMPENDIUM_BLOB_CONNECTION_STRING) {
+        const TTL_MS = 30 * 60 * 1000; // 30 minutes
+        if (cachedCompendium && (Date.now() - cachedCompendium._loadedAt < TTL_MS)) {
+            return cachedCompendium;
+        }
+        const blobData = await loadFromBlob();
+        const envelope = JSON.parse(blobData);
+        return buildCache(envelope);
+    }
+
+    // ── Local file path (dev / test fallback) ───────────────────────────────
+    const filePath = dataPath || process.env.COMPENDIUM_DATA_PATH || DEFAULT_DATA_PATH;
+
+    if (cachedCompendium && cachedCompendium._loadedFrom === filePath) {
+        return cachedCompendium;
+    }
+
+    const raw = fs.readFileSync(filePath, 'utf-8');
+    const envelope = JSON.parse(raw);
+    envelope._loadedFrom = filePath;
+    return buildCache(envelope);
 }
 
 /**
@@ -177,7 +251,8 @@ function getSpecimenSourceRules() {
 }
 
 /**
- * Clear the cache (useful for testing or reloading).
+ * Clear the cache entirely (useful for testing or full reload).
+ * In-flight requests will see a null cache and trigger a fresh load on next call.
  */
 function clearCache() {
     cachedCompendium = null;
@@ -185,9 +260,31 @@ function clearCache() {
     loincIndex = null;
 }
 
+/**
+ * Invalidate the TTL so the next `loadCompendium()` call fetches fresh data
+ * from Blob Storage, without nulling the cache for in-flight requests.
+ *
+ * Used by the sync function after successfully publishing a new compendium
+ * to Blob Storage, so the API serves fresh data on the very next request.
+ *
+ * No-op if the cache has not been populated yet.
+ */
+function invalidateCache() {
+    if (cachedCompendium) {
+        cachedCompendium._loadedAt = 0;
+    }
+}
+
 function ensureLoaded() {
     if (!cachedCompendium) {
-        loadCompendium();
+        // For the local-file dev path, perform a synchronous load.
+        // In production (Blob path), callers are expected to `await loadCompendium()`
+        // at the start of each Azure Function handler before calling getters.
+        const filePath = process.env.COMPENDIUM_DATA_PATH || DEFAULT_DATA_PATH;
+        const raw = fs.readFileSync(filePath, 'utf-8');
+        const envelope = JSON.parse(raw);
+        envelope._loadedFrom = filePath;
+        buildCache(envelope);
     }
 }
 
@@ -199,5 +296,6 @@ module.exports = {
     getVersion,
     getAllTests,
     getSpecimenSourceRules,
-    clearCache
+    clearCache,
+    invalidateCache
 };

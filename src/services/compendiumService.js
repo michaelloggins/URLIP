@@ -8,9 +8,10 @@
 const dataAccess = require('../lib/compendiumDataAccess');
 const { validateSpecimenSource } = require('../lib/specimenValidator');
 const { getEffectiveStatus } = require('../models/compendiumModels');
+const { localizeTests, localizeOne, SUPPORTED_LOCALES } = require('../lib/compendiumLocalizer');
 
 /**
- * Get all tests with optional filtering and pagination.
+ * Get all tests with optional filtering, pagination, and localization.
  * @param {Object} params
  * @param {string} [params.view='grouped'] - 'grouped' (18 test groups) or 'flat' (42 orderable LOINCs)
  * @param {string} [params.category] - Filter by category
@@ -19,10 +20,11 @@ const { getEffectiveStatus } = require('../models/compendiumModels');
  * @param {string} [params.market] - Filter by market (Human, Veterinary)
  * @param {number} [params.page=1] - Page number (1-based)
  * @param {number} [params.pageSize=50] - Items per page
+ * @param {string} [params.locale='en-US'] - BCP 47 locale tag for response translation
  * @returns {Object}
  */
-function getAllTests({ view = 'grouped', category, organism, status, market, page = 1, pageSize = 50 } = {}) {
-    let tests = dataAccess.searchTests({ category, organism, status, market });
+function getAllTests({ view = 'grouped', category, organism, status, market, page = 1, pageSize = 50, locale } = {}) {
+    let tests = localizeTests(dataAccess.searchTests({ category, organism, status, market }), locale);
 
     if (view === 'flat') {
         // Flatten to orderable LOINCs with effectiveStatus
@@ -79,9 +81,10 @@ function getAllTests({ view = 'grouped', category, organism, status, market, pag
  * LOINC codes match pattern: digits-digit(s) (e.g., "48952-6")
  * MVD codes are numeric strings (e.g., "310", "1000")
  * @param {string} identifier
+ * @param {string} [locale] - BCP 47 locale tag
  * @returns {Object|null}
  */
-function getTestByIdentifier(identifier) {
+function getTestByIdentifier(identifier, locale) {
     const id = String(identifier).trim();
 
     // LOINC pattern: digits-digits
@@ -90,7 +93,7 @@ function getTestByIdentifier(identifier) {
         if (result) {
             return {
                 identifierType: 'loinc',
-                test: result.test,
+                test: localizeOne(result.test, locale),
                 matchedOrderable: result.orderable
             };
         }
@@ -103,7 +106,7 @@ function getTestByIdentifier(identifier) {
         if (test) {
             return {
                 identifierType: 'mvdTestCode',
-                test
+                test: localizeOne(test, locale)
             };
         }
         return null;
@@ -115,12 +118,14 @@ function getTestByIdentifier(identifier) {
 /**
  * Search tests across multiple fields.
  * @param {Object} params - Search parameters
+ * @param {string} [params.locale] - BCP 47 locale tag
  * @returns {Object}
  */
 function searchTests(params) {
-    const results = dataAccess.searchTests(params);
+    const { locale, ...searchParams } = params || {};
+    const results = localizeTests(dataAccess.searchTests(searchParams), locale);
     return {
-        query: params,
+        query: searchParams,
         total: results.length,
         results
     };
@@ -139,10 +144,11 @@ function validateSpecimen(loincCode, specimenSource) {
 /**
  * Export the full compendium in the requested format.
  * @param {string} [format='json'] - 'json' or 'csv'
+ * @param {string} [locale] - BCP 47 locale tag
  * @returns {{ contentType: string, data: string }}
  */
-function exportCompendium(format = 'json') {
-    const tests = dataAccess.getAllTests();
+function exportCompendium(format = 'json', locale) {
+    const tests = localizeTests(dataAccess.getAllTests(), locale);
     const version = dataAccess.getVersion();
 
     if (format === 'csv') {
@@ -162,17 +168,22 @@ function exportCompendium(format = 'json') {
             lastUpdated: version.lastUpdated,
             generatedFrom: version.generatedFrom,
             performingOrganization: version.performingOrganization,
+            locale: locale || 'en-US',
             tests
         }, null, 2)
     };
 }
 
 /**
- * Get compendium version metadata.
+ * Get compendium version metadata including supported locales.
  * @returns {Object}
  */
 function getVersion() {
-    return dataAccess.getVersion();
+    return {
+        ...dataAccess.getVersion(),
+        supportedLocales: SUPPORTED_LOCALES,
+        defaultLocale: 'en-US'
+    };
 }
 
 /**

@@ -3,10 +3,18 @@
  *
  * 6 Azure Functions v4 HTTP endpoints for the MVD test compendium.
  * Route registration order matters: explicit routes before parameterized {identifier}.
+ *
+ * All endpoints accept an optional `locale` query parameter (e.g. ?locale=fr-CA).
+ * Supported: en-US (default), fr-CA, es-MX. Unknown locales fall back to en-US.
  */
 
 const { app } = require('@azure/functions');
 const compendiumService = require('../services/compendiumService');
+
+/** Extract locale from URL search params — shared by all handlers. */
+function getLocale(url) {
+    return url.searchParams.get('locale') || undefined;
+}
 
 // ============================================================================
 // 1. GET /api/compendium — List all tests
@@ -25,10 +33,11 @@ app.http('compendiumList', {
             const market = url.searchParams.get('market') || undefined;
             const page = parseInt(url.searchParams.get('page'), 10) || 1;
             const pageSize = Math.min(parseInt(url.searchParams.get('pageSize'), 10) || 50, 200);
+            const locale = getLocale(url);
 
-            context.log(`Compendium list: view=${view}, category=${category}, status=${status}, market=${market}, page=${page}`);
+            context.log(`Compendium list: view=${view}, category=${category}, status=${status}, market=${market}, page=${page}, locale=${locale || 'en-US'}`);
 
-            const result = compendiumService.getAllTests({ view, category, organism, status, market, page, pageSize });
+            const result = compendiumService.getAllTests({ view, category, organism, status, market, page, pageSize, locale });
             return { status: 200, jsonBody: result };
         } catch (error) {
             context.error('Compendium list error:', error);
@@ -54,10 +63,11 @@ app.http('compendiumSearch', {
             const cptCode = url.searchParams.get('cptCode') || undefined;
             const status = url.searchParams.get('status') || undefined;
             const market = url.searchParams.get('market') || undefined;
+            const locale = getLocale(url);
 
-            context.log(`Compendium search: q=${query}, category=${category}, status=${status}, market=${market}`);
+            context.log(`Compendium search: q=${query}, category=${category}, status=${status}, market=${market}, locale=${locale || 'en-US'}`);
 
-            const result = compendiumService.searchTests({ query, category, organism, sampleType, cptCode, status, market });
+            const result = compendiumService.searchTests({ query, category, organism, sampleType, cptCode, status, market, locale });
             return { status: 200, jsonBody: result };
         } catch (error) {
             context.error('Compendium search error:', error);
@@ -67,7 +77,7 @@ app.http('compendiumSearch', {
 });
 
 // ============================================================================
-// 3. GET /api/compendium/version — Metadata
+// 3. GET /api/compendium/version — Metadata (includes supportedLocales)
 // ============================================================================
 app.http('compendiumVersion', {
     methods: ['GET'],
@@ -126,6 +136,7 @@ app.http('compendiumExport', {
         try {
             const url = new URL(request.url);
             const format = url.searchParams.get('format') || 'json';
+            const locale = getLocale(url);
 
             if (format !== 'json' && format !== 'csv') {
                 return {
@@ -134,9 +145,9 @@ app.http('compendiumExport', {
                 };
             }
 
-            context.log(`Compendium export: format=${format}`);
+            context.log(`Compendium export: format=${format}, locale=${locale || 'en-US'}`);
 
-            const result = compendiumService.exportCompendium(format);
+            const result = compendiumService.exportCompendium(format, locale);
             return {
                 status: 200,
                 headers: {
@@ -163,9 +174,11 @@ app.http('compendiumZLookup', {
     handler: async (request, context) => {
         try {
             const identifier = request.params.identifier;
-            context.log(`Compendium lookup: identifier=${identifier}`);
+            const url = new URL(request.url);
+            const locale = getLocale(url);
+            context.log(`Compendium lookup: identifier=${identifier}, locale=${locale || 'en-US'}`);
 
-            const result = compendiumService.getTestByIdentifier(identifier);
+            const result = compendiumService.getTestByIdentifier(identifier, locale);
             if (!result) {
                 return {
                     status: 404,

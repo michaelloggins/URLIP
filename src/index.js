@@ -8,6 +8,10 @@ const { app } = require('@azure/functions');
 // Register compendium API endpoints
 require('./functions/compendium');
 
+// Register compendium sync timer + manual trigger + status endpoints
+require('./functions/compendiumSync');
+require('./functions/compendiumAdmin');
+
 // Register portal
 require('./functions/portal');
 
