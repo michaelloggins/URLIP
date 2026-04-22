@@ -116,9 +116,9 @@ describe('localizeTest — fr-CA', () => {
     beforeAll(() => { result = localizeOne(MOCK_TEST, 'fr-CA'); });
 
     it('translates testName for known test code', () =>
-        expect(result.testName).toBe('MVista® EIA Antigène Histoplasma'));
+        expect(result.testName).toBe('MVista® EIA Quantitatif Antigène Histoplasma'));
     it('translates shortName for known test code', () =>
-        expect(result.shortName).toBe('Ag Histoplasma EIA'));
+        expect(result.shortName).toBe('Ag Histoplasma capsulatum'));
     it('translates category', () => expect(result.category).toBe('Antigène'));
     it('translates methodology', () => expect(result.methodology).toBe('EIA'));
     it('translates status', () => expect(result.status).toBe('Actif'));
@@ -142,7 +142,7 @@ describe('localizeTest — es-MX', () => {
     beforeAll(() => { result = localizeOne(MOCK_TEST, 'es-MX'); });
 
     it('translates testName', () =>
-        expect(result.testName).toBe('MVista® EIA Antígeno de Histoplasma'));
+        expect(result.testName).toBe('MVista® EIA Cuantitativo Antígeno Histoplasma'));
     it('translates category', () => expect(result.category).toBe('Antígeno'));
     it('translates sampleType Serum', () =>
         expect(result.orderableLoincs[1].sampleType).toBe('Suero'));

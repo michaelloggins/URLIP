@@ -36,33 +36,69 @@
     }
   },
   "tests": {
-    "309": {
-      "testName": "MVista® Aspergillus Galactomannan EIA",
-      "shortName": "Aspergillus GM EIA"
-    },
-    "310": {
-      "testName": "MVista® Histoplasma Antigen EIA",
-      "shortName": "Histoplasma Ag EIA"
-    },
-    "315": {
-      "testName": "MVista® Coccidioides Antigen EIA",
-      "shortName": "Coccidioides Ag EIA"
-    },
-    "316": {
-      "testName": "MVista® Blastomyces Antigen EIA",
-      "shortName": "Blastomyces Ag EIA"
-    },
-    "317": {
-      "testName": "Fungitell (1,3)-β-D-Glucan Assay",
-      "shortName": "Beta-D-Glucan"
-    },
-    "319": {
-      "testName": "MVista® Cryptococcal Antigen Latex Agglutination",
-      "shortName": "Cryptococcal Ag LA"
-    },
-    "320": {
-      "testName": "MVista® Cryptococcal Antigen Lateral Flow Assay",
-      "shortName": "Cryptococcal Ag LFA"
-    }
+    "309":                 { "testName": "Aspergillus Galactomannan EIA",                         "shortName": "Galactomannan Ag" },
+    "309-Veterinary":      { "testName": "Aspergillus Antigen EIA (Vet)",                          "shortName": "Galactomannan Ag (Vet)" },
+    "310":                 { "testName": "MVista® Histoplasma Ag Quantitative EIA",                "shortName": "Histoplasma capsulatum Ag" },
+    "310-Veterinary":      { "testName": "MVista® Histoplasma Antigen EIA",                        "shortName": "Histoplasma Ag (Vet)" },
+    "312":                 { "testName": "MVista® Itraconazole Bioassay",                          "shortName": "Itraconazole Level" },
+    "315":                 { "testName": "MVista® Coccidioides Ag Quantitative EIA",               "shortName": "Coccidioides sp Ag" },
+    "315-Veterinary":      { "testName": "MVista® Coccidioides Antigen EIA",                       "shortName": "Coccidioides Ag (Vet)" },
+    "316":                 { "testName": "MVista® Blastomyces Ag Quantitative EIA",                "shortName": "Blastomyces sp Ag" },
+    "316-Veterinary":      { "testName": "MVista® Blastomyces Antigen EIA",                        "shortName": "Blastomyces Ag (Vet)" },
+    "317":                 { "testName": "(1-3)-Beta-D-Glucan Colorimetric Assay",                 "shortName": "1,3 beta glucan" },
+    "317-Veterinary":      { "testName": "β-D-Glucan Antigen Colorimetric Assay (Vet)",            "shortName": "Beta-D-Glucan (Vet)" },
+    "319":                 { "testName": "Cryptococcal Antigen by Latex Agglutination",            "shortName": "Cryptococcus sp Ag" },
+    "319-Veterinary":      { "testName": "Cryptococcus Antigen Latex Agglutination (Vet)",         "shortName": "Cryptococcus Ag (Vet)" },
+    "320":                 { "testName": "Coccidioides Antibody by Immunodiffusion",               "shortName": "Coccidioides immitis Ab" },
+    "320-Veterinary":      { "testName": "Coccidioides Antibody by Immunodiffusion (Vet)",         "shortName": "Coccidioides Ab ID (Vet)" },
+    "321":                 { "testName": "Histoplasma Antibody by Immunodiffusion",                "shortName": "Histoplasma capsulatum Ab" },
+    "321-Veterinary":      { "testName": "Histoplasma Antibody by Immunodiffusion (Vet)",          "shortName": "Histoplasma Ab ID (Vet)" },
+    "322":                 { "testName": "Blastomyces Antibody by Immunodiffusion",                "shortName": "Blastomyces sp Ab" },
+    "322-Veterinary":      { "testName": "Blastomyces Antibody by Immunodiffusion (Vet)",          "shortName": "Blastomyces Ab ID (Vet)" },
+    "324":                 { "testName": "Aspergillus Antibody by Immunodiffusion",                "shortName": "Aspergillus sp Ab" },
+    "324-Veterinary":      { "testName": "Aspergillus Antibody by Immunodiffusion (Vet)",          "shortName": "Aspergillus Ab ID (Vet)" },
+    "325":                 { "testName": "MVista® Coccidioides Antibody IgG, IgM EIA",             "shortName": "Coccidioides Antibody IgG, IgM EIA" },
+    "326":                 { "testName": "MVista® Histoplasma Antibody IgG, IgM EIA",              "shortName": "Histoplasma Antibody IgG, IgM EIA" },
+    "327":                 { "testName": "MVista® Histoplasma Canine IgG Antibody EIA",            "shortName": "Histo Canine IgG Ab" },
+    "328":                 { "testName": "MVista® Histoplasma Feline IgG Antibody EIA",            "shortName": "Histo Feline IgG Ab" },
+    "329":                 { "testName": "MVista® Coccidioides Canine IgG Antibody EIA",           "shortName": "Cocci Canine IgG Ab" },
+    "330":                 { "testName": "MVista® Blastomyces Canine IgG Antibody EIA",            "shortName": "Blasto Canine IgG Ab" },
+    "331":                 { "testName": "MVista® Blastomyces Antibody IgG EIA",                   "shortName": "B dermat IgG Ser IA-aCnc" },
+    "332":                 { "testName": "MVista® Pythium IgG Antibody EIA",                       "shortName": "Pythium IgG Ab" },
+    "402":                 { "testName": "MVista® Pneumocystis DNA, PCR",                          "shortName": "P jiroveci DNA Lower resp Ql NAA+probe" },
+    "403":                 { "testName": "MVista® Histoplasma DNA, PCR",                           "shortName": "H capsulatum DNA Lower resp Ql NAA+probe" },
+    "403-Veterinary":      { "testName": "MVista® Histoplasma DNA, PCR (Vet)",                     "shortName": "Histo PCR (Vet)" },
+    "404":                 { "testName": "MVista® Blastomyces DNA, PCR",                           "shortName": "Blastomyces sp DNA Lower resp Ql NAA+probe" },
+    "404-Veterinary":      { "testName": "MVista® Blastomyces DNA, PCR (Vet)",                     "shortName": "Blasto PCR (Vet)" },
+    "405":                 { "testName": "MVista® Coccidioides DNA, PCR",                          "shortName": "Coccidioides sp DNA Lower resp Ql NAA+probe" },
+    "405-Veterinary":      { "testName": "MVista® Coccidioides DNA, PCR (Vet)",                    "shortName": "Cocci PCR (Vet)" },
+    "406":                 { "testName": "MVista® Pneumocystis Canine DNA, PCR",                   "shortName": "Pneumocystis Canine PCR" },
+    "900":                 { "testName": "MVista® Feline Fungal Panel, Extended",                  "shortName": "Feline Panel Ext" },
+    "901":                 { "testName": "MVista® Canine Fungal Panel West, Extended",             "shortName": "Canine Panel West Ext" },
+    "902":                 { "testName": "MVista® Canine Fungal Panel East, Extended",             "shortName": "Canine Panel East Ext" },
+    "903":                 { "testName": "MVista® Feline Fungal Panel",                            "shortName": "Feline Panel" },
+    "904":                 { "testName": "MVista® Canine Fungal Panel West",                       "shortName": "Canine Panel West" },
+    "905":                 { "testName": "MVista® Canine Fungal Panel East",                       "shortName": "Canine Panel East" },
+    "906":                 { "testName": "MVista® Pulmonary Fungal PCR Panel (Vet)",               "shortName": "Pulm Fungal PCR Panel (Vet)" },
+    "907":                 { "testName": "MVista® Feline Fungal Panel East",                       "shortName": "Feline Panel East" },
+    "908":                 { "testName": "MVista® Canine Fungal Panel, Comprehensive",             "shortName": "Canine Comprehensive" },
+    "909":                 { "testName": "MVista® Feline Fungal Panel, Comprehensive",             "shortName": "Feline Comprehensive" },
+    "910":                 { "testName": "MVista® Canine Blastomycosis Panel",                     "shortName": "Canine Blasto Panel" },
+    "911":                 { "testName": "MVista® Canine Histoplasmosis Panel",                    "shortName": "Canine Histo Panel" },
+    "912":                 { "testName": "MVista® Canine Coccidioidomycosis Panel",                "shortName": "Canine Cocci Panel" },
+    "913":                 { "testName": "MVista® Feline Histoplasmosis Panel",                    "shortName": "Feline Histo Panel" },
+    "914":                 { "testName": "MVista® Canine & Feline Mold-Hyphae Panel",              "shortName": "Mold-Hyphae Panel" },
+    "915":                 { "testName": "MVista® Canine & Feline Fungal Nasal Panel",             "shortName": "Fungal Nasal Panel" },
+    "916":                 { "testName": "MVista® Canine Fungal GI Panel",                         "shortName": "Canine GI Panel" },
+    "917":                 { "testName": "MVista® Feline Fungal GI Panel",                         "shortName": "Feline GI Panel" },
+    "918":                 { "testName": "MVista® Canine Fungal Bone Panel East",                  "shortName": "Canine Bone East" },
+    "919":                 { "testName": "MVista® Canine Fungal Bone Panel West",                  "shortName": "Canine Bone West" },
+    "920":                 { "testName": "MVista® Feline Fungal Bone Panel West",                  "shortName": "Feline Bone West" },
+    "921":                 { "testName": "MVista® Feline Fungal Bone Panel East",                  "shortName": "Feline Bone East" },
+    "922":                 { "testName": "MVista® Canine Fungal Eye Panel West",                   "shortName": "Canine Eye West" },
+    "923":                 { "testName": "MVista® Canine Fungal Eye Panel East",                   "shortName": "Canine Eye East" },
+    "924":                 { "testName": "MVista® Feline Fungal Eye Panel West",                   "shortName": "Feline Eye West" },
+    "925":                 { "testName": "MVista® Feline Fungal Eye Panel East",                   "shortName": "Feline Eye East" },
+    "1000":                { "testName": "MVista® Pulmonary Fungal PCR Panel",                     "shortName": "Fungal pathogens panel DNA Lower resp Ql NAA+probe" }
   }
 }

@@ -97,14 +97,20 @@ function localizeOrderable(orderable, translations) {
 
 /**
  * Apply locale translations to a single CompendiumTest.
- * Translation priority: tests override > vocabulary lookup > original value.
+ * Translation priority:
+ *   1. Market-qualified override: tests["310-Veterinary"]
+ *   2. Code-only override: tests["310"]
+ *   3. Vocabulary lookup (category, methodology, status)
+ *   4. Original value (pass-through)
  * @param {Object} test
  * @param {Object} translations
  * @returns {Object}
  */
 function localizeTest(test, translations) {
     const { categories, methodologies, status } = translations.vocabulary;
-    const testOverride = (translations.tests || {})[String(test.mvdTestCode)] || {};
+    const testsMap = translations.tests || {};
+    const qualifiedKey = `${test.mvdTestCode}-${test.market}`;
+    const testOverride = testsMap[qualifiedKey] || testsMap[String(test.mvdTestCode)] || {};
 
     return {
         ...test,
