@@ -15,9 +15,9 @@ const {
 
 const DATA_PATH = path.join(__dirname, '..', '..', 'data', 'compendium', 'mvd-compendium-v2.0.0.json');
 
-beforeAll(() => {
+beforeAll(async () => {
     clearCache();
-    loadCompendium(DATA_PATH);
+    await loadCompendium(DATA_PATH);
 });
 
 afterAll(() => {
@@ -25,23 +25,23 @@ afterAll(() => {
 });
 
 describe('loadCompendium', () => {
-    test('loads compendium with correct structure', () => {
-        const data = loadCompendium(DATA_PATH);
+    test('loads compendium with correct structure', async () => {
+        const data = await loadCompendium(DATA_PATH);
         expect(data.version).toBe('2.1.0');
         expect(data.tests).toBeInstanceOf(Array);
         expect(data.performingOrganization).toBeDefined();
         expect(data.specimenSourceRules).toBeDefined();
     });
 
-    test('has 64 test groups (18 human + 46 vet)', () => {
-        const data = loadCompendium(DATA_PATH);
+    test('has 64 test groups (18 human + 46 vet)', async () => {
+        const data = await loadCompendium(DATA_PATH);
         expect(data.tests.length).toBe(64);
         expect(data.summary.humanTests).toBe(18);
         expect(data.summary.veterinaryTests).toBe(46);
     });
 
-    test('has 160 total orderable entries', () => {
-        const data = loadCompendium(DATA_PATH);
+    test('has 160 total orderable entries', async () => {
+        const data = await loadCompendium(DATA_PATH);
         const total = data.tests.reduce((sum, t) => sum + t.orderableLoincs.length, 0);
         expect(total).toBe(160);
     });
