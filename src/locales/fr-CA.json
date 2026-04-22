@@ -1,0 +1,69 @@
+{
+  "locale": "fr-CA",
+  "_translationNote": "Requires review by a certified medical translator before clinical use.",
+  "vocabulary": {
+    "categories": {
+      "Antigen": "Antigène",
+      "Antibody": "Anticorps",
+      "PCR": "PCR",
+      "Panel": "Panneau",
+      "Therapeutic Drug Monitoring": "Surveillance thérapeutique des médicaments"
+    },
+    "methodologies": {
+      "EIA": "EIA",
+      "Immunodiffusion": "Immunodiffusion",
+      "PCR": "PCR",
+      "Bioassay": "Bioessai",
+      "Colorimetric": "Colorimétrique",
+      "Latex Agglutination": "Agglutination au latex",
+      "Multiple": "Multiple"
+    },
+    "specimenTypes": {
+      "Serum": "Sérum",
+      "Plasma": "Plasma",
+      "Urine": "Urine",
+      "CSF": "LCR",
+      "BAL": "LBA",
+      "Body Fluid": "Liquide corporel"
+    },
+    "status": {
+      "Active": "Actif",
+      "Inactive": "Inactif"
+    },
+    "referenceRanges": {
+      "Negative": "Négatif",
+      "Positive": "Positif",
+      "Not detected": "Non détecté"
+    }
+  },
+  "tests": {
+    "309": {
+      "testName": "MVista® EIA Galactomannane Aspergillus",
+      "shortName": "Aspergillus GM EIA"
+    },
+    "310": {
+      "testName": "MVista® EIA Antigène Histoplasma",
+      "shortName": "Ag Histoplasma EIA"
+    },
+    "315": {
+      "testName": "MVista® EIA Antigène Coccidioides",
+      "shortName": "Ag Coccidioides EIA"
+    },
+    "316": {
+      "testName": "MVista® EIA Antigène Blastomyces",
+      "shortName": "Ag Blastomyces EIA"
+    },
+    "317": {
+      "testName": "Dosage Fungitell (1,3)-β-D-Glucane",
+      "shortName": "Bêta-D-Glucane"
+    },
+    "319": {
+      "testName": "MVista® Agglutination au latex Antigène Cryptococcal",
+      "shortName": "Ag Cryptococcal LA"
+    },
+    "320": {
+      "testName": "MVista® Test de flux latéral Antigène Cryptococcal",
+      "shortName": "Ag Cryptococcal LFA"
+    }
+  }
+}

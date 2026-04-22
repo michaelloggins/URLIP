@@ -1,0 +1,68 @@
+{
+  "locale": "en-US",
+  "vocabulary": {
+    "categories": {
+      "Antigen": "Antigen",
+      "Antibody": "Antibody",
+      "PCR": "PCR",
+      "Panel": "Panel",
+      "Therapeutic Drug Monitoring": "Therapeutic Drug Monitoring"
+    },
+    "methodologies": {
+      "EIA": "EIA",
+      "Immunodiffusion": "Immunodiffusion",
+      "PCR": "PCR",
+      "Bioassay": "Bioassay",
+      "Colorimetric": "Colorimetric",
+      "Latex Agglutination": "Latex Agglutination",
+      "Multiple": "Multiple"
+    },
+    "specimenTypes": {
+      "Serum": "Serum",
+      "Plasma": "Plasma",
+      "Urine": "Urine",
+      "CSF": "CSF",
+      "BAL": "BAL",
+      "Body Fluid": "Body Fluid"
+    },
+    "status": {
+      "Active": "Active",
+      "Inactive": "Inactive"
+    },
+    "referenceRanges": {
+      "Negative": "Negative",
+      "Positive": "Positive",
+      "Not detected": "Not detected"
+    }
+  },
+  "tests": {
+    "309": {
+      "testName": "MVista® Aspergillus Galactomannan EIA",
+      "shortName": "Aspergillus GM EIA"
+    },
+    "310": {
+      "testName": "MVista® Histoplasma Antigen EIA",
+      "shortName": "Histoplasma Ag EIA"
+    },
+    "315": {
+      "testName": "MVista® Coccidioides Antigen EIA",
+      "shortName": "Coccidioides Ag EIA"
+    },
+    "316": {
+      "testName": "MVista® Blastomyces Antigen EIA",
+      "shortName": "Blastomyces Ag EIA"
+    },
+    "317": {
+      "testName": "Fungitell (1,3)-β-D-Glucan Assay",
+      "shortName": "Beta-D-Glucan"
+    },
+    "319": {
+      "testName": "MVista® Cryptococcal Antigen Latex Agglutination",
+      "shortName": "Cryptococcal Ag LA"
+    },
+    "320": {
+      "testName": "MVista® Cryptococcal Antigen Lateral Flow Assay",
+      "shortName": "Cryptococcal Ag LFA"
+    }
+  }
+}
