@@ -216,25 +216,72 @@ const GET_CHANGED_TEST_IDS = `
 `;
 
 // ---------------------------------------------------------------------------
+// GET_ALL_TESTS_INCLUDING_INACTIVE
+// Fetch all tests (active AND inactive) for status transition detection.
+// Only used by the sync to detect Active→Inactive transitions so that tests
+// removed from the active catalog are retained in the compendium with an
+// audit-trail status=Inactive record. Normal display still filters to Active
+// via the API's ?status=Active query parameter.
+// ---------------------------------------------------------------------------
+const GET_ALL_TESTS_INCLUDING_INACTIVE = `
+  SELECT
+    t.TEST_ID,                          -- internal PK; used as join key in sibling queries
+    t.TEST_CODE,                        -- TODO: verify: TEST_CODE, MVD_CODE, ASSAY_CODE, ACCESSION_CODE
+    t.TEST_NAME,                        -- TODO: verify: TEST_NAME, ASSAY_NAME, TEST_DESCRIPTION
+    t.SHORT_NAME,                       -- TODO: verify: SHORT_NAME, ABBR_NAME, DISPLAY_NAME
+    t.METHODOLOGY,                      -- TODO: verify: METHODOLOGY, METHOD, METHOD_CODE
+    t.CATEGORY,                         -- TODO: verify: CATEGORY, TEST_CATEGORY, ASSAY_TYPE
+    t.STATUS,                           -- TODO: verify: STATUS, ACTIVE_FLAG, RECORD_STATUS
+    t.MARKET,                           -- TODO: verify: MARKET, MARKET_SEGMENT, TEST_MARKET (Human/Veterinary)
+    t.SPECIES,                          -- TODO: verify: SPECIES, TARGET_SPECIES, SPECIES_CODE
+    t.ORGANISM,                         -- TODO: verify: ORGANISM, TARGET_ORGANISM, PATHOGEN
+    t.TAT,                              -- TODO: verify: TAT, TURNAROUND, TURNAROUND_TIME
+    t.CREATED_DATE,                     -- TODO: verify: CREATED_DATE, CREATE_DATE, ENTRY_DATE
+    t.CREATED_BY,                       -- TODO: verify: CREATED_BY, CREATE_USER, ENTERED_BY
+    t.MODIFIED_DATE,                    -- TODO: verify: MODIFIED_DATE, MODIFY_DATE, UPDATE_DATE, LAST_MODIFIED
+    t.MODIFIED_BY                       -- TODO: verify: MODIFIED_BY, MODIFY_USER, UPDATED_BY, LAST_MOD_USER
+  FROM   dbo.TESTS t                    -- TODO: verify table name: TESTS, TESTDEFINITION, TEST_CATALOG, ASSAYS, TEST_MASTER
+  ORDER  BY t.TEST_CODE
+`;
+
+// ---------------------------------------------------------------------------
+// GET_CHANGED_ANY_STATUS
+// Change-detection query that DOES NOT filter by status. Needed so that tests
+// transitioning from Active→Inactive are detected (their STATUS change bumps
+// MODIFIED_DATE but a status-filtered query would still miss them if the
+// status value itself changes). Paired with GET_ALL_TESTS_INCLUDING_INACTIVE.
+// ---------------------------------------------------------------------------
+const GET_CHANGED_ANY_STATUS = `
+  SELECT DISTINCT
+    TEST_ID                             -- FK used by caller to re-fetch full records
+  FROM   dbo.TESTS                      -- TODO: verify: TESTS, TESTDEFINITION, TEST_CATALOG
+  WHERE  MODIFIED_DATE > @since         -- TODO: verify: MODIFIED_DATE, MODIFY_DATE, UPDATE_DATE, LAST_MODIFIED
+`;
+
+// ---------------------------------------------------------------------------
 // QUERIES — named-access object (same keys as individual exports)
 // ---------------------------------------------------------------------------
 const QUERIES = {
     GET_ACTIVE_TESTS,
-    GET_ALL_SPECIMENS,
-    GET_ALL_LOINCS,
-    GET_ALL_CPTS,
-    GET_ALL_COMPONENTS,
-    GET_ALL_PANELS,
-    GET_CHANGED_TEST_IDS
-};
-
-module.exports = {
-    GET_ACTIVE_TESTS,
+    GET_ALL_TESTS_INCLUDING_INACTIVE,
     GET_ALL_SPECIMENS,
     GET_ALL_LOINCS,
     GET_ALL_CPTS,
     GET_ALL_COMPONENTS,
     GET_ALL_PANELS,
     GET_CHANGED_TEST_IDS,
+    GET_CHANGED_ANY_STATUS
+};
+
+module.exports = {
+    GET_ACTIVE_TESTS,
+    GET_ALL_TESTS_INCLUDING_INACTIVE,
+    GET_ALL_SPECIMENS,
+    GET_ALL_LOINCS,
+    GET_ALL_CPTS,
+    GET_ALL_COMPONENTS,
+    GET_ALL_PANELS,
+    GET_CHANGED_TEST_IDS,
+    GET_CHANGED_ANY_STATUS,
     QUERIES
 };

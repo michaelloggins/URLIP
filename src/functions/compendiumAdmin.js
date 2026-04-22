@@ -1,19 +1,21 @@
 /**
  * Compendium Admin Endpoints
  *
- * Two HTTP endpoints for manual sync control and sync status inspection:
+ * Three HTTP endpoints for manual sync control, sync status inspection, and
+ * compendium version enumeration:
  *
  *   POST /api/compendium/sync         — Manually trigger a compendium sync
  *                                       (requires function key)
  *   GET  /api/compendium/sync/status  — Return last-sync timestamp, config
  *                                       status, and next scheduled sync time
+ *   GET  /api/compendium/versions     — List available versioned snapshots
+ *                                       (audit trail for disputes)
  *
  * The POST endpoint delegates entirely to compendiumSyncHandler from
  * compendiumSync.js — no logic duplication.
  *
- * The GET endpoint reads sync-state.json from Blob Storage for lastSync.
- * If Blob Storage is not configured or the blob does not exist it returns
- * lastSync: null rather than an error.
+ * The GET endpoints read from Blob Storage. When Blob Storage is not
+ * configured they return 503 (versions) or lastSync: null (status).
  */
 
 'use strict';
@@ -24,6 +26,7 @@ const { compendiumSyncHandler } = require('./compendiumSync');
 // Blob name mirrors the constant in compendiumSync.js
 const SYNC_STATE_BLOB_NAME = 'sync-state.json';
 const DEFAULT_CONTAINER = 'compendium';
+const VERSIONS_PREFIX = 'versions/';
 
 // ===========================================================================
 // Helpers
@@ -124,6 +127,95 @@ app.http('compendiumSyncManual', {
                 status: 500,
                 jsonBody: {
                     triggered: false,
+                    error: err && err.message ? err.message : String(err)
+                }
+            };
+        }
+    }
+});
+
+// ===========================================================================
+// GET /api/compendium/versions — List versioned compendium snapshots
+// ===========================================================================
+/**
+ * Parse a versioned blob name in the form
+ *     versions/<version>-<stampWithDashes>.json
+ * and return the version + ISO timestamp. Returns null if the shape does not
+ * match so the caller can skip non-conforming entries.
+ *
+ * @param {string} blobName
+ * @returns {{version:string, stamp:string}|null}
+ */
+function parseVersionedBlobName(blobName) {
+    if (typeof blobName !== 'string') return null;
+    if (!blobName.startsWith(VERSIONS_PREFIX)) return null;
+    const rest = blobName.slice(VERSIONS_PREFIX.length);
+    if (!rest.endsWith('.json')) return null;
+    const base = rest.slice(0, -'.json'.length);
+    // Version is the leading "X.Y.Z" semver-ish prefix; the rest is the stamp.
+    const match = base.match(/^(\d+\.\d+\.\d+)-(.+)$/);
+    if (!match) return null;
+    return { version: match[1], stamp: match[2] };
+}
+
+app.http('compendiumVersions', {
+    methods: ['GET'],
+    authLevel: 'anonymous',
+    route: 'compendium/versions',
+    handler: async (request, context) => {
+        try {
+            const connStr = process.env.COMPENDIUM_BLOB_CONNECTION_STRING;
+            if (!connStr) {
+                return {
+                    status: 503,
+                    jsonBody: {
+                        error: 'Blob Storage is not configured. Set COMPENDIUM_BLOB_CONNECTION_STRING to enable version listing.'
+                    }
+                };
+            }
+
+            const { BlobServiceClient } = require('@azure/storage-blob');
+            const container = process.env.COMPENDIUM_BLOB_CONTAINER || DEFAULT_CONTAINER;
+            const svc = BlobServiceClient.fromConnectionString(connStr);
+            const containerClient = svc.getContainerClient(container);
+
+            const versions = [];
+            try {
+                // listBlobsFlat iterates all blobs; we filter by prefix for efficiency.
+                for await (const blob of containerClient.listBlobsFlat({ prefix: VERSIONS_PREFIX })) {
+                    const parsed = parseVersionedBlobName(blob.name);
+                    if (!parsed) continue;
+                    const createdOn = blob.properties && blob.properties.createdOn
+                        ? new Date(blob.properties.createdOn).toISOString()
+                        : null;
+                    versions.push({
+                        version: parsed.version,
+                        blobName: blob.name,
+                        createdOn
+                    });
+                }
+            } catch (err) {
+                // Container may not exist yet (first-ever deploy) — return [].
+                if (err && (err.statusCode === 404 || err.code === 'ContainerNotFound')) {
+                    return { status: 200, jsonBody: { versions: [] } };
+                }
+                throw err;
+            }
+
+            // Sort newest-first by createdOn (falling back to blob name).
+            versions.sort((a, b) => {
+                const at = a.createdOn || '';
+                const bt = b.createdOn || '';
+                if (at !== bt) return bt.localeCompare(at);
+                return b.blobName.localeCompare(a.blobName);
+            });
+
+            return { status: 200, jsonBody: { versions } };
+        } catch (err) {
+            context.error('Compendium versions listing error:', err);
+            return {
+                status: 500,
+                jsonBody: {
                     error: err && err.message ? err.message : String(err)
                 }
             };

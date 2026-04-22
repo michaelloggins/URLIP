@@ -16,7 +16,7 @@ const {
     transformToCompendium
 } = require('../../src/lib/starlimsTransformer');
 
-const { computeDiff } = require('../../src/functions/compendiumSync');
+const { computeDiff, nextVersion } = require('../../src/functions/compendiumSync');
 
 // ---------------------------------------------------------------------------
 // normalizeCategory
@@ -892,5 +892,195 @@ describe('computeDiff', () => {
         expect(diff.removed).toHaveLength(2);
         expect(diff.added).toHaveLength(0);
         expect(diff.modified).toHaveLength(0);
+    });
+});
+
+// ---------------------------------------------------------------------------
+// nextVersion — minor-segment bump for audit-trail versioning
+// ---------------------------------------------------------------------------
+describe('nextVersion', () => {
+    it('defaults to 3.1.0 when input is null', () => {
+        expect(nextVersion(null)).toBe('3.1.0');
+    });
+
+    it('defaults to 3.1.0 when input is undefined', () => {
+        expect(nextVersion(undefined)).toBe('3.1.0');
+    });
+
+    it('defaults to 3.1.0 when input is empty string', () => {
+        expect(nextVersion('')).toBe('3.1.0');
+    });
+
+    it('bumps the minor segment and resets patch', () => {
+        expect(nextVersion('3.0.0')).toBe('3.1.0');
+        expect(nextVersion('3.5.12')).toBe('3.6.0');
+    });
+
+    it('preserves the major segment', () => {
+        expect(nextVersion('4.2.7')).toBe('4.3.0');
+    });
+});
+
+// ---------------------------------------------------------------------------
+// transformToCompendium — status transitions (audit trail for billing/disputes)
+// ---------------------------------------------------------------------------
+describe('transformToCompendium - status transitions', () => {
+    const TEST_ID = 9001;
+    const TEST_CODE = '9001';
+
+    // Minimal test row factory: only the fields the transformer actually reads.
+    const baseRow = (status) => ({
+        TEST_ID,
+        TEST_CODE,
+        TEST_NAME: 'Transition Test',
+        SHORT_NAME: 'Trans',
+        CATEGORY: 'AG',
+        METHODOLOGY: 'EIA',
+        ORGANISM: 'Test organism',
+        MARKET: 'H',
+        SPECIES: 'Human',
+        STATUS: status,
+        TAT: '1 day',
+        CREATED_DATE: null,
+        MODIFIED_DATE: null
+    });
+
+    const baseArgs = (row, previousCompendium) => ({
+        tests: [row],
+        specimens: [],
+        loincs: [],
+        cpts: [],
+        components: [],
+        panels: [],
+        previousCompendium: previousCompendium || null
+    });
+
+    it('active test with no previous: enabledOn set to now, disabledOn=null', () => {
+        const before = Date.now();
+        const env = transformToCompendium(baseArgs(baseRow('ACTIVE')));
+        const after = Date.now();
+        const t = env.tests[0];
+        expect(t.status).toBe('Active');
+        expect(t.disabledOn).toBeNull();
+        expect(typeof t.enabledOn).toBe('string');
+        const enabledMs = new Date(t.enabledOn).getTime();
+        expect(enabledMs).toBeGreaterThanOrEqual(before);
+        expect(enabledMs).toBeLessThanOrEqual(after);
+    });
+
+    it('inactive test with no previous: enabledOn set to now, disabledOn set to now', () => {
+        const before = Date.now();
+        const env = transformToCompendium(baseArgs(baseRow('INACTIVE')));
+        const after = Date.now();
+        const t = env.tests[0];
+        expect(t.status).toBe('Inactive');
+        expect(typeof t.enabledOn).toBe('string');
+        expect(typeof t.disabledOn).toBe('string');
+        const enabledMs = new Date(t.enabledOn).getTime();
+        const disabledMs = new Date(t.disabledOn).getTime();
+        expect(enabledMs).toBeGreaterThanOrEqual(before);
+        expect(enabledMs).toBeLessThanOrEqual(after);
+        expect(disabledMs).toBeGreaterThanOrEqual(before);
+        expect(disabledMs).toBeLessThanOrEqual(after);
+    });
+
+    it('Active→Inactive transition: previous enabledOn preserved, disabledOn stamped now', () => {
+        const previousEnabled = '2025-06-01T00:00:00.000Z';
+        const previous = {
+            version: '3.1.0',
+            tests: [{
+                mvdTestCode: TEST_CODE,
+                status: 'Active',
+                enabledOn: previousEnabled,
+                disabledOn: null
+            }]
+        };
+        const before = Date.now();
+        const env = transformToCompendium(baseArgs(baseRow('INACTIVE'), previous));
+        const after = Date.now();
+        const t = env.tests[0];
+        expect(t.status).toBe('Inactive');
+        expect(t.enabledOn).toBe(previousEnabled); // carried forward untouched
+        expect(typeof t.disabledOn).toBe('string');
+        const disabledMs = new Date(t.disabledOn).getTime();
+        expect(disabledMs).toBeGreaterThanOrEqual(before);
+        expect(disabledMs).toBeLessThanOrEqual(after);
+    });
+
+    it('Inactive→Active transition: disabledOn cleared, enabledOn preserved', () => {
+        const previousEnabled = '2025-06-01T00:00:00.000Z';
+        const previousDisabled = '2025-09-15T00:00:00.000Z';
+        const previous = {
+            version: '3.2.0',
+            tests: [{
+                mvdTestCode: TEST_CODE,
+                status: 'Inactive',
+                enabledOn: previousEnabled,
+                disabledOn: previousDisabled
+            }]
+        };
+        const env = transformToCompendium(baseArgs(baseRow('ACTIVE'), previous));
+        const t = env.tests[0];
+        expect(t.status).toBe('Active');
+        expect(t.enabledOn).toBe(previousEnabled); // preserved
+        expect(t.disabledOn).toBeNull();           // cleared on reactivation
+    });
+
+    it('already inactive: disabledOn preserved from previous (not overwritten)', () => {
+        const previousEnabled = '2025-03-10T00:00:00.000Z';
+        const previousDisabled = '2025-10-20T00:00:00.000Z';
+        const previous = {
+            version: '3.3.0',
+            tests: [{
+                mvdTestCode: TEST_CODE,
+                status: 'Inactive',
+                enabledOn: previousEnabled,
+                disabledOn: previousDisabled
+            }]
+        };
+        const env = transformToCompendium(baseArgs(baseRow('INACTIVE'), previous));
+        const t = env.tests[0];
+        expect(t.status).toBe('Inactive');
+        expect(t.enabledOn).toBe(previousEnabled);
+        expect(t.disabledOn).toBe(previousDisabled); // NOT overwritten
+    });
+
+    it('already active (no transition): enabledOn preserved, disabledOn remains null', () => {
+        const previousEnabled = '2025-01-01T00:00:00.000Z';
+        const previous = {
+            version: '3.4.0',
+            tests: [{
+                mvdTestCode: TEST_CODE,
+                status: 'Active',
+                enabledOn: previousEnabled,
+                disabledOn: null
+            }]
+        };
+        const env = transformToCompendium(baseArgs(baseRow('ACTIVE'), previous));
+        const t = env.tests[0];
+        expect(t.status).toBe('Active');
+        expect(t.enabledOn).toBe(previousEnabled);
+        expect(t.disabledOn).toBeNull();
+    });
+
+    it('previousCompendium null → same behavior as omitted', () => {
+        expect(() =>
+            transformToCompendium({
+                tests: [baseRow('ACTIVE')],
+                specimens: [],
+                loincs: [],
+                cpts: [],
+                components: [],
+                panels: [],
+                previousCompendium: null
+            })
+        ).not.toThrow();
+    });
+
+    it('emits both enabledOn and disabledOn as first-class fields on every test', () => {
+        const env = transformToCompendium(baseArgs(baseRow('ACTIVE')));
+        const t = env.tests[0];
+        expect(Object.prototype.hasOwnProperty.call(t, 'enabledOn')).toBe(true);
+        expect(Object.prototype.hasOwnProperty.call(t, 'disabledOn')).toBe(true);
     });
 });

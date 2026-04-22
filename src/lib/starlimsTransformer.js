@@ -403,15 +403,29 @@ function buildOrderableLoincs(testId, shortName, now, loincsByTestId, specimensB
  * Transform raw StarLIMS query result rows into a CompendiumEnvelope.
  *
  * @param {Object} rawData
- * @param {Array}  rawData.tests      - rows from GET_ACTIVE_TESTS
- * @param {Array}  rawData.specimens  - rows from GET_ALL_SPECIMENS
- * @param {Array}  rawData.loincs     - rows from GET_ALL_LOINCS
- * @param {Array}  rawData.cpts       - rows from GET_ALL_CPTS
- * @param {Array}  rawData.components - rows from GET_ALL_COMPONENTS
- * @param {Array}  rawData.panels     - rows from GET_ALL_PANELS
+ * @param {Array}  rawData.tests              - rows from GET_ACTIVE_TESTS or GET_ALL_TESTS_INCLUDING_INACTIVE
+ * @param {Array}  rawData.specimens          - rows from GET_ALL_SPECIMENS
+ * @param {Array}  rawData.loincs             - rows from GET_ALL_LOINCS
+ * @param {Array}  rawData.cpts               - rows from GET_ALL_CPTS
+ * @param {Array}  rawData.components         - rows from GET_ALL_COMPONENTS
+ * @param {Array}  rawData.panels             - rows from GET_ALL_PANELS
+ * @param {string} [rawData.version]          - envelope version (defaults to '3.0.0')
+ * @param {Object} [rawData.previousCompendium] - previous envelope (if any) used
+ *         for status transition detection. When provided, the transformer will
+ *         carry forward each test's prior enabledOn/disabledOn and only set
+ *         new values on the first sync where a transition is detected.
  * @returns {Object} CompendiumEnvelope
  */
-function transformToCompendium({ tests, specimens, loincs, cpts, components, panels, version = '3.0.0' } = {}) {
+function transformToCompendium({
+    tests,
+    specimens,
+    loincs,
+    cpts,
+    components,
+    panels,
+    version = '3.0.0',
+    previousCompendium = null
+} = {}) {
     const testRows = Array.isArray(tests) ? tests : [];
     const specimenRows = Array.isArray(specimens) ? specimens : [];
     const loincRows = Array.isArray(loincs) ? loincs : [];
@@ -420,6 +434,15 @@ function transformToCompendium({ tests, specimens, loincs, cpts, components, pan
     const panelRows = Array.isArray(panels) ? panels : [];
 
     const now = new Date().toISOString();
+
+    // Build a lookup of the previous compendium's tests by mvdTestCode so we
+    // can detect Active↔Inactive transitions and carry forward audit fields.
+    const previousByCode = new Map();
+    if (previousCompendium && Array.isArray(previousCompendium.tests)) {
+        for (const pt of previousCompendium.tests) {
+            if (pt && pt.mvdTestCode) previousByCode.set(pt.mvdTestCode, pt);
+        }
+    }
 
     // Step 1: Group child rows by TEST_ID in a single pass each (O(n)).
     const specimensByTestId = groupBy(specimenRows, r => r.TEST_ID);
@@ -486,9 +509,34 @@ function transformToCompendium({ tests, specimens, loincs, cpts, components, pan
         const updatedOn = toIsoOrFallback(row.MODIFIED_DATE, now);
         const createdOn = toIsoOrFallback(row.CREATED_DATE, updatedOn);
 
+        // Status transition tracking.
+        //   enabledOn  — ISO8601 when the test first appeared in the compendium.
+        //                Carried forward from the previous envelope if present,
+        //                otherwise set to `now` (first time we've seen this code).
+        //   disabledOn — ISO8601 when the test first transitioned Active→Inactive.
+        //                Carried forward while still inactive; cleared on
+        //                Inactive→Active transition; remains null for tests
+        //                that have never been inactive.
+        const mvdTestCode = String(row.TEST_CODE || '').trim();
+        const prevTest = previousByCode.get(mvdTestCode);
+        const currentStatus = normalizeStatus(row.STATUS);
+        const isNowInactive = currentStatus === 'Inactive';
+
+        const enabledOn = (prevTest && prevTest.enabledOn) ? prevTest.enabledOn : now;
+
+        let disabledOn;
+        if (isNowInactive) {
+            // If we already recorded a disabledOn previously, keep it; otherwise
+            // this is the first sync where the test is inactive — stamp it now.
+            disabledOn = (prevTest && prevTest.disabledOn) ? prevTest.disabledOn : now;
+        } else {
+            // Now active — always null (clears prior disabledOn on reactivation).
+            disabledOn = null;
+        }
+
         /** @type {Object} */
         const outTest = {
-            mvdTestCode: String(row.TEST_CODE || '').trim(),
+            mvdTestCode,
             market,
             species,
             testName,
@@ -498,7 +546,9 @@ function transformToCompendium({ tests, specimens, loincs, cpts, components, pan
             organism: row.ORGANISM ? String(row.ORGANISM).trim() : 'N/A',
             cptCodes: cptList,
             tat: row.TAT || '',
-            status: normalizeStatus(row.STATUS),
+            status: currentStatus,
+            enabledOn,
+            disabledOn,
             createdOn,
             createdBy: 'starlims-sync',
             updatedOn,

@@ -31,13 +31,13 @@
 const { app } = require('@azure/functions');
 
 const {
-    GET_ACTIVE_TESTS,
+    GET_ALL_TESTS_INCLUDING_INACTIVE,
     GET_ALL_SPECIMENS,
     GET_ALL_LOINCS,
     GET_ALL_CPTS,
     GET_ALL_COMPONENTS,
     GET_ALL_PANELS,
-    GET_CHANGED_TEST_IDS
+    GET_CHANGED_ANY_STATUS
 } = require('../lib/starlimsQueries');
 const { transformToCompendium } = require('../lib/starlimsTransformer');
 const { invalidateCache } = require('../lib/compendiumDataAccess');
@@ -46,6 +46,26 @@ const { invalidateCache } = require('../lib/compendiumDataAccess');
 const LIVE_BLOB_NAME = 'mvd-compendium-live.json';
 const SYNC_STATE_BLOB_NAME = 'sync-state.json';
 const DEFAULT_CONTAINER = 'compendium';
+const VERSIONS_PREFIX = 'versions/';
+
+// ---------------------------------------------------------------------------
+// Version bumping
+// ---------------------------------------------------------------------------
+/**
+ * Produce the next envelope version. Uses a simple major.minor.patch scheme
+ * where the minor segment is incremented on every change-producing sync
+ * (patch is reset to 0). Non-numeric or absent inputs default to 3.0.0 →
+ * 3.1.0 on first bump, preserving compatibility with the seed envelope.
+ *
+ * @param {string|null|undefined} currentVersion
+ * @returns {string}
+ */
+function nextVersion(currentVersion) {
+    const [rawMajor, rawMinor] = String(currentVersion || '3.0.0').split('.');
+    const major = Number.isFinite(Number(rawMajor)) ? Number(rawMajor) : 3;
+    const minor = Number.isFinite(Number(rawMinor)) ? Number(rawMinor) : 0;
+    return `${major}.${minor + 1}.0`;
+}
 
 // ===========================================================================
 // Connection string parser — minimal, purpose-built for:
@@ -125,9 +145,12 @@ async function queryChangedTestIds(lastSync) {
     const pool = await openStarlimsPool();
     try {
         const sinceDate = lastSync instanceof Date ? lastSync : new Date(lastSync);
+        // GET_CHANGED_ANY_STATUS does not filter by STATUS so that Active→Inactive
+        // transitions are detected (the STATUS change itself bumps MODIFIED_DATE
+        // but a status-filtered query would miss the row).
         const result = await pool.request()
             .input('since', mssql.DateTime, sinceDate)
-            .query(GET_CHANGED_TEST_IDS);
+            .query(GET_CHANGED_ANY_STATUS);
         return (result.recordset || []).map(r => r.TEST_ID);
     } finally {
         await pool.close();
@@ -143,7 +166,9 @@ async function fetchAllCompendiumData() {
     const pool = await openStarlimsPool();
     try {
         const [tests, specimens, loincs, cpts, components, panels] = await Promise.all([
-            pool.request().query(GET_ACTIVE_TESTS),
+            // Fetch ALL tests (active + inactive) so the transformer can retain
+            // inactive tests in the compendium for audit-trail purposes.
+            pool.request().query(GET_ALL_TESTS_INCLUDING_INACTIVE),
             pool.request().query(GET_ALL_SPECIMENS),
             pool.request().query(GET_ALL_LOINCS),
             pool.request().query(GET_ALL_CPTS),
@@ -362,14 +387,22 @@ async function compendiumSyncHandler(myTimer, context) {
             return;
         }
 
-        // 3. Bulk fetch (full rebuild)
+        // 3. Bulk fetch (full rebuild — includes inactive tests)
         const rawData = await fetchAllCompendiumData();
 
-        // 4. Transform
-        const newCompendium = transformToCompendium(rawData);
-
-        // 5. Diff against current live blob
+        // 4. Load current live blob — needed BEFORE transform so the transformer
+        //    can carry forward enabledOn/disabledOn and detect Active↔Inactive
+        //    transitions against the prior envelope.
         const currentCompendium = await loadCurrentFromBlob();
+
+        // 5. Transform with version bump + previousCompendium for transition detection
+        const newCompendium = transformToCompendium({
+            ...rawData,
+            version: nextVersion(currentCompendium && currentCompendium.version),
+            previousCompendium: currentCompendium
+        });
+
+        // 6. Diff against current live blob
         const diff = computeDiff(currentCompendium, newCompendium);
 
         if (!diff.hasChanges) {
@@ -378,17 +411,25 @@ async function compendiumSyncHandler(myTimer, context) {
             return;
         }
 
-        // 6. Publish new compendium
+        // 7. Publish new compendium to the live blob (read path)
         await writeToBlob(LIVE_BLOB_NAME, JSON.stringify(newCompendium, null, 2));
 
-        // 7. Write changelog entry
+        // 8. Write an immutable versioned snapshot for audit / dispute traceability.
+        //    Every order must be resolvable back to the exact compendium in effect
+        //    when it was placed — versioned snapshots provide that evidence.
         const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const versionedBlobName = `${VERSIONS_PREFIX}${newCompendium.version}-${stamp}.json`;
+        await writeToBlob(versionedBlobName, JSON.stringify(newCompendium, null, 2));
+
+        // 9. Write changelog entry (references the versioned snapshot for disputes)
         const changelogName = `changelogs/${stamp}.json`;
         await writeToBlob(
             changelogName,
             JSON.stringify(
                 {
                     syncedAt: new Date().toISOString(),
+                    version: newCompendium.version,
+                    versionedBlobName,
                     added: diff.added,
                     removed: diff.removed,
                     modified: diff.modified,
@@ -403,10 +444,10 @@ async function compendiumSyncHandler(myTimer, context) {
             )
         );
 
-        // 8. Persist new sync timestamp
+        // 10. Persist new sync timestamp
         await updateLastSyncTimestamp(new Date().toISOString());
 
-        // 9. Invalidate API cache
+        // 11. Invalidate API cache
         await invalidateCache();
 
         logInfo(
@@ -430,5 +471,6 @@ app.timer('compendiumSync', {
 
 module.exports = {
     compendiumSyncHandler,
-    computeDiff
+    computeDiff,
+    nextVersion
 };
