@@ -203,15 +203,18 @@ Allowed IP ranges for system access:
 ### Rule 6.5: Azure Resource Naming Convention
 ```
 {project}-{environment}-{resource-type}
-
-Examples:
-urlip-dev-func      # Development Function App
-urlip-prod-func     # Production Function App
-urlip-dev-sql       # Development SQL Database
-urlip-prod-kv       # Production Key Vault
-urlip-dev-blob      # Development Blob Storage
-urlip-prod-appconfig # Production App Configuration
 ```
+
+**Actual provisioned resources in `rg-urlip-dev-centralus-001`:**
+| Resource | Type | Notes |
+|---|---|---|
+| `func-urlip-dev-centralus-001` | Function App | Primary API |
+| `asp-urlip-dev-centralus-001` | App Service Plan | Hosts function app |
+| `sturlipdev001` | Storage Account | Blob: `compendium` container for live/versioned compendium JSON |
+| `kv-urlip-dev-001` | Key Vault | Secrets: STARLIMS-CONNECTION-STRING, COMPENDIUM-BLOB-CONNECTION-STRING, COMPENDIUM-BLOB-CONTAINER |
+| `appcs-urlip-dev-001` | App Configuration | Feature flags and app settings |
+| `appi-urlip-dev-centralus-001` | Application Insights | Telemetry |
+| `log-urlip-dev-centralus-001` | Log Analytics Workspace | Log sink |
 
 ---
 
@@ -888,6 +891,30 @@ After every significant troubleshooting session or pattern discovery, update thi
 **Solution:** Purge deleted App Configuration: `az appconfig purge --name <name> --location <location> --yes`
 **Prevention:** Use unique names or purge soft-deleted resources before redeployment
 
+#### Learning: StarLIMS Integrated Security does not work in Azure Functions
+**Date:** 2026-04-21
+**Context:** Provisioning StarLIMS connection string in Key Vault for compendium sync Azure Function
+**Issue:** `Integrated Security=true` in the connection string works locally (developer's Windows domain credentials) but will fail when the Function runs in Azure (no Windows domain auth in App Service)
+**Root Cause:** Azure Functions run as a service principal, not a domain user
+**Solution:** For Azure-deployed Function, replace `Integrated Security=true` with `User Id=<svc_account>;Password=<pass>` in Key Vault secret `STARLIMS-CONNECTION-STRING`
+**Prevention:** Always provision SQL auth credentials alongside Integrated Security; document clearly that local.settings.json uses Integrated Security and Key Vault uses SQL auth
+
+#### Learning: Compendium locale files use market-qualified keys for shared test codes
+**Date:** 2026-04-21
+**Context:** Adding i18n translations for 64 compendium tests; some test codes (e.g. 310) appear in both Human and Veterinary markets with different names
+**Issue:** Single-key locale lookup (`"310"`) would apply the same translation to both human and vet versions
+**Root Cause:** Test codes are not unique across markets; human 310 is "Histoplasma Ag Quantitative EIA", vet 310 is "Histoplasma Antigen EIA"
+**Solution:** `compendiumLocalizer.js` checks `"310-Veterinary"` before `"310"` in locale JSON; locale files include both keys for shared codes
+**Prevention:** When adding new tests to locale files, check if the code exists in both markets and add market-qualified keys if names differ
+
+#### Learning: StarLIMS STARLIMS_DATA server resolves to 10.117.2.68, requires VPN
+**Date:** 2026-04-21
+**Context:** Attempting to query STARLIMS_DATA from dev machine to discover schema
+**Issue:** DNS resolves correctly (vm-sql-dev-001.miralan.loc → 10.117.2.68) but TCP port 1433 times out without VPN
+**Root Cause:** 10.117.x.x subnet is on internal network not accessible from external or non-VPN connections
+**Solution:** Connect to internal VPN before running `node scripts/discover-starlims-schema.js` or any sqlcmd commands against STARLIMS_DATA
+**Prevention:** The schema discovery script handles this gracefully — run with `--no-sample` flag to avoid writing PHI to disk
+
 #### [Template for new learnings]
 ```markdown
 ### Learning: [Title]
@@ -944,14 +971,45 @@ fix(auth): resolve token refresh race condition
 docs(api): update swagger for billing endpoints
 ```
 
+### Compendium Automation Commands
+```bash
+# First-time setup (requires VPN)
+node scripts/discover-starlims-schema.js --no-sample   # Map StarLIMS table names
+
+# Manual sync trigger (requires function key)
+curl -X POST https://<func-url>/api/compendium/sync?code=<function-key>
+
+# Check sync status
+curl https://<func-url>/api/compendium/sync/status
+
+# List versioned snapshots (for dispute resolution)
+curl https://<func-url>/api/compendium/versions
+
+# Compendium with locale
+curl https://<func-url>/api/compendium?locale=fr-CA&status=Active
+```
+
+### Compendium Blob Storage Layout
+```
+sturlipdev001 / compendium/
+├── mvd-compendium-live.json          # Current live compendium (overwritten on each sync)
+├── sync-state.json                   # { lastSync: ISO8601 }
+├── versions/
+│   └── 3.1.0-2026-04-21T....json    # Immutable versioned snapshots (audit trail)
+└── changelogs/
+    └── 2026-04-21T....json          # Per-sync diff { added, modified, removed, versionedBlobName }
+```
+
 ### Emergency Contacts
 - **Monday.com Workspace:** MVD IT (ID: 12231690) → URLIP folder
 - **Monday.com Phase 1 Board:** https://michaelloggins.monday.com/boards/18400841228
 - **Monday.com Customer Onboarding:** https://michaelloggins.monday.com/boards/18400841566
 - **GitHub Repo:** https://github.com/michaelloggins/URLIP
+- **Open PR:** https://github.com/michaelloggins/URLIP/pull/1 — feat(compendium): automated StarLIMS sync pipeline
 - **Azure Portal:** https://portal.azure.com
 - **Azure Dev RG:** rg-urlip-dev-centralus-001
 - **Azure Prod RG:** rg-urlip-prod-centralus-001
+- **StarLIMS DB:** vm-sql-dev-001.miralan.loc (10.117.2.68), database STARLIMS_DATA — requires VPN
 
 ---
 
