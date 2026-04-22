@@ -112,7 +112,7 @@ function normalizeSpecimenType(raw) {
 function normalizeMarket(raw) {
     if (raw === null || raw === undefined || raw === '') return 'Human';
     const key = _upper(raw);
-    return MARKET_MAP[key] || String(raw).trim();
+    return MARKET_MAP[key] || 'Human';
 }
 
 /**
@@ -220,9 +220,9 @@ function buildSpecimenSourceRules(specimens) {
         }
     }
 
-    const has = (pattern) => [...allSources].some(src => pattern.test(src));
-    const filterSources = (pattern) =>
-        [...allSources].filter(src => pattern.test(src)).sort();
+    const sourcesArray = [...allSources];
+    const has = (pattern) => sourcesArray.some(src => pattern.test(src));
+    const filterSources = (pattern) => sourcesArray.filter(src => pattern.test(src)).sort();
 
     const rules = {
         serumPlasma: {
@@ -411,7 +411,7 @@ function buildOrderableLoincs(testId, shortName, now, loincsByTestId, specimensB
  * @param {Array}  rawData.panels     - rows from GET_ALL_PANELS
  * @returns {Object} CompendiumEnvelope
  */
-function transformToCompendium({ tests, specimens, loincs, cpts, components, panels } = {}) {
+function transformToCompendium({ tests, specimens, loincs, cpts, components, panels, version = '3.0.0' } = {}) {
     const testRows = Array.isArray(tests) ? tests : [];
     const specimenRows = Array.isArray(specimens) ? specimens : [];
     const loincRows = Array.isArray(loincs) ? loincs : [];
@@ -463,7 +463,7 @@ function transformToCompendium({ tests, specimens, loincs, cpts, components, pan
         // CPT codes
         const cptList = (cptsByTestId.get(testId) || []).map(c => ({
             code: String(c.CPT_CODE || '').trim(),
-            quantity: Number.isFinite(c.CPT_QUANTITY) ? c.CPT_QUANTITY : 1
+            quantity: Number.isFinite(Number(c.CPT_QUANTITY)) ? Number(c.CPT_QUANTITY) : 1
         })).filter(c => c.code);
 
         // Component tests (panel members → MVD test codes, sorted by SEQUENCE)
@@ -495,7 +495,7 @@ function transformToCompendium({ tests, specimens, loincs, cpts, components, pan
             shortName,
             category: normalizeCategory(row.CATEGORY),
             methodology: normalizeMethodology(row.METHODOLOGY),
-            organism: row.ORGANISM || null,
+            organism: row.ORGANISM ? String(row.ORGANISM).trim() : 'N/A',
             cptCodes: cptList,
             tat: row.TAT || '',
             status: normalizeStatus(row.STATUS),
@@ -524,22 +524,34 @@ function transformToCompendium({ tests, specimens, loincs, cpts, components, pan
     let totalOrderableLoincs = 0;
     let humanTests = 0;
     let veterinaryTests = 0;
+    const categorySet = new Set();
+    const marketSet = new Set();
+    const speciesSet = new Set();
+    const organismSet = new Set();
     for (const t of outTests) {
         totalOrderableLoincs += Array.isArray(t.orderableLoincs) ? t.orderableLoincs.length : 0;
         if (t.market === 'Human') humanTests += 1;
         else if (t.market === 'Veterinary') veterinaryTests += 1;
+        if (t.category) categorySet.add(t.category);
+        if (t.market)   marketSet.add(t.market);
+        if (t.species)  speciesSet.add(t.species);
+        if (t.organism && t.organism !== 'N/A') organismSet.add(t.organism);
     }
 
     const summary = {
         totalTests: outTests.length,
         totalOrderableLoincs,
         humanTests,
-        veterinaryTests
+        veterinaryTests,
+        categories: [...categorySet].sort(),
+        markets:    [...marketSet].sort(),
+        species:    [...speciesSet].sort(),
+        organisms:  [...organismSet].sort()
     };
 
     // Step 4: Assemble envelope.
     return {
-        version: 'live',
+        version,
         lastUpdated: now,
         generatedFrom: 'StarLIMS STARLIMS_DATA automated sync',
         performingOrganization: PERFORMING_ORGANIZATION,
@@ -554,6 +566,7 @@ module.exports = {
     normalizeCategory,
     normalizeMethodology,
     normalizeSpecimenType,
+    normalizeMarket,
     normalizeStatus,
     buildSpecimenSourceRules
 };
