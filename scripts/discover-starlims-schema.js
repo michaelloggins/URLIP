@@ -7,7 +7,13 @@
  * PANEL, ASSAY, CATALOG, METHOD, RESULT, COMPONENT).
  *
  * Usage:
- *   node scripts/discover-starlims-schema.js
+ *   node scripts/discover-starlims-schema.js [--no-sample]
+ *
+ * Flags:
+ *   --no-sample   Disable fetching sample rows. Use this flag in all
+ *                 production/HIPAA environments to prevent PHI from being
+ *                 written to disk. When omitted, up to 3 sample rows per
+ *                 object are fetched and written to the JSON output file.
  *
  * Prerequisites:
  *   - STARLIMS_CONNECTION_STRING set in environment, .env, or local.settings.json
@@ -19,6 +25,10 @@
  * Outputs:
  *   - Human-readable mapping report to stdout
  *   - scripts/starlims-schema-discovery.json (full discovery output)
+ *
+ * HIPAA WARNING: When sample rows are enabled (default), the JSON output file
+ * may contain PHI. Always use --no-sample in production environments or when
+ * querying databases that contain real patient data.
  */
 
 'use strict';
@@ -51,7 +61,8 @@ const RELEVANT_KEYWORDS = [
   'COMPONENT',
 ];
 
-const SAMPLE_ROW_COUNT = 3;
+/** Set to 0 by --no-sample flag at startup; otherwise default 3. */
+let SAMPLE_ROW_COUNT = 3;
 
 // ============================================================================
 // Environment / Config Loading
@@ -142,6 +153,16 @@ function resolveConnectionString() {
  *
  * Handles keys: Server, Database, Integrated Security, TrustServerCertificate,
  * User Id/UID, Password/PWD, Port, Encrypt, Connection Timeout.
+ *
+ * NOTE — Semicolon escaping: The parser splits on single semicolons (`;`) and
+ * treats `;;` as a segment boundary, meaning `;;`-escaped literal semicolons
+ * inside values (e.g. passwords) are NOT supported. If your password contains
+ * a semicolon, supply the connection string via an environment variable or
+ * Azure Key Vault instead of the inline connection string format.
+ *
+ * NOTE — Encryption default: encrypt defaults to `true` unless explicitly set
+ * to `false` or `no`. When connecting to a server with a self-signed
+ * certificate add `TrustServerCertificate=true` to avoid TLS errors.
  *
  * @param {string} connStr  e.g. "Server=host\\instance;Database=DB;Integrated Security=true;"
  * @returns {import('mssql').config}
@@ -249,44 +270,48 @@ function parseConnectionString(connStr) {
 /**
  * Returns all user table names from INFORMATION_SCHEMA.TABLES.
  * @param {import('mssql').ConnectionPool} pool
- * @returns {Promise<Array<{name: string, type: 'TABLE'}>>}
+ * @returns {Promise<Array<{name: string, schema: string, type: 'TABLE'}>>}
  */
 async function queryTables(pool) {
   const result = await pool.request().query(`
-    SELECT TABLE_NAME AS name
+    SELECT TABLE_NAME AS name, TABLE_SCHEMA AS schemaName
     FROM INFORMATION_SCHEMA.TABLES
     WHERE TABLE_TYPE = 'BASE TABLE'
       AND TABLE_SCHEMA NOT IN ('sys', 'INFORMATION_SCHEMA')
-    ORDER BY TABLE_NAME
+    ORDER BY TABLE_SCHEMA, TABLE_NAME
   `);
-  return result.recordset.map((r) => ({ name: r.name, type: 'TABLE' }));
+  return result.recordset.map((r) => ({ name: r.name, schema: r.schemaName, type: 'TABLE' }));
 }
 
 /**
  * Returns all view names from INFORMATION_SCHEMA.VIEWS.
  * @param {import('mssql').ConnectionPool} pool
- * @returns {Promise<Array<{name: string, type: 'VIEW'}>>}
+ * @returns {Promise<Array<{name: string, schema: string, type: 'VIEW'}>>}
  */
 async function queryViews(pool) {
   const result = await pool.request().query(`
-    SELECT TABLE_NAME AS name
+    SELECT TABLE_NAME AS name, TABLE_SCHEMA AS schemaName
     FROM INFORMATION_SCHEMA.VIEWS
     WHERE TABLE_SCHEMA NOT IN ('sys', 'INFORMATION_SCHEMA')
-    ORDER BY TABLE_NAME
+    ORDER BY TABLE_SCHEMA, TABLE_NAME
   `);
-  return result.recordset.map((r) => ({ name: r.name, type: 'VIEW' }));
+  return result.recordset.map((r) => ({ name: r.name, schema: r.schemaName, type: 'VIEW' }));
 }
 
 /**
  * Returns column metadata for a given table or view.
+ * Both TABLE_NAME and TABLE_SCHEMA are used in the WHERE clause to avoid
+ * ambiguous results when two schemas contain an identically named object.
  * @param {import('mssql').ConnectionPool} pool
- * @param {string} objectName
+ * @param {string} objectName   The table/view name (TABLE_NAME)
+ * @param {string} schemaName   The schema name (TABLE_SCHEMA)
  * @returns {Promise<Array<{columnName: string, dataType: string, isNullable: string, maxLength: number|null}>>}
  */
-async function queryColumns(pool, objectName) {
+async function queryColumns(pool, objectName, schemaName) {
   const result = await pool
     .request()
     .input('tableName', sql.NVarChar(256), objectName)
+    .input('schemaName', sql.NVarChar(256), schemaName)
     .query(`
       SELECT
         COLUMN_NAME     AS columnName,
@@ -298,6 +323,7 @@ async function queryColumns(pool, objectName) {
         ORDINAL_POSITION AS ordinalPosition
       FROM INFORMATION_SCHEMA.COLUMNS
       WHERE TABLE_NAME = @tableName
+        AND TABLE_SCHEMA = @schemaName
       ORDER BY ORDINAL_POSITION
     `);
   return result.recordset;
@@ -305,18 +331,38 @@ async function queryColumns(pool, objectName) {
 
 /**
  * Returns up to SAMPLE_ROW_COUNT rows from a table/view.
- * Returns an empty array if the query fails (e.g. permission denied).
+ * Returns an empty array if sample rows are disabled (SAMPLE_ROW_COUNT === 0),
+ * if the object name is not in the known-good allowlist, or if the query fails
+ * (e.g. permission denied).
+ *
+ * Security: objectName is validated against the allObjectNames Set (populated
+ * from INFORMATION_SCHEMA) before interpolation into the SQL string. This
+ * prevents SQL injection in the rare scenario where INFORMATION_SCHEMA itself
+ * returns a crafted name. Bracket-quoting with `]]`-escaping is applied as a
+ * second defence layer.
+ *
  * @param {import('mssql').ConnectionPool} pool
- * @param {string} objectName
+ * @param {string} objectName       The table/view name to query
+ * @param {string} schemaName       The schema name (used in the bracket-qualified identifier)
+ * @param {Set<string>} allObjectNames  Allowlist of known-good names from INFORMATION_SCHEMA
  * @returns {Promise<object[]>}
  */
-async function querySampleRows(pool, objectName) {
+async function querySampleRows(pool, objectName, schemaName, allObjectNames) {
+  // If --no-sample was specified, skip entirely
+  if (SAMPLE_ROW_COUNT === 0) return [];
+
+  // Allowlist check: only query names that actually came from INFORMATION_SCHEMA
+  if (!allObjectNames.has(objectName)) {
+    return [];
+  }
+
   try {
-    // Use bracket-quoted identifier to handle reserved words / special chars
+    // Bracket-quote both schema and object name; escape any embedded `]` chars
+    const safeSchema = schemaName.replace(/]/g, ']]');
     const safeName = objectName.replace(/]/g, ']]');
     const result = await pool
       .request()
-      .query(`SELECT TOP ${SAMPLE_ROW_COUNT} * FROM [${safeName}]`);
+      .query(`SELECT TOP ${SAMPLE_ROW_COUNT} * FROM [${safeSchema}].[${safeName}]`);
     return result.recordset || [];
   } catch (err) {
     // Non-fatal: permission issue or broken view
@@ -363,10 +409,19 @@ function formatDataType(col) {
  * Prints the discovery report to stdout.
  * @param {DiscoveryResult[]} results
  * @param {SummaryStats} stats
+ * @param {boolean} hasSampleRows  Whether any sample rows were collected
  */
-function printReport(results, stats) {
+function printReport(results, stats, hasSampleRows) {
   const line = '='.repeat(72);
   const dash = '-'.repeat(72);
+
+  if (hasSampleRows) {
+    console.log('\n' + '!'.repeat(72));
+    console.log('  WARNING: Output may contain PHI.');
+    console.log('  Do not share or store in an unsecured location.');
+    console.log('  Use --no-sample to suppress sample rows in HIPAA environments.');
+    console.log('!'.repeat(72));
+  }
 
   console.log('\n' + line);
   console.log('  StarLIMS Schema Discovery Report');
@@ -441,6 +496,7 @@ function printReport(results, stats) {
 /**
  * @typedef {{
  *   name: string,
+ *   schema: string,
  *   type: 'TABLE'|'VIEW',
  *   columns: Array<{columnName: string, dataType: string, isNullable: string, maxLength: number|null}>,
  *   sampleRows: object[]
@@ -461,6 +517,13 @@ function printReport(results, stats) {
 // ============================================================================
 
 async function main() {
+  // ── 0. Parse CLI flags ────────────────────────────────────────────────────
+  const args = process.argv.slice(2);
+  if (args.includes('--no-sample')) {
+    SAMPLE_ROW_COUNT = 0;
+    console.log('  [--no-sample] Sample row collection disabled. No PHI will be fetched or written.');
+  }
+
   // ── 1. Resolve connection string ─────────────────────────────────────────
   const connStr = resolveConnectionString();
 
@@ -480,6 +543,9 @@ async function main() {
     console.error('');
     console.error('  Option C — local.settings.json (Values section):');
     console.error('    "STARLIMS_CONNECTION_STRING": "Server=vm-sql-dev-001.miralan.loc;Database=STARLIMS_DATA;Integrated Security=true;TrustServerCertificate=true;"');
+    console.error('');
+    console.error('Flags:');
+    console.error('  --no-sample   Disable sample row collection (recommended for HIPAA environments)');
     console.error('');
     console.error('NOTE: You must also be connected to the MiraVista VPN (miralan.loc).');
     process.exit(1);
@@ -583,6 +649,11 @@ async function main() {
     process.exit(1);
   }
 
+  // Build an allowlist of known-good object names sourced directly from
+  // INFORMATION_SCHEMA. This set is passed to querySampleRows so that the
+  // dynamic SQL identifier can be validated before interpolation.
+  const allObjectNames = new Set(allObjects.map((o) => o.name));
+
   // ── 5. Filter to relevant objects ─────────────────────────────────────────
   const relevantObjects = allObjects.filter((obj) => isRelevant(obj.name));
   console.log(`  Relevant matches: ${relevantObjects.length} (keywords: ${RELEVANT_KEYWORDS.join(', ')})`);
@@ -592,11 +663,11 @@ async function main() {
   const results = [];
 
   for (const obj of relevantObjects) {
-    process.stdout.write(`  Inspecting ${obj.type.toLowerCase()} [${obj.name}] ...`);
+    process.stdout.write(`  Inspecting ${obj.type.toLowerCase()} [${obj.schema}].[${obj.name}] ...`);
     try {
       const [columns, sampleRows] = await Promise.all([
-        queryColumns(pool, obj.name),
-        querySampleRows(pool, obj.name),
+        queryColumns(pool, obj.name, obj.schema),
+        querySampleRows(pool, obj.name, obj.schema, allObjectNames),
       ]);
       results.push({ ...obj, columns, sampleRows });
       process.stdout.write(` ${columns.length} columns, ${sampleRows.length} sample rows\n`);
@@ -620,10 +691,20 @@ async function main() {
   };
 
   // ── 8. Print human-readable report ───────────────────────────────────────
-  printReport(results, stats);
+  const hasSampleRows = results.some((r) => r.sampleRows.length > 0);
+  printReport(results, stats, hasSampleRows);
 
   // ── 9. Write JSON output ──────────────────────────────────────────────────
   const output = {
+    // _warning is included when sample rows are present so any consumer of
+    // this file is reminded that PHI may be present. JSON does not support
+    // comments, so this key is used instead.
+    ...(hasSampleRows && {
+      _warning:
+        'This file may contain PHI (Protected Health Information). ' +
+        'Do not share or store in an unsecured location. ' +
+        'Re-run with --no-sample to produce a PHI-free output.',
+    }),
     meta: {
       generatedAt: new Date().toISOString(),
       server: stats.server,
@@ -631,9 +712,11 @@ async function main() {
       keywords: RELEVANT_KEYWORDS,
       totalScanned: stats.totalScanned,
       totalMatched: stats.totalMatched,
+      sampleRowsIncluded: hasSampleRows,
     },
     objects: results.map((obj) => ({
       name: obj.name,
+      schema: obj.schema,
       type: obj.type,
       columnCount: obj.columns.length,
       columns: obj.columns,
