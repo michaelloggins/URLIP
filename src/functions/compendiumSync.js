@@ -407,7 +407,7 @@ async function compendiumSyncHandler(myTimer, context) {
         await updateLastSyncTimestamp(new Date().toISOString());
 
         // 9. Invalidate API cache
-        invalidateCache();
+        await invalidateCache();
 
         logInfo(
             `Sync complete in ${Date.now() - startTime}ms: ` +
