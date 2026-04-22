@@ -53,6 +53,9 @@ tmp/
 temp/
 *.tmp
 
+# Git worktrees
+.worktrees/
+
 # Azure
 .azure/
 
